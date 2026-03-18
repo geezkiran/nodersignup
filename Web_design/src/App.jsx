@@ -1,0 +1,175 @@
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  ArrowRight, Sparkles, LayoutGrid, Clock, Puzzle, Monitor, ChevronRight,
+  Zap, Shield, Globe, Target, Command, Home
+} from 'lucide-react';
+import './index.css';
+import noderLogo from './noder.png';
+import dashboardImg from './assets/Light.png';
+
+function App() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setIsHidden(true); // scrolling down
+      } else {
+        setIsHidden(false); // scrolling up
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div className="noder-app">
+      <div className={`header-wrapper ${isScrolled ? 'scrolled' : ''} ${isHidden ? 'hidden' : ''}`}>
+        <header className="header">
+          <div className="logo">
+            <img src={noderLogo} alt="Noder" style={{ height: '20px', filter: 'invert(1)', objectFit: 'contain' }} />
+          </div>
+
+          <nav className="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Pricing</a>
+            <a href="#">About Us</a>
+            <a href="#">Story</a>
+          </nav>
+
+          <button className="btn btn-primary"> Get Started<ArrowRight size={16} /></button>
+        </header>
+      </div>
+
+      <main className="hero-split">
+        {/* Left Graphic Side */}
+        <div className="hero-image-container">
+          <img src={dashboardImg} alt="Dashboard Preview" className="hero-image" />
+        </div>
+
+        {/* Right Content Side */}
+        <div className="hero-content">
+          <div className="badge">
+            <Sparkles size={14} className="badge-icon" /> Connecting AI Features
+          </div>
+
+          <h1 className="title">
+            Stay focused, stay<br />
+            productive, <span className="title-faded">and<br />get more done</span>
+          </h1>
+
+          <div className="feature-pill">
+            <div className="fp-icon">
+              <Monitor size={24} />
+            </div>
+            <div className="fp-text">
+              <h4>Try our newest feature</h4>
+              <p>AI Task, Timeline Sync, Smart Reminders</p>
+            </div>
+            <div className="fp-arrow">
+              <ArrowRight size={14} />
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <section className="trusted-section">
+        <p className="trusted-text">Trusted by innovative teams worldwide</p>
+        <div className="trusted-logos">
+          <span className="trusted-logo">Acme Corp</span>
+          <span className="trusted-logo">Globex</span>
+          <span className="trusted-logo">Soylent</span>
+          <span className="trusted-logo">Initech</span>
+          <span className="trusted-logo">Umbrella</span>
+        </div>
+      </section>
+
+      <section className="features-section">
+        <div className="section-header">
+          <div className="badge"><Target size={14} className="badge-icon" /> Why choose us</div>
+          <h2>Everything you need to scale</h2>
+          <p>Powerful features to help your team work faster and smarter.</p>
+        </div>
+
+        <div className="bento-grid">
+          <div className="bento-card bento-large">
+            <div className="bento-icon"><Zap size={24} /></div>
+            <h3>Lightning Fast Performance</h3>
+            <p>Our infrastructure is optimized for speed, ensuring your team never experiences lag or downtime. Work at the speed of thought.</p>
+            <div className="bento-graphic bg-pattern-1"></div>
+          </div>
+
+          <div className="bento-card">
+            <div className="bento-icon"><Shield size={24} /></div>
+            <h3>Enterprise Security</h3>
+            <p>Bank-grade encryption and advanced security controls to keep your data safe.</p>
+          </div>
+
+          <div className="bento-card">
+            <div className="bento-icon"><Globe size={24} /></div>
+            <h3>Global Sync</h3>
+            <p>Real-time synchronization across all your devices, anywhere in the world.</p>
+          </div>
+
+          <div className="bento-card bento-wide">
+            <div className="bento-icon"><Command size={24} /></div>
+            <h3>Command Menu Interface</h3>
+            <p>Navigate your entire workspace, run actions, and find anything instantly with our powerful command menu. Just press CMD+K.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="cta-section">
+        <div className="cta-content">
+          <h2>Ready to boost your productivity?</h2>
+          <p>Join thousands of teams already using Noder to accomplish more.</p>
+          <div className="cta-buttons">
+            <button className="btn btn-white">Start for free</button>
+            <button className="btn btn-secondary">Contact Sales</button>
+          </div>
+        </div>
+      </section>
+
+      <footer className="footer">
+        <div className="footer-content">
+          <div className="footer-brand">
+            <img src={noderLogo} alt="Noder" style={{ height: '22px', filter: 'invert(1)', objectFit: 'contain' }} />
+            <p>Making work beautifully simple.</p>
+          </div>
+          <div className="footer-links">
+            <div className="link-group">
+              <h4>Product</h4>
+              <a href="#">Features</a>
+              <a href="#">Integrations</a>
+              <a href="#">Pricing</a>
+            </div>
+            <div className="link-group">
+              <h4>Company</h4>
+              <a href="#">About Us</a>
+              <a href="#">Careers</a>
+              <a href="#">Blog</a>
+            </div>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>&copy; 2026 Noder Inc. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+export default App;
