@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, Mail, Lock, User, Sparkle } from 'lucide-react';
 import noderLogo from '../assets/noder.png';
 
+
 function Signup() {
   const router = useRouter();
 

@@ -3,10 +3,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   ArrowRight, Sparkles,
-  Zap, Shield, Globe, Target, Command, PackagePlus, Sparkle
+  Zap, Shield, Globe, Target, Command, PackagePlus, Sparkle, ChevronDown
 } from 'lucide-react';
 import noderLogo from './assets/noder.png';
 import dashboardImg from './assets/Timeline 1.webp';
+
+
 
 function Home() {
   const router = useRouter();
@@ -65,9 +67,56 @@ function Home() {
           </div>
 
           <nav className="nav-links">
-            <a href="#">Home</a>
+            <div className="nav-dropdown">
+              <a href="#" style={{ display: 'flex', alignItems: 'center' }}>
+                Product <ChevronDown size={14} className="dropdown-icon" />
+              </a>
+              <div className="dropdown-menu">
+                <a href="#">
+                  <strong>Features</strong>
+                  <span>Explore everything Noder has to offer</span>
+                </a>
+                <a href="#">
+                  <strong>Integrations</strong>
+                  <span>Connect your favorite external tools</span>
+                </a>
+                <a href="#">
+                  <strong>Security</strong>
+                  <span>Learn how we keep your data safe</span>
+                </a>
+                <a href="#">
+                  <strong>Changelog</strong>
+                  <span>See our latest product updates</span>
+                </a>
+              </div>
+            </div>
+
             <a href="#">Pricing</a>
-            <a href="#">About Us</a>
+
+            <div className="nav-dropdown">
+              <a href="#" style={{ display: 'flex', alignItems: 'center' }}>
+                Resources <ChevronDown size={14} className="dropdown-icon" />
+              </a>
+              <div className="dropdown-menu">
+                <a href="#">
+                  <strong>Blog</strong>
+                  <span>Read insights and company news</span>
+                </a>
+                <a href="#">
+                  <strong>Help Center</strong>
+                  <span>Get support and read our guides</span>
+                </a>
+                <a href="#">
+                  <strong>Community Forum</strong>
+                  <span>Join the discussion with other users</span>
+                </a>
+                <a href="#">
+                  <strong>Developer API</strong>
+                  <span>Build custom apps with our API</span>
+                </a>
+              </div>
+            </div>
+
             <a href="#">Story</a>
           </nav>
 
@@ -92,16 +141,10 @@ function Home() {
             productive, <span className="title-faded">and<br />get more done</span>
           </h1>
 
-          <div className="feature-pill ">
-            <div className="fp-icon">
-              <PackagePlus size={24} />
-            </div>
-            <div className="fp-text">
-              <h4>Try our newest feature</h4>
-              <p>AI Task, Timeline Sync, Smart Reminders</p>
-            </div>
-            <div className="fp-arrow">
-              <ArrowRight size={16} />
+          <div style={{ display: 'flex', gap: '16px', marginTop: '40px' }}>
+            <div className="cta-buttons">
+              <button className="btn btn-white" onClick={() => router.push('/signup')}><Sparkle size={16} /> Get Started</button>
+              <button className="btn btn-secondary">Learn more</button>
             </div>
           </div>
         </div>
