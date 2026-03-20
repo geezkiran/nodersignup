@@ -45,11 +45,11 @@ export default function Header() {
               aria-label="Toggle Menu"
             >
               {isMobileMenuOpen ? (
-                <X color="#232323" strokeWidth={1.25} />
+                <X color="#abababff" strokeWidth={1.25} />
               ) : (
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <line x1="3" y1="10" x2="21" y2="10" stroke="#232323" strokeWidth="1.25" strokeLinecap="round" />
-                  <line x1="3" y1="17" x2="21" y2="17" stroke="#232323" strokeWidth="1.25" strokeLinecap="round" />
+                  <line x1="3" y1="10" x2="21" y2="10" stroke="#abababff" strokeWidth="1.25" strokeLinecap="round" />
+                  <line x1="3" y1="17" x2="21" y2="17" stroke="#abababff" strokeWidth="1.25" strokeLinecap="round" />
                 </svg>
               )}
             </button>
