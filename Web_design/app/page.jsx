@@ -155,13 +155,13 @@ function Home() {
             <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Developers</a>
           </div>
 
-          <div className="mobile-nav-section">
+          {/*<div className="mobile-nav-section">
             <a href="#" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Pricing</a>
-          </div>
+          </div>*/}
 
 
           <div className="mobile-nav-section">
-            <a href="#" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Story</a>
+            <a href="#" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Our Story</a>
           </div>
 
           {/*<div className="mobile-menu-footer">

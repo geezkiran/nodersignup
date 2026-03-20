@@ -125,7 +125,6 @@ body::before {
 .nav-links {
   display: flex;
   padding-top: 2px;
-  padding-left: 10px;
   gap: 40px;
 }
 
@@ -246,7 +245,7 @@ body::before {
 }
 
 .mobile-menu-content {
-  padding: 24px 20px 40px;
+  padding: 40px 40px 30px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px 16px;
