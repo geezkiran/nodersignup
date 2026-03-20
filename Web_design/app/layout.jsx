@@ -4,6 +4,9 @@ import './globals.css';
 export const metadata = {
   title: 'Noder',
   description: 'Join thousands of teams scaling with Noder.',
+  icons: {
+    icon: '/favicon.png',
+  },
 };
 
 export default function RootLayout({ children }) {
