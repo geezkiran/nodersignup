@@ -539,14 +539,38 @@ body::before {
   letter-spacing: 1px;
 }
 
-.trusted-logos {
+.trusted-logos-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 60px;
-  flex-wrap: wrap;
+  white-space: nowrap;
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
   opacity: 0.5;
   filter: grayscale(100%);
+}
+
+.trusted-logos-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 25s linear infinite;
+}
+
+.trusted-logos-track:hover {
+  animation-play-state: paused;
+}
+
+.trusted-logos-group {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  padding-right: 80px; /* Crucial for seamless loop alignment */
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .trusted-logo {
@@ -960,8 +984,9 @@ body::before {
   }
 
   /* Compact logos row */
-  .trusted-logos {
-    gap: 24px;
+  .trusted-logos-group {
+    gap: 32px;
+    padding-right: 32px;
   }
 
   .features-section,

@@ -67,12 +67,25 @@ function Home() {
 
       <section className="trusted-section">
         <p className="trusted-text">Trusted by innovative teams worldwide</p>
-        <div className="trusted-logos">
-          <span className="trusted-logo">Acme Corp</span>
-          <span className="trusted-logo">Globex</span>
-          <span className="trusted-logo">Soylent</span>
-          <span className="trusted-logo">Initech</span>
-          <span className="trusted-logo">Umbrella</span>
+        <div className="trusted-logos-container">
+          <div className="trusted-logos-track">
+            {/* Group 1 */}
+            <div className="trusted-logos-group">
+              <span className="trusted-logo">Acme Corp</span>
+              <span className="trusted-logo">Globex</span>
+              <span className="trusted-logo">Soylent</span>
+              <span className="trusted-logo">Initech</span>
+              <span className="trusted-logo">Umbrella</span>
+            </div>
+            {/* Group 2 (duplicate for seamless loop) */}
+            <div className="trusted-logos-group" aria-hidden="true">
+              <span className="trusted-logo">Acme Corp</span>
+              <span className="trusted-logo">Globex</span>
+              <span className="trusted-logo">Soylent</span>
+              <span className="trusted-logo">Initech</span>
+              <span className="trusted-logo">Umbrella</span>
+            </div>
+          </div>
         </div>
       </section>
 

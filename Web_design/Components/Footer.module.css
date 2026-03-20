@@ -88,8 +88,8 @@
 
 .tagline {
   font-size: 13px;
-  color: #6b7280;
-  margin: 0;
+  line-height: 0.3;
+  color: #a7a7a7;
 }
 
 /* ─── Compliance badges ────────────────────────────────────── */

@@ -17,13 +17,13 @@ const footerLinks = {
     { label: 'Blog', href: '#' },
     { label: 'About us', href: '#' },
     { label: 'Careers', href: '#' },
-    { label: 'Press', href: '#' },
+
     { label: 'Security', href: '#' },
-    { label: 'AI productivity guide', href: '#' },
+
   ],
   Legal: [
-    { label: 'Terms & conditions | Noder Inc.', href: '#' },
-    { label: 'General terms of use | Noder Inc.', href: '#' },
+    { label: 'Terms & conditions', href: '#' },
+    { label: 'General terms of use', href: '#' },
     { label: 'Privacy notice', href: '#' },
     { label: 'Legal notice', href: '#' },
     { label: 'Cookies preferences', href: '#' },
@@ -94,7 +94,7 @@ export default function Footer() {
             <a href="#" className={styles.socialIcon} aria-label="GitHub"><GitHubIcon /></a>
             <a href="#" className={styles.socialIcon} aria-label="X"><XIcon /></a>
           </div>
-          <p className={styles.tagline}>Making work beautifully simple.</p>
+          <p className={styles.tagline}>Noder is an official Trademark of NOIRGRID Inc.</p>
         </div>
 
         <div className={styles.badgeRow}>
