@@ -2,7 +2,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { Mail, Lock, User, Sparkle } from 'lucide-react';
-import noderLogo from '../assets/noder.png';
+import Header from '../../Components/Header';
 
 
 function Signup() {
@@ -10,13 +10,7 @@ function Signup() {
 
   return (
     <div className="noder-app signup-page">
-      <div className="header-wrapper">
-        <header className="header">
-          <div className="logo cursor-pointer" onClick={() => router.push('/')}>
-            <img src={noderLogo.src} alt="Noder" style={{ height: '20px', filter: 'invert(1)', objectFit: 'contain' }} />
-          </div>
-        </header>
-      </div>
+      <Header />
 
       <main className="signup-container">
         <div className="signup-box reveal active">

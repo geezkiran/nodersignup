@@ -3,41 +3,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   ArrowRight, Sparkles,
-  Zap, Shield, Globe, Target, Command, PackagePlus, Sparkle, ChevronDown, Menu, X, PanelLeft
+  Zap, Shield, Globe, Target, Command, PackagePlus, Sparkle, ChevronDown, Menu, X, CirclePlus
 } from 'lucide-react';
 import noderLogo from './assets/noder.png';
 import dashboardImg from './assets/Timeline 1.webp';
 import Footer from '../Components/Footer';
+import Header from '../Components/Header';
 
 function Home() {
   const router = useRouter();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const lastScrollY = useRef(0);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
 
-      if (currentScrollY > 70) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-
-      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-        setIsHidden(true); // scrolling down
-      } else {
-        setIsHidden(false); // scrolling up
-      }
-
-      lastScrollY.current = currentScrollY;
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     const elements = document.querySelectorAll(".reveal");
@@ -60,120 +36,7 @@ function Home() {
 
   return (
     <div className="noder-app">
-      <div className={`header-wrapper ${isScrolled ? 'scrolled' : ''} ${isHidden ? 'hidden' : ''}`}>
-        <header className="header">
-          <div className="header-left">
-            <button
-              className="mobile-menu-toggle"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle Menu"
-            >
-              {isMobileMenuOpen ? (
-                <X color="#232323" strokeWidth={1.25} />
-              ) : (
-                <Menu color="#232323" strokeWidth={1.25} />
-              )}
-            </button>
-            <div className="logo" onClick={() => router.push('/')} style={{ cursor: 'pointer' }}>
-              <img src={noderLogo.src} alt="Noder" style={{ height: '20px', objectFit: 'contain' }} />
-            </div>
-          </div>
-
-          <nav className="nav-links">
-            <div className="nav-dropdown">
-              <a href="#" style={{ display: 'flex', alignItems: 'center' }}>
-                Product <ChevronDown size={14} className="dropdown-icon" />
-              </a>
-              <div className="dropdown-menu">
-                <a href="#">
-                  <strong>Features</strong>
-                  <span>Explore everything Noder has to offer</span>
-                </a>
-                <a href="#">
-                  <strong>Integrations</strong>
-                  <span>Connect your favorite external tools</span>
-                </a>
-                <a href="#">
-                  <strong>Security</strong>
-                  <span>Learn how we keep your data safe</span>
-                </a>
-                <a href="#">
-                  <strong>Changelog</strong>
-                  <span>See our latest product updates</span>
-                </a>
-              </div>
-            </div>
-
-            <a href="#">Pricing</a>
-
-            <div className="nav-dropdown">
-              <a href="#" style={{ display: 'flex', alignItems: 'center' }}>
-                Resources <ChevronDown size={14} className="dropdown-icon" />
-              </a>
-              <div className="dropdown-menu">
-                <a href="#">
-                  <strong>Blog</strong>
-                  <span>Read insights and company news</span>
-                </a>
-                <a href="#">
-                  <strong>Help Center</strong>
-                  <span>Get support and read our guides</span>
-                </a>
-                <a href="#">
-                  <strong>Community Forum</strong>
-                  <span>Join the discussion with other users</span>
-                </a>
-                <a href="#">
-                  <strong>Developer API</strong>
-                  <span>Build custom apps with our API</span>
-                </a>
-              </div>
-            </div>
-
-            <a href="#">Story</a>
-          </nav>
-
-          <button className="btn btn-primary" onClick={() => router.push('/signup')}> <Sparkle size={16} /> Get Started</button>
-        </header>
-      </div>
-
-      {/* Mobile Menu Dropdown */}
-      <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
-        <div className="mobile-menu-content">
-          <div className="mobile-nav-section">
-            <h3>Product</h3>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Features</a>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Integrations</a>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Security</a>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Changelog</a>
-          </div>
-
-
-
-          <div className="mobile-nav-section">
-            <h3>Resources</h3>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Blog</a>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Help Center</a>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Community</a>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Developers</a>
-          </div>
-
-          {/*<div className="mobile-nav-section">
-            <a href="#" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Pricing</a>
-          </div>*/}
-
-
-          <div className="mobile-nav-section">
-            <a href="#" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Our Story</a>
-          </div>
-
-          {/*<div className="mobile-menu-footer">
-            <button className="btn btn-primary w-full" onClick={() => { setIsMobileMenuOpen(false); router.push('/signup'); }}>
-              <Sparkle size={16} /> Get Started
-            </button>
-          </div>*/}
-        </div>
-      </div>
+      <Header />
 
       <main className="hero-split">
         {/* Left Graphic Side */}
@@ -184,7 +47,7 @@ function Home() {
         {/* Right Content Side */}
         <div className="hero-content">
           <div className="badge ">
-            <Sparkles size={14} className="badge-icon" /> Connecting AI Features
+            <Sparkles size={16} className="badge-icon" /> Connecting AI Features
           </div>
 
           <h1 className="title reveal">
@@ -194,8 +57,8 @@ function Home() {
 
           <div style={{ display: 'flex', gap: '16px', marginTop: '40px' }}>
             <div className="cta-buttons">
-              <button className="btn btn-white" onClick={() => router.push('/signup')}><Sparkle size={16} /> Get Started</button>
-              <button className="btn btn-white" onClick={() => router.push('/#')}><ArrowRight size={16} /> Learn more</button>
+              <button className="btn btn-white" onClick={() => router.push('/signup')}><Sparkle size={17} /> Get Started</button>
+              <button className="btn btn-blue" onClick={() => router.push('/#')}><CirclePlus size={17} /></button>
             </div>
           </div>
         </div>
