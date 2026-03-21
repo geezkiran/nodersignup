@@ -1036,11 +1036,6 @@ body::before {
     flex-direction: column;
     gap: 40px;
   }
-
-  main h3, main p,
-  section h3, section p {
-    text-align: left;
-  }
 }
 
 @media (max-width: 480px) {
