@@ -34,7 +34,7 @@ const features = [
     tag: 'Notifications',
     title: 'Stay in the Loop',
     description: 'Smart alerts notify your team at the right moment — no noise, just the updates that actually need your attention.',
-    accent: '#f5e8f0',
+    accent: '#f1f1f1ff',
     iconColor: '#c86ea8',
   },
   {
@@ -84,9 +84,7 @@ export default function FeatureCarousel() {
           <button className={styles.arrowBtn} onClick={prev} aria-label="Previous">
             <ChevronLeft size={18} strokeWidth={1.75} />
           </button>
-          <span className={styles.counter}>
-            {String(current + 1).padStart(2, '0')} / {String(features.length).padStart(2, '0')}
-          </span>
+
           <button className={styles.arrowBtn} onClick={next} aria-label="Next">
             <ChevronRight size={18} strokeWidth={1.75} />
           </button>

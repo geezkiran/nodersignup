@@ -1,5 +1,7 @@
 .trustedSection {
+  width: 100%;
   max-width: 1400px;
+  overflow-x: hidden;
   margin: -80px auto 60px;
   padding: 0 10px;
   text-align: center;

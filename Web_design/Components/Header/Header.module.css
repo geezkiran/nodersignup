@@ -200,7 +200,8 @@
   letter-spacing: 1px;
   color: var(--text-secondary);
   margin-bottom: 16px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .mobile-nav-section {
@@ -212,13 +213,13 @@
 .mobile-nav-section a {
   text-decoration: none;
   color: var(--text-primary);
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 500;
-  padding: 8px 0;
+  padding: 4px 0;
 }
 
 .mobile-nav-link {
-  font-size: 18px !important;
+  font-size: 16px !important;
   font-weight: 600 !important;
 }
 
@@ -227,4 +228,38 @@
   margin-top: 16px;
   padding-top: 32px;
   border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header> :global(.btn-primary) {
+    display: none;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .header {
+    padding: 14px 20px;
+  }
+
+  .header-left {
+    gap: 6px;
+  }
+
+  .logo {
+    padding: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 8px 16px;
+  }
 }
