@@ -62,7 +62,7 @@
 }
 
 .mobile-menu-toggle:hover {
-  background: white;
+  background: #fafaf9;
 }
 
 .nav-links {
@@ -105,7 +105,7 @@
   top: calc(100% + 16px);
   left: 50%;
   transform: translateX(-50%) translateY(10px);
-  background: #ffffff;
+  background: #fafaf9;
   border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 12px;
@@ -171,7 +171,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: white;
+  background: #fafaf9;
   z-index: 999;
   opacity: 0;
   visibility: hidden;
