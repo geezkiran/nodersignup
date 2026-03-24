@@ -27,16 +27,80 @@
   mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, black 50%, transparent 100%);
 }
 
-.bentoGrid {
-  display: grid;
-  max-width: 1200px;
-  margin: 0 auto;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(250px, auto);
-  gap: 24px;
+.carouselWrapper {
+  position: relative;
+  width: 100%;
+  margin-top: 40px;
 }
 
-.bentoCard {
+.carouselWrapper:hover .navButton {
+  opacity: 1;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  color: #1d1d1f;
+}
+
+.navButton:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+}
+
+.navButton:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.prevButton {
+  left: -24px;
+}
+
+.nextButton {
+  right: -24px;
+}
+
+.carouselTrack {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 20px 0 40px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 1024px) {
+  .navButton {
+    display: none; /* Hide buttons on tablet/mobile where swipe is preferred */
+  }
+}
+
+.carouselTrack::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.carouselCard {
+  flex: 0 0 320px;
+  aspect-ratio: 3 / 4;
+  scroll-snap-align: center;
   background: var(--bg-color);
   border: 1px solid var(--border-color);
   border-radius: 24px;
@@ -49,120 +113,69 @@
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.bentoCard:hover {
+.carouselCard:hover {
   box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
 }
 
-.bentoLarge {
-  grid-column: span 2;
-  grid-row: span 2;
-  position: relative;
-  overflow: hidden;
-}
-
-.bentoLarge::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 0;
-}
-
-.bentoLarge::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -1;
-}
-
-.bentoLarge>* {
-  position: relative;
-  z-index: 1;
-}
-
-.bentoContent {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  padding: 40px;
-  max-width: 70%;
-}
-
-.bentoWide {
-  grid-column: span 2;
-}
-
-.bentoHeader {
+.cardContent {
+  height: 100%;
   display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-bottom: 16px;
+  flex-direction: column;
 }
 
-.bentoHeader .bentoIcon {
-  margin-bottom: 0 !important;
-}
-
-.bentoCard .bentoHeader h3 {
-  margin-bottom: 0 !important;
-}
-
-.bentoIcon {
+.iconBox {
   width: 48px;
   height: 48px;
-  background: transparent;
-  border-radius: 30px;
+  background: var(--bg-muted);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 24px;
+  color: var(--text-primary);
 }
 
-.bentoCard h3 {
+.carouselCard h3 {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 12px;
   color: var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
-.bentoCard p {
+.carouselCard p {
   font-size: 15px;
   color: var(--text-secondary);
   line-height: 1.6;
 }
 
+.indicatorTrack {
+  width: 200px;
+  height: 2px;
+  background: var(--border-color);
+  margin: 20px auto 0;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.indicatorProgress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--text-primary);
+  border-radius: 4px;
+}
+
 @media (max-width: 768px) {
-
-
-  .sectionHeader h2 {
-    max-width: 600px;
+  .carouselCard {
+    flex: 0 0 280px;
   }
-
-  .sectionHeader p {
-    max-width: 400px;
-  }
-
-  .bentoGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .bentoLarge,
-  .bentoWide {
-    grid-column: span 1;
-  }
-
-  .bentoContent {
-    max-width: 100%;
-    padding: 32px 24px 24px 24px;
-    box-sizing: border-box;
-  }
-
+  
   .featuresSection {
-    padding: 0 20px;
+    padding: 60px 20px;
   }
 }
