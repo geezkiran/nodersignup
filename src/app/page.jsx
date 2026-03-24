@@ -7,6 +7,7 @@ import TrustedSection from '../components/Testimonial/TrustedSection';
 import FeaturesSection from '../components/FeatureSection/FeaturesSection';
 import Waitlist1 from '../components/Waitlist/Waitlist1';
 import FAQ2 from '../components/FAQ/FAQ2';
+import Compare8 from "../components/Table/Compare8";
 
 
 
@@ -32,8 +33,9 @@ export default function Home() {
       <Hero />
       <TrustedSection />
       <FeaturesSection />
-      <Waitlist1 />
+      <Compare8 />
       <FAQ2 />
+      <Waitlist1 />
       <Footer />
     </div>
   );

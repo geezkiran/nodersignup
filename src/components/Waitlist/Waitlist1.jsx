@@ -316,7 +316,7 @@ export default function Waitlist1() {
             className="wl-fade"
             style={{
               animationDelay: "0.2s",
-              fontSize: 18,
+              fontSize: 16,
               color: "#71717a",
               lineHeight: 1.65,
               maxWidth: 600,

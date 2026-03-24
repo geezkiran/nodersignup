@@ -23,11 +23,11 @@ export default function Hero() {
           <Sparkles size={14} className="badge-icon" /> Connecting AI Features
         </div>
 
-        <h1 className={`${styles.title} reveal`}>
+        <h1 className={styles.title + " reveal"}>
           The art of Inheritance in modern learning
         </h1>
 
-        <p className={`${styles.tagline} reveal`} style={{ animationDelay: '1s' }}>
+        <p className={`${styles.tagline} reveal`} style={{ animationDelay: '0.5s' }}>
           Elevate your productivity with next-generation tools designed for seamless integration and accelerated learning workflows.
         </p>
 
