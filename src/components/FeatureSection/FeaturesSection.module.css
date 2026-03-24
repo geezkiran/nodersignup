@@ -27,34 +27,6 @@
   mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, black 50%, transparent 100%);
 }
 
-.sectionHeader {
-  text-align: center;
-  margin: 0 auto 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 600px;
-}
-
-.sectionHeader h2 {
-  font-size: clamp(35px, 3.5vw, 40px);
-  font-weight: 600;
-  letter-spacing: -1.2px;
-  color: var(--text-primary);
-  margin: 16px 0;
-  background: linear-gradient(135deg, #202020, #232323, #424242);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.sectionHeader p {
-  font-size: 16px;
-  color: var(--text-secondary);
-  font-weight: 400;
-  line-height: 1.4;
-}
-
 .bentoGrid {
   display: grid;
   max-width: 1200px;

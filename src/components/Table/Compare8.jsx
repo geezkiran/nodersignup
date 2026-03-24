@@ -180,7 +180,7 @@ export default function Compare8() {
         {/* Header */}
         <motion.div className="mb-10 text-center" {...fadeUp(0)}>
           <h2 className="mb-5 flex items-center justify-center gap-3 text-4xl font-semibold tracking-tighter md:text-4xl">
-            What we do better.
+            What we do better
           </h2>
           <p className="text-muted-foreground mx-auto max-w-xl text-base">
             A detailed feature comparison to help you choose the right UI

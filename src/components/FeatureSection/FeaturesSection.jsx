@@ -14,9 +14,9 @@ export default function FeaturesSection() {
   return (
     <section className={styles.featuresSection}>
       <div className={styles.featuresContainer}>
-        <motion.div className={styles.sectionHeader} {...fadeUp(0)}>
-          <h2>Why Choose Noder</h2>
-          <p>The ultimate platform to accelerate your workflow, offering enterprise security and global scalability.</p>
+        <motion.div className="mb-10 text-center flex flex-col items-center" {...fadeUp(0)}>
+          <h2 className="mb-5 flex items-center justify-center gap-3 text-4xl font-semibold tracking-tighter md:text-4xl">Why choose us</h2>
+          <p className="text-muted-foreground mx-auto max-w-xl text-base">The ultimate platform to accelerate your workflow, offering enterprise security and global scalability.</p>
         </motion.div>
 
         <div className={styles.bentoGrid}>
