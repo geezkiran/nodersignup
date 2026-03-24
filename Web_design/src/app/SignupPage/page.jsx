@@ -2,7 +2,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { Mail, Lock, User, Sparkle } from 'lucide-react';
-import Header from '../../Components/Header/Header';
+import Header from '../../components/Header/Header';
 
 
 function Signup() {

@@ -1,12 +1,12 @@
 'use client';
 import { useEffect } from 'react';
-import Header from '../Components/Header/Header';
-import Footer from '../Components/Footer/Footer';
-import Hero from '../Components/Hero/Hero';
-import TrustedSection from '../Components/Testimonial/TrustedSection';
-import FeaturesSection from '../Components/FeatureSection/FeaturesSection';
-import Waitlist1 from '../Components/Waitlist/Waitlist1';
-import FAQ2 from '../Components/FAQ/FAQ2';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
+import Hero from '../components/Hero/Hero';
+import TrustedSection from '../components/Testimonial/TrustedSection';
+import FeaturesSection from '../components/FeatureSection/FeaturesSection';
+import Waitlist1 from '../components/Waitlist/Waitlist1';
+import FAQ2 from '../components/FAQ/FAQ2';
 
 
 

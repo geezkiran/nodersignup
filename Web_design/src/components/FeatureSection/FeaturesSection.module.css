@@ -30,9 +30,9 @@
 }
 
 .sectionHeader h2 {
-  font-size: 48px;
+  font-size: clamp(35px, 3.5vw, 40px);
   font-weight: 600;
-  letter-spacing: -1.5px;
+  letter-spacing: -1.2px;
   color: var(--text-primary);
   margin: 16px 0;
   background: linear-gradient(135deg, #202020, #232323, #424242);
@@ -42,10 +42,10 @@
 }
 
 .sectionHeader p {
-  font-size: 17px;
+  font-size: 16px;
   color: var(--text-secondary);
-  max-width: 600px;
-  font-weight: 500;
+  font-weight: 400;
+  line-height: 1.4;
 }
 
 .bentoGrid {
@@ -144,6 +144,15 @@
 }
 
 @media (max-width: 768px) {
+
+  .sectionHeader h2 {
+    max-width: 600px;
+  }
+
+  .sectionHeader p {
+    max-width: 400px;
+  }
+
   .bentoGrid {
     grid-template-columns: 1fr;
   }

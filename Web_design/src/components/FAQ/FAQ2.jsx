@@ -84,7 +84,7 @@ function AccordionItem({ question, answer, isOpen, onClick }) {
       >
         <span
           style={{
-            fontSize: "15px",
+            fontSize: "17px",
             fontWeight: "500",
             lineHeight: "1.5",
             color: "#111827",
@@ -106,8 +106,9 @@ function AccordionItem({ question, answer, isOpen, onClick }) {
           <p
             style={{
               paddingBottom: "20px",
-              fontSize: "14px",
-              lineHeight: "1.75",
+              fontSize: "16px",
+              lineHeight: "1.5",
+              letterSpacing: "-0.01em",
               color: "#6b7280",
               margin: 0,
             }}
@@ -152,7 +153,7 @@ export default function FAQ2() {
         <div className="faq-sticky-col" style={{ position: "sticky", top: "80px" }}>
           <p
             style={{
-              fontSize: "13px",
+              fontSize: "12px",
               fontWeight: "600",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
@@ -177,14 +178,14 @@ export default function FAQ2() {
           </h2>
           <p
             style={{
-              fontSize: "15px",
-              lineHeight: "1.7",
+              fontSize: "16px",
+              lineHeight: "1.5",
               color: "#6b7280",
+              letterSpacing: "-0.01em",
               margin: "0 0 36px 0",
             }}
           >
             Everything you need to know about the product and how it works.
-            Can't find the answer you're looking for? Reach out to our team.
           </p>
 
         </div>

@@ -30,7 +30,7 @@
 }
 
 .heroContent {
-  flex: 1.5;
+  flex: 1.4;
   margin-top: -120px;
   display: flex;
   flex-direction: column;
@@ -42,6 +42,8 @@
   font-size: clamp(40px, 5vw, 65px);
   font-weight: 600;
   line-height: 1.05;
+  max-width: 650px;
+  padding-bottom: 10px;
   letter-spacing: -3px;
   background: linear-gradient(135deg, #202020, #424242);
   background-clip: text;
@@ -50,11 +52,12 @@
 }
 
 .tagline {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 500;
-  color: #939393;
+  max-width: 620px;
+  color: #646464;
   margin-top: 16px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .ctaRow {
@@ -74,9 +77,6 @@
     flex-direction: column-reverse;
   }
 
-  .title {
-    font-size: 56px;
-  }
 
 
 }
@@ -108,14 +108,13 @@
     margin: 0;
   }
 
-  .title {
-    font-size: 28px;
-    letter-spacing: -1.2px;
-  }
+
 
   .tagline {
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 400;
     margin-top: 12px;
+    letter-spacing: -0.2px;
   }
 
 

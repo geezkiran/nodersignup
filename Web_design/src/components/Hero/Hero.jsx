@@ -27,7 +27,7 @@ export default function Hero() {
           The art of Inheritance in modern learning
         </h1>
 
-        <p className={`${styles.tagline} reveal`} style={{ animationDelay: '0.7s' }}>
+        <p className={`${styles.tagline} reveal`} style={{ animationDelay: '1s' }}>
           Elevate your productivity with next-generation tools designed for seamless integration and accelerated learning workflows.
         </p>
 

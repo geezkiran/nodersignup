@@ -136,7 +136,7 @@ function AvatarStack({ count = "2,400+" }) {
           </div>
         ))}
       </div>
-      <p style={{ fontSize: 13, color: "#71717a", margin: 0 }}>
+      <p style={{ fontSize: 14, color: "#71717a", margin: 0 }}>
         <strong style={{ color: "#18181b", fontWeight: 600 }}>{count}</strong> people already joined
       </p>
     </div>
@@ -316,16 +316,18 @@ export default function Waitlist1() {
             className="wl-fade"
             style={{
               animationDelay: "0.2s",
-              fontSize: 16,
+              fontSize: 18,
               color: "#71717a",
               lineHeight: 1.65,
               maxWidth: 600,
               marginBottom: 36,
+              letterSpacing: "-0.01em",
               fontWeight: 400,
+              lineHeight: "1.4"
             }}
           >
             Be the first to know when we launch. We're building something
-            extraordinary — get early access and shape the product.
+            extraordinary.
           </p>
 
           {/* Form */}
