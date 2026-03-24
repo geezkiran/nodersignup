@@ -117,8 +117,9 @@ const features = [
 function SupportIcon({
   level,
   tooltip,
+  delay = 0,
 }) {
-  const icon =
+  const iconContent =
     level === "full" ? (
       <span className="text-emerald-600 dark:text-emerald-500 font-bold text-lg">
         ✓
@@ -132,6 +133,23 @@ function SupportIcon({
         ✕
       </span>
     );
+
+  const icon = (
+    <motion.span
+      initial={{ scale: 0, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+        delay: delay,
+      }}
+      className="inline-block"
+    >
+      {iconContent}
+    </motion.span>
+  );
 
   if (!tooltip) return icon;
 
@@ -221,6 +239,7 @@ export default function Compare8() {
                 <SupportIcon
                   level={feature.shadcn}
                   tooltip={feature.shadcnNote}
+                  delay={0.2 + i * 0.05}
                 />
               </div>
 
@@ -229,6 +248,7 @@ export default function Compare8() {
                 <SupportIcon
                   level={feature.bootstrap}
                   tooltip={feature.bootstrapNote}
+                  delay={0.25 + i * 0.05}
                 />
               </div>
             </div>
