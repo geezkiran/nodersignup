@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Sparkle, ChevronDown, Menu, X } from 'lucide-react';
+import { motion } from 'framer-motion';
 import noderLogo from '../../app/assets/noder.png';
 import styles from './Header.module.css';
 import Banner1 from '../Banner/Banner1';
@@ -122,25 +123,40 @@ export default function Header() {
       {/* Mobile Menu Dropdown */}
       <div className={`${styles['mobile-menu']} ${isMobileMenuOpen ? styles.open : ''}`}>
         <div className={styles['mobile-menu-content']}>
-          <div className={styles['mobile-nav-section']}>
+          <motion.div 
+            className={styles['mobile-nav-section']}
+            initial={{ opacity: 0, y: 15 }}
+            animate={isMobileMenuOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ delay: 0.1 }}
+          >
             <h3>Product</h3>
             <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Features</a>
             <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Integrations</a>
             <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Security</a>
             <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Changelog</a>
-          </div>
+          </motion.div>
 
-          <div className={styles['mobile-nav-section']}>
+          <motion.div 
+            className={styles['mobile-nav-section']}
+            initial={{ opacity: 0, y: 15 }}
+            animate={isMobileMenuOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ delay: 0.2 }}
+          >
             <h3>Resources</h3>
             <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Blog</a>
             <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Help Center</a>
             <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Community</a>
             <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Developers</a>
-          </div>
+          </motion.div>
 
-          <div className={styles['mobile-nav-section']}>
+          <motion.div 
+            className={styles['mobile-nav-section']}
+            initial={{ opacity: 0, y: 15 }}
+            animate={isMobileMenuOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ delay: 0.3 }}
+          >
             <a href="#" className={styles['mobile-nav-link']} onClick={() => setIsMobileMenuOpen(false)}>Our Story</a>
-          </div>
+          </motion.div>
         </div>
       </div>
     </>
