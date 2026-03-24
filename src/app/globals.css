@@ -35,21 +35,7 @@ body {
   position: relative;
 }
 
-body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image: radial-gradient(var(--border-color) 1px, transparent 1.3px);
-  background-size: 11px 11px;
-  background-position: center;
-  -webkit-mask-image: radial-gradient(ellipse 80% 550px at 50% 350px, black 70%, transparent 100%);
-  mask-image: radial-gradient(ellipse 80% 550px at 50% 350px, black 10%, transparent 100%);
-}
+
 
 .noder-app {
   min-height: 100vh;

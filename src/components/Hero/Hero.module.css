@@ -1,11 +1,24 @@
 .heroSplit {
   display: flex;
   max-width: 1400px;
-  margin: 80px auto 10px;
+  margin: 60px auto 10px; /* Reduced top margin slightly for cleaner look */
   padding: 20px;
   gap: 60px;
   align-items: center;
   position: relative;
+}
+
+.heroSplit::before {
+  content: "";
+  position: absolute;
+  inset: -100px 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(var(--border-color) 1px, transparent 1.3px);
+  background-size: 11px 11px;
+  background-position: center;
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
 }
 
 .heroImageContainer {

@@ -6,15 +6,15 @@
   right: 0;
   width: 100%;
   z-index: 1000;
-  background-color: transparent;
+  background-color: #fafaf9;
   backdrop-filter: none;
   transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
 }
 
 .scrolled {
-  background-color: rgba(255, 255, 255, 0.774);
-  backdrop-filter: blur(15px);
-  border-bottom: 1.75px solid #b9b9b936;
+  background-color: #fafaf9e4;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);
 }
 
@@ -105,7 +105,8 @@
   top: calc(100% + 16px);
   left: 50%;
   transform: translateX(-50%) translateY(10px);
-  background: #fafaf9;
+  background: var(--bg-color);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 12px;
@@ -171,7 +172,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: #fafaf9;
+  background: var(--bg-color);
+  backdrop-filter: blur(12px);
   z-index: 999;
   opacity: 0;
   visibility: hidden;

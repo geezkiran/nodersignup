@@ -11,29 +11,16 @@
   width: 100%;
 }
 
-.featuresSection::before {
-  content: "";
-  position: absolute;
-  top: -50px;
-  left: 0;
-  right: 0;
-  bottom: -50px;
-  z-index: -1;
-  pointer-events: none;
-  background-image: radial-gradient(var(--border-color) 1px, transparent 1.3px);
-  background-size: 11px 11px;
-  background-position: center;
-  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, black 50%, transparent 100%);
-  mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, black 50%, transparent 100%);
-}
+
 
 .carouselWrapper {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 40px auto 0;
   display: block;
 }
+
 
 
 .carouselWrapper:hover .navButton {
@@ -84,28 +71,36 @@
   gap: 24px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 20px 0 40px;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  padding: 24px 120px 48px;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
   scroll-behavior: smooth;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 100px, black calc(100% - 100px), transparent);
+  mask-image: linear-gradient(to right, transparent, black 100px, black calc(100% - 100px), transparent);
 }
 
 @media (max-width: 1024px) {
   .navButton {
-    display: none; /* Hide buttons on tablet/mobile where swipe is preferred */
+    display: none;
+    /* Hide buttons on tablet/mobile where swipe is preferred */
   }
 }
 
 .carouselTrack::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 .carouselCard {
   flex: 0 0 320px;
   aspect-ratio: 3 / 4;
   scroll-snap-align: center;
-  background: #ffffff; /* Explicit white for better contrast */
-  border: 1px solid #eaeaea; /* More visible border */
+  background: #ffffff;
+  /* Explicit white for better contrast */
+  border: 1px solid #eaeaea;
+  /* More visible border */
   border-radius: 24px;
   padding: 32px;
   display: flex;
@@ -178,7 +173,7 @@
   .carouselCard {
     flex: 0 0 280px;
   }
-  
+
   .featuresSection {
     padding: 60px 20px;
   }
