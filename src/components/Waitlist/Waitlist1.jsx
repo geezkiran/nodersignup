@@ -1,6 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 
+// Import images for Avatar Stack
+import img1 from "../../app/assets/1.JPG";
+import img2 from "../../app/assets/2.JPG";
+import img3 from "../../app/assets/3.JPG";
+import img4 from "../../app/assets/4.PNG";
+import img5 from "../../app/assets/5.jpg";
+
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
@@ -100,11 +107,11 @@ function BackgroundLines({ children }) {
    AvatarStack
 ───────────────────────────────────────── */
 const AVATARS = [
-  { initials: "AK", bg: "#d4d4d8" },
-  { initials: "RJ", bg: "#c4b5fd" },
-  { initials: "SM", bg: "#a5f3fc" },
-  { initials: "LP", bg: "#fca5a5" },
-  { initials: "TW", bg: "#86efac" },
+  { src: img1, alt: "AK" },
+  { src: img2, alt: "RJ" },
+  { src: img3, alt: "SM" },
+  { src: img4, alt: "LP" },
+  { src: img5, alt: "TW" },
 ];
 
 function AvatarStack({ count = "2,400+" }) {
@@ -121,26 +128,27 @@ function AvatarStack({ count = "2,400+" }) {
         {AVATARS.map((av, i) => (
           <div
             key={i}
-            title={av.initials}
             style={{
               width: 32,
               height: 32,
-              borderRadius: "20px",
-              background: av.bg,
+              borderRadius: "50%",
+              background: "#e4e4e7",
               border: "2px solid #fafaf9",
               marginLeft: i === 0 ? 0 : -10,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: 10,
-              fontWeight: 600,
-              color: "#3f3f46",
               zIndex: AVATARS.length - i,
               position: "relative",
               boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
+              overflow: "hidden",
             }}
           >
-            {av.initials}
+            <img
+              src={av.src.src || av.src}
+              alt={av.alt}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
           </div>
         ))}
       </div>

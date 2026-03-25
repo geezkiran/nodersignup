@@ -147,7 +147,7 @@ export default function FAQ2() {
       <div
         className="faq-grid"
         style={{
-          maxWidth: "1400px",
+          maxWidth: "1300px",
           width: "100%",
           display: "grid",
           gridTemplateColumns: "minmax(0, 4fr) minmax(0, 7fr)",

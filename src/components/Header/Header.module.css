@@ -12,7 +12,7 @@
 }
 
 .scrolled {
-  background-color: #fafaf9e4;
+  background-color: #ffffff;
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);

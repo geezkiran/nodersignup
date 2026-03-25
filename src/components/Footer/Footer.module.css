@@ -8,25 +8,27 @@
 
 .footerContent {
   width: 100%;
-  max-width: 1240px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 60px 80px 40px;
   box-sizing: border-box;
 }
 
-/* ─── Top nav grid ─────────────────────────────────────────── */
+/* --- Top nav grid ------------------------------------------- */
 .footerTop {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 32px;
+  grid-template-columns: repeat(4, auto);
+  gap: 150px;
   padding-bottom: 48px;
-  border-bottom: 1px solid #e5e7eb;
+  justify-content: center;
 }
 
 .linkGroup {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .groupTitle {
@@ -38,7 +40,7 @@
 }
 
 .link {
-  font-size: 13.5px;
+  font-size: 14px;
   color: #6b7280;
   text-decoration: none;
   line-height: 1.4;
@@ -49,10 +51,10 @@
   color: #111827;
 }
 
-/* ─── Bottom bar ───────────────────────────────────────────── */
+/* --- Bottom bar --------------------------------------------- */
 .footerBottom {
   display: flex;
-  max-width: 1240px;
+  max-width: 1400px;
   align-items: flex-start;
   justify-content: space-between;
   padding-top: 36px;
@@ -60,7 +62,7 @@
   flex-wrap: wrap;
 }
 
-/* ─── Brand block ──────────────────────────────────────────── */
+/* --- Brand block -------------------------------------------- */
 .brandBlock {
   display: flex;
   flex-direction: column;
@@ -98,7 +100,7 @@
   color: #a7a7a7;
 }
 
-/* ─── Compliance badges ────────────────────────────────────── */
+/* --- Compliance badges -------------------------------------- */
 .badgeRow {
   display: flex;
   gap: 10px;
@@ -121,7 +123,7 @@
   letter-spacing: 0.01em;
 }
 
-/* ─── Responsive ───────────────────────────────────────────── */
+/* --- Responsive --------------------------------------------- */
 @media (max-width: 1024px) {
   .footerContent {
     padding: 48px 40px 40px;
