@@ -41,6 +41,10 @@ export default {
           foreground: "var(--card-foreground)",
         },
       },
+      fontFamily: {
+        sans: ["var(--font-geist-sans)", "Inter", "sans-serif"],
+        serif: ["var(--font-instrument-serif)", "serif"],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

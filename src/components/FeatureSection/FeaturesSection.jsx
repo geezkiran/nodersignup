@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Zap, Shield, Globe, Cpu, Cloud, Database, ChevronLeft, ChevronRight } from 'lucide-react';
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { motion, translateAxis, useScroll, useSpring, useTransform } from 'framer-motion';
 import img1 from '../../app/assets/card1.jpg';
 import img2 from '../../app/assets/Card2 .jpg';
 import img3 from '../../app/assets/Card3 .jpg';
@@ -112,8 +112,13 @@ export default function FeaturesSection() {
     <section className={styles.featuresSection}>
       <div className={styles.featuresContainer}>
         <motion.div className="mb-10 text-center flex flex-col items-center" {...fadeUp(0)}>
-          <h2 className="mb-5 mt-5 flex items-center justify-center gap-3 text-4xl font-medium tracking-tighter md:text-4xl">Why choose us</h2>
-          <p className="text-muted-foreground mx-auto pl-2 pr-2 text-base max-w-[350px]">The ultimate platform to accelerate your workflow, offering enterprise security and global scalability.</p>
+          <h2
+            className="mb-5 mt-5 flex items-center justify-center gap-3 text-5xl font-medium tracking-tighter md:text-5xl"
+            style={{ fontFamily: 'var(--font-instrument-serif)' }}
+          >
+            Why we do What we do
+          </h2>
+          <p className="text-muted-foreground mx-auto pl-2 pr-2 text-base">The ultimate platform to accelerate your workflow, offering enterprise security and global scalability.</p>
         </motion.div>
 
         <div className={styles.carouselWrapper}>

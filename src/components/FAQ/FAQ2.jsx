@@ -138,7 +138,7 @@ export default function FAQ2() {
   return (
     <div
       style={{
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "var(--font-geist-sans)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -161,11 +161,11 @@ export default function FAQ2() {
           <p
             style={{
               fontSize: "12px",
+              fontFamily: "var(--font-geist-sans)",
               fontWeight: "500",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
               color: "var(--text-secondary)",
-
               marginBottom: "16px",
               margin: "0 0 16px 0",
             }}
@@ -174,7 +174,8 @@ export default function FAQ2() {
           </p>
           <h2
             style={{
-              fontSize: "clamp(35px, 3.5vw, 40px)",
+              fontSize: "3rem",
+              fontFamily: "var(--font-instrument-serif)",
               fontWeight: "500",
               lineHeight: "1.2",
               color: "var(--text-primary)",

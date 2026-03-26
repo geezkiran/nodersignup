@@ -201,7 +201,8 @@ export default function Waitlist1() {
           {/* Heading */}
           <h1
             style={{
-              fontSize: "clamp(40px, 5vw, 60px)",
+              fontSize: "3rem",
+              fontFamily: "var(--font-instrument-serif)",
               fontWeight: 500,
               letterSpacing: "-0.03em",
               lineHeight: 1.15,

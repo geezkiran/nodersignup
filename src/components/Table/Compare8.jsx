@@ -179,7 +179,10 @@ export default function Compare8() {
       <div className="container mx-auto max-w-5xl px-4 md:px-8">
         {/* Header */}
         <motion.div className="mb-10 text-center" {...fadeUp(0)}>
-          <h2 className="mb-5 flex items-center justify-center gap-3 text-4xl font-semibold tracking-tighter md:text-4xl">
+          <h2
+            className="mb-5 flex items-center justify-center gap-3 text-5xl font-medium tracking-tighter md:text-5xl"
+            style={{ fontFamily: 'var(--font-instrument-serif)' }}
+          >
             What we do better
           </h2>
           <p className="text-muted-foreground mx-auto max-w-xl text-base">

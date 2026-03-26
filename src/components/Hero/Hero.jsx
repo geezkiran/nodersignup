@@ -27,7 +27,15 @@ export default function Hero() {
       <div className={styles.heroContent}>
 
 
-        <motion.h1 className={styles.title} {...fadeUp(0.12)}>
+        <motion.h1
+          className={styles.title}
+          style={{
+            fontFamily: 'var(--font-instrument-serif)',
+            fontSize: 'clamp(3rem, 10vw, 3.75rem)',
+            fontWeight: 500
+          }}
+          {...fadeUp(0.12)}
+        >
           Light. Speed. Learning.
         </motion.h1>
 
