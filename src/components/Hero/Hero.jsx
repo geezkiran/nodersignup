@@ -36,7 +36,7 @@ export default function Hero() {
           className={styles.title}
           {...fadeUp(0.12)}
         >
-          Supercharge Learning
+          Supercharged Learning
         </motion.h1>
 
         <motion.p className={styles.tagline} {...fadeUp(0.24)}>
