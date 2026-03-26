@@ -190,13 +190,13 @@ export default function Compare8() {
 
         {/* Table */}
         <motion.div className="rounded-xl" {...fadeUp(0.15)}>
-          <div className="grid grid-cols-[1fr_45px_45px] items-center gap-4 border-b bg-muted/40 px-6 py-4 md:grid-cols-[1fr_120px_120px]">
+          <div className="grid grid-cols-[1fr_45px_45px] items-center gap-4 border-b  px-6 py-4 md:grid-cols-[1fr_120px_120px]">
             <div />
             <div className="flex flex-col items-center justify-center gap-1">
-              <span className="text-[16px] text-gray-800 font-semibold md:text-sm">us</span>
+              <span className="text-[16px] text-foreground font-semibold md:text-sm">us</span>
             </div>
             <div className="flex flex-col items-center justify-center gap-1">
-              <span className="text-[16px] text-gray-400 font-medium md:text-sm">others</span>
+              <span className="text-[16px] text-muted-foreground font-medium md:text-sm">others</span>
             </div>
           </div>
 
@@ -205,7 +205,7 @@ export default function Compare8() {
             <div
               key={feature.name}
               className={`grid grid-cols-[1fr_45px_45px] items-center gap-4 px-6 py-4 md:grid-cols-[1fr_120px_120px] ${i !== features.length - 1 ? "border-b" : ""
-                } transition-colors hover:bg-muted/20`}
+                } transition-colors hover:bg-muted`}
             >
               {/* Feature info */}
               <div className="flex items-start gap-3">

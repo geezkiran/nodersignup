@@ -26,17 +26,17 @@ const Banner1 = ({
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className={cn("hidden md:block w-full border-b bg-grey-50 px-5 py-1.5", className)}
+      className={cn("hidden md:block w-full border-b bg-background px-5 py-1.5", className)}
     >
       <div className="flex items-center justify-between gap-2">
         <div className="flex-1 text-center">
           <span className="text-xs md:text-sm">
-            <span className="font-medium tracking-tight">{title}</span>{" "}
+            <span className="font-regular tracking-tight">{title}</span>{" "}
             <span className="text-muted-foreground">
               {description}{" "}
               <a
                 href={linkUrl}
-                className="underline underline-offset-2 hover:text-foreground font-medium transition-colors"
+                className="underline underline-offset-2 text-blue-color hover:text-foreground font-light transition-colors"
                 target="_blank"
                 rel="noreferrer"
               >

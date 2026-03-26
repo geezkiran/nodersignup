@@ -21,6 +21,33 @@
   display: block;
 }
 
+.carouselViewport {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Feathered fade at the clipping edges (desktop) */
+.carouselViewport::before,
+.carouselViewport::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 56px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.carouselViewport::before {
+  left: 0;
+  background: linear-gradient(to right, rgb(var(--rgb-bg) / 0.92), rgb(var(--rgb-bg) / 0));
+}
+
+.carouselViewport::after {
+  right: 0;
+  background: linear-gradient(to left, rgb(var(--rgb-bg) / 0.92), rgb(var(--rgb-bg) / 0));
+}
+
 
 
 .carouselWrapper:hover .navButton {
@@ -35,23 +62,23 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgb(var(--rgb-surface) / 0.7);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
-  color: #1d1d1f;
+  color: var(--text-primary);
 }
 
 .navButton:hover {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgb(var(--rgb-surface) / 0.9);
   transform: translateY(-50%) scale(1.05);
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.55);
 }
 
 .navButton:active {
@@ -59,11 +86,11 @@
 }
 
 .prevButton {
-  left: -24px;
+  left: 12px;
 }
 
 .nextButton {
-  right: -24px;
+  right: 12px;
 }
 
 .carouselTrack {
@@ -71,14 +98,14 @@
   gap: 24px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 24px 120px 48px;
+  padding: 24px 96px 48px;
+  scroll-padding-left: 96px;
+  scroll-padding-right: 96px;
   scrollbar-width: none;
   /* Firefox */
   -ms-overflow-style: none;
   /* IE and Edge */
   scroll-behavior: smooth;
-  -webkit-mask-image: linear-gradient(to right, transparent, black 100px, black calc(100% - 100px), transparent);
-  mask-image: linear-gradient(to right, transparent, black 100px, black calc(100% - 100px), transparent);
 }
 
 @media (max-width: 1024px) {
@@ -97,27 +124,54 @@
   flex: 0 0 320px;
   aspect-ratio: 3 / 4;
   scroll-snap-align: center;
-  background: #ffffff;
-  /* Explicit white for better contrast */
-  border: 1px solid #eaeaea;
-  /* More visible border */
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: 24px;
   padding: 32px;
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
 }
 
+.cardBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 1;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.carouselCard:hover .cardBackground {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+.cardOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
+  z-index: 1;
+}
+
 .carouselCard:hover {
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.55);
   transform: translateY(-8px);
 }
 
 
 .cardContent {
+  position: relative;
+  z-index: 2;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -126,27 +180,28 @@
 .iconBox {
   width: 48px;
   height: 48px;
-  background: var(--bg-muted);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 24px;
-  color: var(--text-primary);
+  color: #ffffff;
 }
 
 .carouselCard h3 {
   font-size: 22px;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 12px;
-  color: var(--text-primary);
+  color: #ffffff;
   letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .carouselCard p {
   font-size: 15px;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.6;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .indicatorTrack {
@@ -176,9 +231,12 @@
 
   .carouselTrack {
     padding: 16px 20px 30px;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 30px, black calc(100% - 30px), transparent);
-    mask-image: linear-gradient(to right, transparent, black 30px, black calc(100% - 30px), transparent);
     gap: 16px;
+  }
+
+  .carouselViewport::before,
+  .carouselViewport::after {
+    width: 24px;
   }
 
   .featuresSection {

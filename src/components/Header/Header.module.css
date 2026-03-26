@@ -6,16 +6,18 @@
   right: 0;
   width: 100%;
   z-index: 1000;
-  background-color: #fafaf9;
+  background-color: var(--bg-color);
   backdrop-filter: none;
+  border-bottom: 1px solid var(--border-color);
   transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
 }
 
 .scrolled {
-  background-color: #ffffff;
-  backdrop-filter: blur(20px);
+  background-color: var(--bg-color);
+  backdrop-filter: none;
   border-bottom: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);
+  z-index: 1000;
 }
 
 .hidden {
@@ -31,7 +33,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 60px;
+  padding: 12px 50px;
   max-width: 1450px;
   margin: 0 auto;
   width: 100%;
@@ -51,10 +53,12 @@
 
 .logo-full {
   display: block;
+  filter: var(--logo-filter);
 }
 
 .logo-mob {
   display: none;
+  filter: var(--logo-filter);
 }
 
 .mobile-menu-toggle {
@@ -70,7 +74,7 @@
 }
 
 .mobile-menu-toggle:hover {
-  background: #fafaf9;
+  background: var(--border-color);
 }
 
 .nav-links {
@@ -83,7 +87,7 @@
   color: var(--text-secondary);
   text-decoration: none;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   transition: color 0.2s;
 }
 
@@ -120,7 +124,7 @@
   padding: 12px;
   min-width: 280px;
   box-shadow: var(--shadow-lg);
-  opacity: 0;
+  opacity: 0.9;
   visibility: hidden;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
@@ -148,7 +152,7 @@
 }
 
 .nav-links .dropdown-menu a strong {
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 4px;
 }
 
@@ -165,7 +169,7 @@
 .dropdown-icon {
   margin-left: 4px;
   transition: transform 0.2s ease;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .nav-dropdown:hover .dropdown-icon {
@@ -180,7 +184,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: #fafaf9;
+  background: var(--bg-color);
   backdrop-filter: blur(12px);
   z-index: 999;
   opacity: 0;
@@ -211,7 +215,7 @@
   color: var(--text-secondary);
   margin-bottom: 16px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .mobile-nav-section {
@@ -224,13 +228,13 @@
   text-decoration: none;
   color: var(--text-primary);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   padding: 4px 0;
 }
 
 .mobile-nav-link {
   font-size: 16px !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
 }
 
 .mobile-menu-footer {
@@ -267,6 +271,7 @@
 
   .logo {
     padding: 0;
+    height: 25px;
   }
 
   .logo-full {

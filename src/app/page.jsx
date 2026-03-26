@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="noder-app">
       <Header />
-      <div className="flex w-full flex-col divide-y divide-border/40">
+      <div className="flex w-full flex-col divide-y divide-border">
         <Hero />
         <FeaturesSection />
         <Compare8 />

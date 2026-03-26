@@ -68,7 +68,7 @@ function AccordionItem({ question, answer, isOpen, onClick }) {
   return (
     <div
       style={{
-        borderBottom: "1px solid #e5e7eb",
+        borderBottom: "1px solid var(--border-color)",
         overflow: "hidden",
       }}
     >
@@ -85,7 +85,7 @@ function AccordionItem({ question, answer, isOpen, onClick }) {
           border: "none",
           cursor: "pointer",
           textAlign: "left",
-          color: "#111827",
+          color: "var(--text-primary)",
           fontFamily: "inherit",
         }}
         aria-expanded={isOpen}
@@ -93,9 +93,9 @@ function AccordionItem({ question, answer, isOpen, onClick }) {
         <span
           style={{
             fontSize: "17px",
-            fontWeight: "500",
+            fontWeight: "400",
             lineHeight: "1.5",
-            color: "#111827",
+            color: "var(--text-primary)",
           }}
         >
           {question}
@@ -117,7 +117,8 @@ function AccordionItem({ question, answer, isOpen, onClick }) {
               fontSize: "16px",
               lineHeight: "1.5",
               letterSpacing: "-0.01em",
-              color: "#6b7280",
+              color: "var(--text-secondary)",
+
               margin: 0,
             }}
           >
@@ -160,10 +161,11 @@ export default function FAQ2() {
           <p
             style={{
               fontSize: "12px",
-              fontWeight: "600",
+              fontWeight: "500",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "#6b7280",
+              color: "var(--text-secondary)",
+
               marginBottom: "16px",
               margin: "0 0 16px 0",
             }}
@@ -173,9 +175,9 @@ export default function FAQ2() {
           <h2
             style={{
               fontSize: "clamp(35px, 3.5vw, 40px)",
-              fontWeight: "600",
+              fontWeight: "500",
               lineHeight: "1.2",
-              color: "#111827",
+              color: "var(--text-primary)",
               margin: "0 0 20px 0",
               letterSpacing: "-0.02em",
             }}
@@ -188,7 +190,7 @@ export default function FAQ2() {
 
         {/* Right column — accordion */}
         <motion.div
-          style={{ borderTop: "1px solid #e5e7eb" }}
+          style={{ borderTop: "1px solid var(--border-color)" }}
           {...fadeUp(0.15)}
         >
           {faqs.map((faq, i) => (

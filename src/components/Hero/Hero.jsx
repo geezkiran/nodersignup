@@ -15,14 +15,14 @@ export default function Hero() {
   const router = useRouter();
   return (
     <main className={styles.heroSplit}>
-      <motion.div 
+      <motion.div
         className={styles.heroImageContainer}
         initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
         animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-        transition={{ 
-          duration: 1.2, 
-          delay: 0.2, 
-          ease: [0.22, 1, 0.36, 1] 
+        transition={{
+          duration: 1.2,
+          delay: 0.2,
+          ease: [0.22, 1, 0.36, 1]
         }}
       >
         <img
@@ -53,7 +53,7 @@ export default function Hero() {
               <Sparkle size={17} />Watch Demo
             </button>
             <button className="btn btn-primary" onClick={() => router.push('/#')}>
-              <CirclePlus size={17} />
+              <CirclePlus size={16} strokeWidth={1.7} color="var(--text-primary)" />
             </button>
           </div>
         </motion.div>

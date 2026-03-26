@@ -1,6 +1,7 @@
 import styles from './Footer.module.css';
 import noderLogo from '../../app/assets/noder.png';
 import { motion } from 'framer-motion';
+import ThemeToggle from '../Theme/ThemeToggle';
 
 const footerLinks = {
   Product: [
@@ -93,6 +94,7 @@ export default function Footer() {
             <img
               src={noderLogo.src}
               alt="Noder"
+              className={styles.logoImg}
               style={{ height: '20px', objectFit: 'contain' }}
             />
           </div>
@@ -105,10 +107,13 @@ export default function Footer() {
           <p className={styles.tagline}>Noder is an official trademark of NOIRGRID Inc.</p>
         </div>
 
-        <div className={styles.badgeRow}>
-          {badges.map((badge) => (
-            <span key={badge} className={styles.badge}>{badge}</span>
-          ))}
+        <div className={styles.rightBlock}>
+          <ThemeToggle className={styles.themeToggle} />
+          <div className={styles.badgeRow}>
+            {badges.map((badge) => (
+              <span key={badge} className={styles.badge}>{badge}</span>
+            ))}
+          </div>
         </div>
       </div>
       </motion.div>

@@ -1,7 +1,7 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Sparkle, ChevronDown, Menu, X } from 'lucide-react';
+import { Telescope, ChevronDown, Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import noderLogo from '../../app/assets/logoicon.png';
 import logomob from '../../app/assets/logoiconmob.png';
@@ -11,37 +11,11 @@ import Banner1 from '../Banner/Banner1';
 
 export default function Header() {
   const router = useRouter();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const lastScrollY = useRef(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY > 70) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-
-      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-        setIsHidden(true); // scrolling down
-      } else {
-        setIsHidden(false); // scrolling up
-      }
-
-      lastScrollY.current = currentScrollY;
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <>
-      <div className={`${styles['header-wrapper']} ${isScrolled ? styles.scrolled : ''} ${isHidden ? styles.hidden : ''}`}>
+      <div className={styles['header-wrapper']}>
         <header className={styles.header}>
           <div className={styles['header-left']}>
             <button
@@ -50,11 +24,11 @@ export default function Header() {
               aria-label="Toggle Menu"
             >
               {isMobileMenuOpen ? (
-                <X color="#abababff" strokeWidth={1.25} />
+                <X color="var(--text-secondary)" strokeWidth={1.25} />
               ) : (
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <line x1="3" y1="10" x2="21" y2="10" stroke="#abababff" strokeWidth="1.25" strokeLinecap="round" />
-                  <line x1="3" y1="17" x2="21" y2="17" stroke="#abababff" strokeWidth="1.25" strokeLinecap="round" />
+                  <line x1="3" y1="10" x2="21" y2="10" stroke="var(--text-secondary)" strokeWidth="1.25" strokeLinecap="round" />
+                  <line x1="3" y1="17" x2="21" y2="17" stroke="var(--text-secondary)" strokeWidth="1.25" strokeLinecap="round" />
                 </svg>
               )}
             </button>
@@ -118,7 +92,7 @@ export default function Header() {
             <a href="#">Story</a>
           </nav>
 
-          <button className="btn btn-primary" onClick={() => router.push('/signup')}>Early Access</button>
+          <button className="btn btn-primary" onClick={() => router.push('/signup')}> <Telescope  size={18} strokeWidth={2} color="var(--text-primary)"/> Early Access</button>
         </header>
         <Banner1 />
       </div>

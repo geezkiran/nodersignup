@@ -1,6 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Zap, Shield, Globe, Cpu, Cloud, Database, ChevronLeft, ChevronRight } from 'lucide-react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import img1 from '../../app/assets/card1.jpg';
+import img2 from '../../app/assets/card2.jpg';
+import img3 from '../../app/assets/card3.jpg';
+import img4 from '../../app/assets/card4.jpg';
+import img5 from '../../app/assets/card5.jpg';
+import img6 from '../../app/assets/5.jpg';
 import styles from './FeaturesSection.module.css';
 
 const fadeUp = (delay = 0) => ({
@@ -14,39 +20,90 @@ const features = [
   {
     icon: <Zap size={24} />,
     title: "Lightning Fast Performance",
-    desc: "Our infrastructure is optimized for speed, ensuring your team never experiences lag or downtime."
+    desc: "Our infrastructure is optimized for speed, ensuring your team never experiences lag or downtime.",
+    image: img1
   },
   {
     icon: <Shield size={24} />,
     title: "Enterprise Security",
-    desc: "Bank-grade encryption and advanced security controls to keep your data safe and compliant."
+    desc: "Bank-grade encryption and advanced security controls to keep your data safe and compliant.",
+    image: img2
   },
   {
     icon: <Globe size={24} />,
     title: "Global Scalability",
-    desc: "Deploy your applications anywhere in the world with our globally distributed network of edge nodes."
+    desc: "Deploy your applications anywhere in the world with our globally distributed network of edge nodes.",
+    image: img3
   },
   {
     icon: <Cpu size={24} />,
     title: "Powerful Compute",
-    desc: "Infinite scaling with serverless compute that handles any workload, from hobby to enterprise."
+    desc: "Infinite scaling with serverless compute that handles any workload, from hobby to enterprise.",
+    image: img4
   },
   {
     icon: <Cloud size={24} />,
     title: "Hybrid Infrastructure",
-    desc: "Seamlessly connect your existing cloud providers with Noder for a truly hybrid experience."
+    desc: "Seamlessly connect your existing cloud providers with Noder for a truly hybrid experience.",
+    image: img5
   },
   {
     icon: <Database size={24} />,
     title: "Real-time Sync",
-    desc: "Ensure data consistency across your stack with our distributed data layer and streaming API."
+    desc: "Ensure data consistency across your stack with our distributed data layer and streaming API.",
+    image: img6
   }
 ];
 
+function FeatureCard({ feature, index, containerRef, isMobile }) {
+  const cardRef = useRef(null);
+  
+  // Track scroll progress of this specific card relative to the container
+  const { scrollXProgress } = useScroll({
+    container: containerRef,
+    target: cardRef,
+    offset: ["start end", "center center", "end start"]
+  });
+
+  // Map progress to opacity: faint at edges, full in middle
+  // [0, 0.2, 0.8, 1] mapped to [0.1, 1, 1, 0.1]
+  const opacity = useTransform(
+    scrollXProgress,
+    [0, 0.15, 0.85, 1],
+    [0.7, 1, 1, 0.7]
+  );
+
+  const motionProps = isMobile
+    ? { initial: { opacity: 1, y: 0 }, animate: { opacity: 1, y: 0 } }
+    : fadeUp(0.1 + (index % 3) * 0.1);
+
+  return (
+    <motion.div
+      ref={cardRef}
+      key={index}
+      className={styles.carouselCard}
+      style={{ opacity: isMobile ? 1 : opacity }}
+      {...motionProps}
+    >
+      <img
+        src={feature.image.src}
+        alt=""
+        className={styles.cardBackground}
+      />
+      <div className={styles.cardOverlay} />
+      <div className={styles.cardContent}>
+        <div className={styles.iconBox}>{feature.icon}</div>
+        <h3>{feature.title}</h3>
+        <p>{feature.desc}</p>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function FeaturesSection() {
   const containerRef = useRef(null);
-  const { scrollXProgress } = useScroll({ container: containerRef });
-  const scaleX = useSpring(scrollXProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  const { scrollXProgress: containerScrollProgress } = useScroll({ container: containerRef });
+  const scaleX = useSpring(containerScrollProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -88,26 +145,18 @@ export default function FeaturesSection() {
             <ChevronRight size={24} />
           </button>
 
-          <div className={styles.carouselTrack} ref={containerRef} style={{ minHeight: '450px' }}>
-            {features.map((feature, i) => {
-              const motionProps = isMobile
-                ? { initial: { opacity: 1, y: 0 }, animate: { opacity: 1, y: 0 } }
-                : fadeUp(0.1 + (i % 3) * 0.1);
-
-              return (
-                <motion.div
+          <div className={styles.carouselViewport}>
+            <div className={styles.carouselTrack} ref={containerRef} style={{ minHeight: '450px' }}>
+              {features.map((feature, i) => (
+                <FeatureCard
                   key={i}
-                  className={styles.carouselCard}
-                  {...motionProps}
-                >
-                  <div className={styles.cardContent}>
-                    <div className={styles.iconBox}>{feature.icon}</div>
-                    <h3>{feature.title}</h3>
-                    <p>{feature.desc}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
+                  feature={feature}
+                  index={i}
+                  containerRef={containerRef}
+                  isMobile={isMobile}
+                />
+              ))}
+            </div>
           </div>
 
           <div className={styles.indicatorTrack}>
