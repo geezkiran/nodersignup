@@ -15,7 +15,7 @@ export default function BlogHeader() {
           transition={{ duration: 0.6 }}
         >
 
-          <Link href="/page.jsx">
+          <Link href="/">
             <img src={logo.src} alt="Noder Logo" className={styles.title} width={150} />
           </Link>
           <p className={styles.description} style={{ maxWidth: '550px' }}>

@@ -6,8 +6,8 @@ export const blogPosts = [
   {
     title: "The Future of AI Learning",
     slug: "future-of-ai-learning",
-    date: "March 20, 2026",
-    author: "Kiran G",
+    date: "March 26, 2026",
+    author: "Kiran Prakash",
     excerpt: "Discover how spatial indexing and lightning-fast infrastructure are transforming the way we learn in the age of AI.",
     image: img1,
     content: `
