@@ -93,7 +93,7 @@ body {
 }
 
 .btn-white {
-  background: var(--bg-secondary);
+  background: var(--btn-fill);
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   padding: 8px 18px;
