@@ -196,10 +196,10 @@ export default function Compare8() {
           <div className="grid grid-cols-[1fr_45px_45px] items-center gap-4 border-b  px-6 py-4 md:grid-cols-[1fr_120px_120px]">
             <div />
             <div className="flex flex-col items-center justify-center gap-1">
-              <span className="text-[16px] text-foreground font-semibold md:text-sm">us</span>
+              <span className="text-[14px] text-foreground font-medium md:text-sm">US</span>
             </div>
             <div className="flex flex-col items-center justify-center gap-1">
-              <span className="text-[16px] text-muted-foreground font-medium md:text-sm">others</span>
+              <span className="text-[14px] text-muted-foreground font-medium md:text-sm">OTHERS</span>
             </div>
           </div>
 

@@ -1,6 +1,6 @@
 import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
-import { Geist, Instrument_Serif, Instrument_Sans } from "next/font/google";
+import { Geist, Instrument_Serif, Instrument_Sans, Sulphur_Point } from "next/font/google";
 import { cn } from "@/lib/utils";
 
 const geistSans = Geist({ 
@@ -19,6 +19,12 @@ const instrumentSans = Instrument_Sans({
   variable: '--font-instrument-sans',
 });
 
+const sulphurPoint = Sulphur_Point({
+  weight: ['300', '400', '700'],
+  subsets: ['latin'],
+  variable: '--font-sulphur-point',
+});
+
 export const metadata = {
   title: 'Noder',
   description: 'Light Speed Learning',
@@ -35,7 +41,8 @@ export default function RootLayout({ children }) {
         "font-sans", 
         geistSans.variable, 
         instrumentSerif.variable,
-        instrumentSans.variable
+        instrumentSans.variable,
+        sulphurPoint.variable
       )} 
       suppressHydrationWarning
     >

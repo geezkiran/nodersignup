@@ -10,6 +10,9 @@
   width: 100%;
 }
 
+.featuresContainer p {
+  font-size: 16px;
+}
 
 
 .carouselWrapper {

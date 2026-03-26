@@ -31,7 +31,7 @@ export default function BlogCard({ post, index }) {
           <h3 className={styles.cardTitle}>{post.title}</h3>
           <p className={styles.cardExcerpt}>{post.excerpt}</p>
           <div className={styles.readMore}>
-            Read More <ArrowRight size={16} />
+            READ MORE <ArrowRight size={16} />
           </div>
         </div>
       </Link>
