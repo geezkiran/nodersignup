@@ -1,79 +1,62 @@
-.heroSplit {
-  display: flex;
-  max-width: 1400px;
-  margin: 60px auto 10px;
-  /* Reduced top margin slightly for cleaner look */
-  padding: 20px;
-  gap: 60px;
-  align-items: center;
+.heroContainer {
   position: relative;
+  width: 100%;
+  height: 99vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 60px;
+  background-color: var(--bg-color);
 }
 
-
-
-
-.heroSplit::before {
-  content: '';
+.heroBackground {
   position: absolute;
-  /* or 'absolute' if you want it scoped to the hero */
   inset: 0;
   z-index: 0;
-  pointer-events: none;
-
-  /* Grid lines pattern */
-  background-image:
-    linear-gradient(to right, var(--dot-color) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--dot-color) 1px, transparent 1px);
-  background-size: 16px 16px;
-  mask-image: radial-gradient(ellipse, rgba(0, 0, 0, 0.381) 15%, transparent 90%);
 }
 
-/* Make sure hero content sits above the texture */
-.heroSplit>* {
-  position: relative;
-  z-index: 1;
-}
-
-
-
-
-.heroImageContainer {
-  flex: 1.6;
-  max-width: 610px;
-  aspect-ratio: 3 / 3.1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.heroImage {
+.bgImage {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  display: block;
-  transform-origin: center;
-  pointer-events: none;
-  user-select: none;
+  object-position: center;
+  filter: brightness(0.9);
+  transform: translateY(-10px);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      transparent 0%,
+      transparent 10%,
+      var(--bg-color) 100%);
+  z-index: 1;
 }
 
 .heroContent {
-  flex: 1.4;
-  margin-top: -40px;
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 20px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .title {
-  font-size: clamp(40px, 6vw, 63px);
-  font-weight: var(--text-weight);
-  line-height: 1.1;
-  max-width: 650px;
-  margin-top: 10px;
-  padding-bottom: 10px;
-  letter-spacing: -3px;
+  font-size: clamp(40px, 8vw, 60px);
+  font-weight: 600;
+  line-height: 1.0;
+  margin-top: 20px;
+  padding-bottom: 5px;
+  letter-spacing: -0.04em;
   background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
   background-clip: text;
   -webkit-background-clip: text;
@@ -81,104 +64,54 @@
 }
 
 .tagline {
-  font-size: 18px;
+  font-size: clamp(16px, 2vw, 20px);
   font-weight: 400;
-  max-width: 620px;
-  color: #787878;
-  margin-top: 16px;
+  color: var(--text-secondary);
+  margin-top: 24px;
   line-height: 1.5;
+  max-width: 600px;
 }
 
 .ctaRow {
-  display: flex;
-  gap: 16px;
   margin-top: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .ctaButtons {
   display: flex;
   gap: 16px;
+  align-items: center;
 }
 
 /* ── Responsive ─────────────────────────────────────────────── */
-@media (max-width: 1024px) {
-
-
-  .heroSplit {
-    flex-direction: column-reverse;
-  }
-
-
-
-}
 
 @media (max-width: 768px) {
-  .heroSplit {
-    flex-direction: column-reverse;
-    padding: 0 20px;
-    gap: 0;
-    margin-top: 40px;
-  }
-
-  .heroImageContainer {
-    width: 100%;
-    max-width: 100%;
-    aspect-ratio: 2 / 3;
-  }
-
-  .heroImage {
-    transform: scale(1);
-  }
-
-  .heroContent {
-    width: 100%;
-    align-items: flex-start;
-    text-align: left;
-    padding: 30px 0 0;
-    margin: 0;
-  }
-
-
-
-  .tagline {
-    font-size: 16px;
-    font-weight: 400;
-    margin-top: 12px;
-    letter-spacing: -0.2px;
-  }
-
-
-
-  .ctaButtons {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .ctaButtons :global(.btn) {
-    padding: 8px 15px !important;
-    font-size: 13px !important;
-  }
-
-}
-
-@media (max-width: 480px) {
-  .heroSplit {
-    padding: 20px 0px;
-  }
-
-  .heroContent {
-    padding: 20px;
+  .heroContainer {
+    padding-bottom: 40px;
   }
 
   .title {
-    font-size: 45px;
-    font-weight: 500;
-    letter-spacing: -1.5px;
-    line-height: 1.2;
+    font-size: 32px
   }
 
-  .heroImage {
-    transform: scale(1.7);
+  .bgImage {
+    transform: translateY(-40px);
+  }
+
+  .heroContent {
+    margin-bottom: 30px;
+  }
+
+  .tagline {
+    font-size: 16px;
+    margin-top: 16px;
+    max-width: 340px;
+  }
+
+  .ctaButtons {
+    flex-direction: row;
+    gap: 12px;
   }
 }

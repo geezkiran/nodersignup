@@ -14,30 +14,18 @@ const fadeUp = (delay = 0) => ({
 export default function Hero() {
   const router = useRouter();
   return (
-    <main className={styles.heroSplit}>
-      <motion.div
-        className={styles.heroImageContainer}
-        initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
-        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-        transition={{
-          duration: 1.2,
-          delay: 0.2,
-          ease: [0.22, 1, 0.36, 1]
-        }}
-      >
+    <main className={styles.heroContainer}>
+      <div className={styles.heroBackground}>
         <img
           src={dashboardImg.src}
           alt="Dashboard Preview"
-          className={styles.heroImage}
-          onContextMenu={(e) => e.preventDefault()}
-          draggable={false}
+          className={styles.bgImage}
         />
-      </motion.div>
+        <div className={styles.overlay} />
+      </div>
 
       <div className={styles.heroContent}>
-        <motion.div className="badge" {...fadeUp(0)}>
-          <Sparkles size={14} className="badge-icon" /> Spacial index
-        </motion.div>
+
 
         <motion.h1 className={styles.title} {...fadeUp(0.12)}>
           Light. Speed. Learning.

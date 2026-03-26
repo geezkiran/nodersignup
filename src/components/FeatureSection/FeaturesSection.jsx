@@ -2,11 +2,10 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Zap, Shield, Globe, Cpu, Cloud, Database, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import img1 from '../../app/assets/card1.jpg';
-import img2 from '../../app/assets/card2.jpg';
-import img3 from '../../app/assets/card3.jpg';
-import img4 from '../../app/assets/card4.jpg';
-import img5 from '../../app/assets/card5.jpg';
-import img6 from '../../app/assets/5.jpg';
+import img2 from '../../app/assets/Card2 .jpg';
+import img3 from '../../app/assets/Card3 .jpg';
+import img4 from '../../app/assets/Card4 .jpg';
+
 import styles from './FeaturesSection.module.css';
 
 const fadeUp = (delay = 0) => ({
@@ -41,23 +40,12 @@ const features = [
     desc: "Infinite scaling with serverless compute that handles any workload, from hobby to enterprise.",
     image: img4
   },
-  {
-    icon: <Cloud size={24} />,
-    title: "Hybrid Infrastructure",
-    desc: "Seamlessly connect your existing cloud providers with Noder for a truly hybrid experience.",
-    image: img5
-  },
-  {
-    icon: <Database size={24} />,
-    title: "Real-time Sync",
-    desc: "Ensure data consistency across your stack with our distributed data layer and streaming API.",
-    image: img6
-  }
+
 ];
 
 function FeatureCard({ feature, index, containerRef, isMobile }) {
   const cardRef = useRef(null);
-  
+
   // Track scroll progress of this specific card relative to the container
   const { scrollXProgress } = useScroll({
     container: containerRef,
@@ -124,8 +112,8 @@ export default function FeaturesSection() {
     <section className={styles.featuresSection}>
       <div className={styles.featuresContainer}>
         <motion.div className="mb-10 text-center flex flex-col items-center" {...fadeUp(0)}>
-          <h2 className="mb-5 mt-5 flex items-center justify-center gap-3 text-4xl font-semibold tracking-tighter md:text-4xl">Why choose us</h2>
-          <p className="text-muted-foreground mx-auto pl-2 pr-2 max-w-xl text-base">The ultimate platform to accelerate your workflow, offering enterprise security and global scalability.</p>
+          <h2 className="mb-5 mt-5 flex items-center justify-center gap-3 text-4xl font-medium tracking-tighter md:text-4xl">Why choose us</h2>
+          <p className="text-muted-foreground mx-auto pl-2 pr-2 max-w-xl text-base max-w-md">The ultimate platform to accelerate your workflow, offering enterprise security and global scalability.</p>
         </motion.div>
 
         <div className={styles.carouselWrapper}>
