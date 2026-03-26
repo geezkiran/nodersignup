@@ -113,10 +113,10 @@ export default function FeaturesSection() {
       <div className={styles.featuresContainer}>
         <motion.div className="mb-10 text-center flex flex-col items-center" {...fadeUp(0)}>
           <h2
-            className="mb-5 mt-5 flex items-center justify-center gap-3 text-4xl font-medium tracking-tighter md:text-5xl"
+            className="mb-5 mt-5 flex items-center justify-center gap-2 text-5xl font-medium tracking-tighter md:text-5xl"
             style={{ fontFamily: 'var(--font-instrument-serif)' }}
           >
-            Why we do<span style={{ fontStyle: 'italic' }}>What</span> we do
+            Why we do<span style={{ fontStyle: 'italic' }}>What we do</span>
           </h2>
           <p className="text-muted-foreground mx-auto pl-2 pr-2 text-base">The ultimate platform to accelerate your workflow, offering enterprise security and global scalability.</p>
         </motion.div>
