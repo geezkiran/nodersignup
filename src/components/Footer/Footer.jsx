@@ -13,21 +13,16 @@ const footerLinks = {
     { label: 'Playground', href: '#' },
     { label: 'Documentation', href: '#' },
     { label: 'Discord', href: '#' },
-    { label: 'Status', href: '#' },
   ],
   Resources: [
     { label: 'Blog', href: '/blog' },
     { label: 'About us', href: '#' },
-    { label: 'Careers', href: '#' },
-
-    { label: 'Security', href: '#' },
-
+    { label: 'Changelog', href: '#' },
   ],
   Legal: [
     { label: 'Terms & conditions', href: '#' },
     { label: 'General terms of use', href: '#' },
     { label: 'Privacy notice', href: '#' },
-    { label: 'Legal notice', href: '#' },
     { label: 'Cookies preferences', href: '#' },
   ],
 };

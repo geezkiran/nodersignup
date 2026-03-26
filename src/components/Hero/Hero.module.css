@@ -24,15 +24,16 @@
   object-fit: contain;
   object-position: center;
   filter: brightness(1);
-  transform: translateY(-10px);
+  transform: translateY(-10px) translateX(-5px);
+
 }
 
 .overlay {
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse at bottom,
-      var(--bg-color) 27%,
-      transparent 60%);
+      var(--overlay-color) 30%,
+      transparent 50%);
   z-index: 1;
 }
 
@@ -117,8 +118,8 @@
 
   .overlay {
     background: radial-gradient(circle at bottom,
-        var(--bg-color) 40%,
-        transparent 60%);
+        var(--overlay-color) 35%,
+        transparent 55%);
     z-index: 1;
   }
 }

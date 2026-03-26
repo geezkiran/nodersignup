@@ -55,15 +55,12 @@ export default function Header() {
               <div className={styles['dropdown-menu']}>
                 <a href="#">
                   <strong>Features</strong>
-                  <span>Explore everything Noder has to offer</span>
+                  <span>Explore everything we have to offer</span>
                 </a>
+
                 <a href="#">
-                  <strong>Integrations</strong>
-                  <span>Connect your favorite external tools</span>
-                </a>
-                <a href="#">
-                  <strong>Security</strong>
-                  <span>Learn how we keep your data safe</span>
+                  <strong>Plugins</strong>
+                  <span>Extend functionality with custom plugins</span>
                 </a>
                 <a href="#">
                   <strong>Changelog</strong>
@@ -83,16 +80,13 @@ export default function Header() {
                   <strong>Blog</strong>
                   <span>Read insights and company news</span>
                 </a>
-                <a href="#">
-                  <strong>Help Center</strong>
-                  <span>Get support and read our guides</span>
-                </a>
+
                 <a href="#">
                   <strong>Community Forum</strong>
                   <span>Join the discussion with other users</span>
                 </a>
                 <a href="#">
-                  <strong>Developer API</strong>
+                  <strong>Documentation</strong>
                   <span>Build custom apps with our API</span>
                 </a>
               </div>
@@ -138,8 +132,8 @@ export default function Header() {
           >
             <h3>Product</h3>
             <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Features</a>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Integrations</a>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Security</a>
+            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Pricing</a>
+            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Plugins</a>
             <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Changelog</a>
           </motion.div>
 
@@ -151,9 +145,8 @@ export default function Header() {
           >
             <h3>Resources</h3>
             <a href="/blog" onClick={() => setIsMobileMenuOpen(false)}>Blog</a>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Help Center</a>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Community</a>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Developers</a>
+            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Benchmarks</a>
+            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Documentation</a>
           </motion.div>
 
           <motion.div
