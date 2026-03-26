@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Telescope, ChevronDown, Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -12,6 +12,15 @@ import Banner1 from '../Banner/Banner1';
 export default function Header() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
@@ -27,8 +36,8 @@ export default function Header() {
                 <X color="var(--text-secondary)" strokeWidth={1.25} />
               ) : (
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <line x1="3" y1="10" x2="21" y2="10" stroke="var(--text-secondary)" strokeWidth="1.25" strokeLinecap="round" />
-                  <line x1="3" y1="17" x2="21" y2="17" stroke="var(--text-secondary)" strokeWidth="1.25" strokeLinecap="round" />
+                  <line x1="1" y1="8" x2="21" y2="8" stroke="var(--text-secondary)" strokeWidth="1.25" strokeLinecap="round" />
+                  <line x1="1" y1="15" x2="21" y2="15" stroke="var(--text-secondary)" strokeWidth="1.25" strokeLinecap="round" />
                 </svg>
               )}
             </button>
@@ -92,9 +101,30 @@ export default function Header() {
             <a href="#">Story</a>
           </nav>
 
-          <button className="btn btn-primary" onClick={() => router.push('/signup')}> <Telescope  size={18} strokeWidth={2} color="var(--text-primary)"/> Early Access</button>
+          <button 
+            className={`${styles.btn} ${styles['btn-primary']} ${isScrolled ? styles['btn-scrolled'] : ''}`} 
+            onClick={() => router.push('/signup')}
+          > 
+            <Telescope size={18} strokeWidth={2} color="var(--text-primary)" /> 
+            <motion.span
+              initial={false}
+              animate={{ 
+                width: isScrolled ? 0 : 'auto',
+                opacity: isScrolled ? 0 : 1,
+                marginLeft: isScrolled ? 0 : 8
+              }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              style={{ 
+                overflow: 'hidden', 
+                whiteSpace: 'nowrap',
+                display: 'inline-block'
+              }}
+            >
+              Early Access
+            </motion.span>
+          </button>
         </header>
-        <Banner1 />
+        {/* <Banner1 /> */}
       </div>
 
       {/* Mobile Menu Dropdown */}

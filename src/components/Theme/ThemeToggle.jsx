@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Monitor, Sun, Moon } from "lucide-react";
 
-const STORAGE_KEY = "themeMode"; // 'system' | 'light' | 'dark'
+const STORAGE_KEY = "themeMode";
 
 function getSystemPrefersDark() {
   if (typeof window === "undefined") return true;
@@ -41,9 +41,9 @@ export default function ThemeToggle({ className = "" }) {
 
   const options = useMemo(
     () => [
-      { id: "system", label: "Device", Icon: Monitor },
-      { id: "light", label: "Light", Icon: Sun },
-      { id: "dark", label: "Dark", Icon: Moon },
+      { id: "system", Icon: Monitor },
+      { id: "light", Icon: Sun },
+      { id: "dark", Icon: Moon },
     ],
     []
   );
@@ -56,7 +56,7 @@ export default function ThemeToggle({ className = "" }) {
 
   return (
     <div className={className} role="group" aria-label="Theme">
-      {options.map(({ id, label, Icon }) => {
+      {options.map(({ id, Icon }) => {
         const active = mode === id;
         return (
           <button
@@ -64,15 +64,14 @@ export default function ThemeToggle({ className = "" }) {
             type="button"
             onClick={() => onSelect(id)}
             aria-pressed={active}
+            aria-label={id}
             data-active={active ? "true" : "false"}
             className="theme-seg-btn"
           >
-            <Icon size={16} strokeWidth={1.75} />
-            <span className="theme-seg-label">{label}</span>
+            <Icon size={14} strokeWidth={1.75} />
           </button>
         );
       })}
     </div>
   );
 }
-

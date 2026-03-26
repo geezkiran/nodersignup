@@ -73,9 +73,7 @@
   transition: background 0.2s;
 }
 
-.mobile-menu-toggle:hover {
-  background: var(--border-color);
-}
+
 
 .nav-links {
   display: flex;
@@ -288,4 +286,42 @@
   .header {
     padding: 8px 16px;
   }
+}
+
+/* --- Button Styles for Animation --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  gap: 0;
+  /* Gap is handled by motion.span margins */
+  background: var(--btn-fill);
+  padding: 8px 13px;
+  border-radius: 99px;
+  font-size: 13px;
+  color: var(--text-primary);
+  border: 1px solid var(--btn-border);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  background: var(--bg-secondary);
+}
+
+.btn-scrolled {
+  padding: 8px 8px;
+  /* Square/Circle padding when collapsed */
+  border-radius: 99px !important;
+  /* Keep it circular when collapsed */
+  width: 36px;
+  height: 36px;
+  justify-content: center;
 }

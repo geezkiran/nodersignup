@@ -75,47 +75,49 @@ export default function Footer() {
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className={styles.footerTop}>
-        {Object.entries(footerLinks).map(([category, links]) => (
-          <div className={styles.linkGroup} key={category}>
-            <h4 className={styles.groupTitle}>{category}</h4>
-            {links.map((link) => (
-              <a key={link.label} href={link.href} className={styles.link}>
-                {link.label}
-              </a>
-            ))}
-          </div>
-        ))}
-      </div>
-
-      <div className={styles.footerBottom}>
-        <div className={styles.brandBlock}>
-          {/* Replace with your actual logo component/image */}
-          <div className={styles.logo}>
-            <img
-              src={noderLogo.src}
-              alt="Noder"
-              className={styles.logoImg}
-              style={{ height: '20px', objectFit: 'contain' }}
-            />
-          </div>
-          <div className={styles.socialIcons}>
-            <a href="#" className={styles.socialIcon} aria-label="LinkedIn"><LinkedInIcon /></a>
-            <a href="#" className={styles.socialIcon} aria-label="Discord"><DiscordIcon /></a>
-            <a href="#" className={styles.socialIcon} aria-label="GitHub"><GitHubIcon /></a>
-            <a href="#" className={styles.socialIcon} aria-label="X"><XIcon /></a>
-          </div>
-          <p className={styles.tagline}>Noder is an official trademark of NOIRGRID Inc.</p>
+          {Object.entries(footerLinks).map(([category, links]) => (
+            <div className={styles.linkGroup} key={category}>
+              <h4 className={styles.groupTitle}>{category}</h4>
+              {links.map((link) => (
+                <a key={link.label} href={link.href} className={styles.link}>
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          ))}
         </div>
 
-        <div className={styles.rightBlock}>
-          <ThemeToggle className={styles.themeToggle} />
-          <div className={styles.badgeRow}>
-            {badges.map((badge) => (
-              <span key={badge} className={styles.badge}>{badge}</span>
-            ))}
+        <div className={styles.footerBottom}>
+          <div className={styles.brandBlock}>
+            <div className={styles.brandHeader}>
+              {/* Replace with your actual logo component/image */}
+              <div className={styles.logo}>
+                <img
+                  src={noderLogo.src}
+                  alt="Noder"
+                  className={styles.logoImg}
+                  style={{ height: '20px', objectFit: 'contain' }}
+                />
+              </div>
+              <ThemeToggle className={styles.themeToggle} />
+            </div>
+            <div className={styles.socialIcons}>
+              <a href="#" className={styles.socialIcon} aria-label="LinkedIn"><LinkedInIcon /></a>
+              <a href="#" className={styles.socialIcon} aria-label="Discord"><DiscordIcon /></a>
+              <a href="#" className={styles.socialIcon} aria-label="GitHub"><GitHubIcon /></a>
+              <a href="#" className={styles.socialIcon} aria-label="X"><XIcon /></a>
+            </div>
+            <p className={styles.tagline}>Noder is an official trademark of NOIRGRID Inc.</p>
+          </div>
+
+          <div className={styles.rightBlock}>
+            <div className={styles.badgeRow}>
+              {badges.map((badge) => (
+                <span key={badge} className={styles.badge}>{badge}</span>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
       </motion.div>
     </footer>
   );
