@@ -18,26 +18,26 @@ const fadeUp = (delay = 0) => ({
 const features = [
   {
     icon: <Zap size={24} />,
-    title: "Lightning Fast Performance",
-    desc: "Our infrastructure is optimized for speed, ensuring your team never experiences lag or downtime.",
+    title: "",
+    desc: "",
     image: img1
   },
   {
     icon: <Shield size={24} />,
-    title: "Enterprise Security",
-    desc: "Bank-grade encryption and advanced security controls to keep your data safe and compliant.",
+    title: "",
+    desc: "",
     image: img2
   },
   {
     icon: <Globe size={24} />,
-    title: "Global Scalability",
-    desc: "Deploy your applications anywhere in the world with our globally distributed network of edge nodes.",
+    title: "",
+    desc: "",
     image: img3
   },
   {
     icon: <Cpu size={24} />,
-    title: "Powerful Compute",
-    desc: "Infinite scaling with serverless compute that handles any workload, from hobby to enterprise.",
+    title: "",
+    desc: "",
     image: img4
   },
 

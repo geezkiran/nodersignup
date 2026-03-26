@@ -213,7 +213,7 @@
 }
 
 .postHeroImage {
-  width: 090%;
+  width: 100%;
   aspect-ratio: 2 / 1.3;
   object-fit: cover;
   border-radius: 15px;
