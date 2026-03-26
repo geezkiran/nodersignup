@@ -24,10 +24,10 @@ export default function BlogNavbar() {
     <div className={`${styles.navbarWrapper} ${isScrolled ? styles.navbarScrolled : ''}`}>
       <nav className={styles.navbar}>
         <div className={styles.navbarLeft}>
-          <Link href="/" className={styles.navbarLogo}>
-            <img src={logo.src} alt="Noder" className={styles.logoIcon} height={28} />
+          <a href="https://noderhq.com" className={styles.navbarLogo}>
+            <img src={logo.src} alt="Noder" className={styles.logoIcon} />
             <img src={logoMob.src} alt="Noder Mobile" className={styles.logoIconMob} />
-          </Link>
+          </a>
           <div className={styles.divider} />
           <Link href="/blog" className={styles.navLink}>Blog</Link>
         </div>
