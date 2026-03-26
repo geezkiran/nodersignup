@@ -55,7 +55,7 @@ export default function ThemeToggle({ className = "" }) {
   };
 
   return (
-    <div className={className} role="group" aria-label="Theme">
+    <div className={`theme-toggle-container ${className}`} role="group" aria-label="Theme">
       {options.map(({ id, Icon }) => {
         const active = mode === id;
         return (

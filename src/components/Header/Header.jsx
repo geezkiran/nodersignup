@@ -79,7 +79,7 @@ export default function Header() {
                 Resources <ChevronDown size={14} className={styles['dropdown-icon']} />
               </a>
               <div className={styles['dropdown-menu']}>
-                <a href="#">
+                <a href="/blog">
                   <strong>Blog</strong>
                   <span>Read insights and company news</span>
                 </a>
