@@ -92,7 +92,7 @@ function AccordionItem({ question, answer, isOpen, onClick }) {
       >
         <span
           style={{
-            fontSize: "17px",
+            fontSize: "18px",
             fontWeight: "400",
             lineHeight: "1.5",
             color: "var(--text-primary)",
@@ -114,11 +114,11 @@ function AccordionItem({ question, answer, isOpen, onClick }) {
           <p
             style={{
               paddingBottom: "20px",
-              fontSize: "16px",
+              fontSize: "17px",
               lineHeight: "1.5",
               letterSpacing: "-0.01em",
               color: "var(--text-secondary)",
-
+              fontWeight: "300",  
               margin: 0,
             }}
           >
@@ -180,7 +180,7 @@ export default function FAQ2() {
               lineHeight: "1.2",
               color: "var(--text-primary)",
               margin: "0 0 20px 0",
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.03em",
             }}
           >
             Frequently asked questions

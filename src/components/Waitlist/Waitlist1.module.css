@@ -1,0 +1,115 @@
+.section {
+  width: 100%;
+}
+
+.panel {
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.input {
+  flex: 1;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: rgb(var(--rgb-text) / 0.05);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.input::placeholder {
+  color: var(--text-secondary);
+}
+
+.input:focus {
+  border-color: var(--text-secondary);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.inputError {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgb(var(--rgb-danger) / 0.1);
+}
+
+.button {
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 8px;
+  background: var(--text-primary);
+  color: var(--bg-color);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.1s, opacity 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgb(var(--rgb-text) / 0.3);
+  border-top-color: var(--text-primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.successMessage {
+  animation: pop-in 0.4s cubic-bezier(.4, 0, .2, 1) forwards;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--success);
+  font-weight: 500;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  60% {
+    transform: scale(1.04);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

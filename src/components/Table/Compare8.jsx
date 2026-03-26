@@ -1,36 +1,28 @@
 "use client";
 
 import { motion } from "framer-motion";
-
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+
 import {
-  Check,
-  Minus,
-  X,
-  Info,
   Palette,
   Layers,
   Code2,
   Accessibility,
   Repeat2,
   PenTool,
-  Boxes,
   Zap,
   Component,
   Shield,
-  Globe,
-  TestTube,
 } from "lucide-react";
 
 const features = [
   {
     name: "Theming System",
-    description: "Customizable design tokens and theme configuration",
     icon: <Palette className="size-4" />,
     shadcn: "full",
     bootstrap: "partial",
@@ -39,7 +31,6 @@ const features = [
   },
   {
     name: "Component Ownership",
-    description: "Copy components directly into your codebase",
     icon: <Layers className="size-4" />,
     shadcn: "full",
     bootstrap: "partial",
@@ -48,7 +39,6 @@ const features = [
   },
   {
     name: "TypeScript Support",
-    description: "First-class TypeScript types and intellisense",
     icon: <Code2 className="size-4" />,
     shadcn: "full",
     bootstrap: "partial",
@@ -57,7 +47,6 @@ const features = [
   },
   {
     name: "Accessibility (a11y)",
-    description: "ARIA compliance and keyboard navigation",
     icon: <Accessibility className="size-4" />,
     shadcn: "full",
     bootstrap: "partial",
@@ -66,7 +55,6 @@ const features = [
   },
   {
     name: "Animation Support",
-    description: "Transitions, keyframes and motion primitives",
     icon: <Repeat2 className="size-4" />,
     shadcn: "full",
     bootstrap: "partial",
@@ -75,7 +63,6 @@ const features = [
   },
   {
     name: "Design Customization",
-    description: "Pixel-level control over component appearance",
     icon: <PenTool className="size-4" />,
     shadcn: "full",
     bootstrap: "partial",
@@ -85,7 +72,6 @@ const features = [
 
   {
     name: "Performance",
-    description: "Bundle size efficiency and render optimization",
     icon: <Zap className="size-4" />,
     shadcn: "full",
     bootstrap: "partial",
@@ -94,7 +80,6 @@ const features = [
   },
   {
     name: "Composability",
-    description: "Ability to compose and extend components",
     icon: <Component className="size-4" />,
     shadcn: "full",
     bootstrap: "partial",
@@ -103,7 +88,6 @@ const features = [
   },
   {
     name: "Dark Mode",
-    description: "Built-in dark mode support",
     icon: <Shield className="size-4" />,
     shadcn: "full",
     bootstrap: "partial",
@@ -185,7 +169,7 @@ export default function Compare8() {
           >
             What we do better
           </h2>
-          <p className="text-muted-foreground mx-auto max-w-xl text-base">
+          <p className="text-muted-foreground mx-auto max-w-xl text-lg">
             A detailed feature comparison to help you choose the right UI
             framework for your next project.
           </p>
@@ -196,10 +180,10 @@ export default function Compare8() {
           <div className="grid grid-cols-[1fr_45px_45px] items-center gap-4 border-b  px-6 py-4 md:grid-cols-[1fr_120px_120px]">
             <div />
             <div className="flex flex-col items-center justify-center gap-1">
-              <span className="text-[14px] text-foreground font-medium md:text-sm">US</span>
+              <span className="text-[13px] text-foreground font-medium md:text-m">US</span>
             </div>
             <div className="flex flex-col items-center justify-center gap-1">
-              <span className="text-[14px] text-muted-foreground font-medium md:text-sm">OTHERS</span>
+              <span className="text-[13px] text-muted-foreground font-medium md:text-m">OTHERS</span>
             </div>
           </div>
 
@@ -211,30 +195,11 @@ export default function Compare8() {
                 } transition-colors hover:bg-muted`}
             >
               {/* Feature info */}
-              <div className="flex items-start gap-3">
-                <span className="hidden md:flex mt-0.5 size-8 shrink-0 items-center justify-center rounded-md border bg-background text-foreground">
+              <div className="flex items-center gap-3">
+                <span className="hidden md:flex size-8 shrink-0 items-center justify-center rounded-md border bg-background text-foreground">
                   {feature.icon}
                 </span>
-                <div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-sm font-medium">{feature.name}</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <button>
-                            <Info className="size-3.5 text-muted-foreground hover:text-foreground" />
-                          </button>
-                        </TooltipTrigger>
-                        <TooltipContent className="max-w-56 text-xs">
-                          {feature.description}
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
-                  <p className="mt-0.5 hidden text-xs text-muted-foreground sm:block">
-                    {feature.description}
-                  </p>
-                </div>
+                <span className="text-base font-regular leading-none">{feature.name}</span>
               </div>
 
               {/* Shadcn support */}

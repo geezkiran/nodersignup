@@ -1,13 +1,13 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Telescope, ChevronDown, Menu, X } from 'lucide-react';
+import { Telescope, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import noderLogo from '../../app/assets/logoicon.png';
 import logomob from '../../app/assets/logoiconmob.png';
+import ThemeToggle from '../Theme/ThemeToggle';
 
 import styles from './Header.module.css';
-import Banner1 from '../Banner/Banner1';
 
 export default function Header() {
   const router = useRouter();
@@ -48,77 +48,40 @@ export default function Header() {
           </div>
 
           <nav className={styles['nav-links']}>
-            <div className={styles['nav-dropdown']}>
-              <a href="#" className={styles['nav-link-caps']} style={{ display: 'flex', alignItems: 'center' }}>
-                Product <ChevronDown size={14} className={styles['dropdown-icon']} />
-              </a>
-              <div className={styles['dropdown-menu']}>
-                <a href="#">
-                  <strong>Features</strong>
-                  <span>Explore everything we have to offer</span>
-                </a>
-
-                <a href="#">
-                  <strong>Plugins</strong>
-                  <span>Extend functionality with custom plugins</span>
-                </a>
-                <a href="#">
-                  <strong>Changelog</strong>
-                  <span>See our latest product updates</span>
-                </a>
-              </div>
-            </div>
-
-            <a href="#" className={styles['nav-link-caps']}>Pricing</a>
-
-            <div className={styles['nav-dropdown']}>
-              <a href="#" className={styles['nav-link-caps']} style={{ display: 'flex', alignItems: 'center' }}>
-                Resources <ChevronDown size={14} className={styles['dropdown-icon']} />
-              </a>
-              <div className={styles['dropdown-menu']}>
-                <a href="/blog">
-                  <strong>Blog</strong>
-                  <span>Read insights and company news</span>
-                </a>
-
-                <a href="#">
-                  <strong>Community Forum</strong>
-                  <span>Join the discussion with other users</span>
-                </a>
-                <a href="#">
-                  <strong>Documentation</strong>
-                  <span>Build custom apps with our API</span>
-                </a>
-              </div>
-            </div>
-
-            <a href="#" className={styles['nav-link-caps']}>Story</a>
+            <a href="/#features" className={styles['nav-link-caps']}>Features</a>
+            <a href="/#compare" className={styles['nav-link-caps']}>Pricing</a>
+            <a href="/blog" className={styles['nav-link-caps']}>Blog</a>
+            <a href="/#waitlist" className={styles['nav-link-caps']}>Story</a>
           </nav>
 
-          <button
-            className={`${styles.btn} ${styles['btn-primary']} ${isScrolled ? styles['btn-scrolled'] : ''}`}
-            onClick={() => router.push('/signup')}
-          >
-            <Telescope size={18} strokeWidth={2} color="var(--text-primary)" />
-            <motion.span
-              initial={false}
-              animate={{
-                width: isScrolled ? 0 : 'auto',
-                opacity: isScrolled ? 0 : 1,
-                marginLeft: isScrolled ? 0 : 8
-              }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              style={{
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-                display: 'inline-block'
-              }}
-            >
-              Early Access
-            </motion.span>
-          </button>
+          <div className={styles['header-right']}>
+            <div className={styles.headerControls}>
+              <ThemeToggle className={styles.headerThemeToggle} />
+              <button
+                className={`${styles.btn} ${styles['btn-primary']} ${isScrolled ? styles['btn-scrolled'] : ''}`}
+                onClick={() => router.push('/signup')}
+              >
+                <Telescope size={18} strokeWidth={2} color="var(--text-primary)" />
+                <motion.span
+                  initial={false}
+                  animate={{
+                    width: isScrolled ? 0 : 'auto',
+                    opacity: isScrolled ? 0 : 1,
+                    marginLeft: isScrolled ? 0 : 8
+                  }}
+                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  style={{
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                    display: 'inline-block'
+                  }}
+                >
+                  Early Access
+                </motion.span>
+              </button>
+            </div>
+          </div>
         </header>
-        {/* <Banner1 /> */}
       </div>
 
       {/* Mobile Menu Dropdown */}
@@ -131,10 +94,10 @@ export default function Header() {
             transition={{ delay: 0.1 }}
           >
             <h3 className={styles['nav-link-caps']} style={{ color: 'var(--text-secondary)', marginBottom: '12px' }}>Product</h3>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Features</a>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Pricing</a>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Plugins</a>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Changelog</a>
+            <a href="/#features" onClick={() => setIsMobileMenuOpen(false)}>Features</a>
+            <a href="/#compare" onClick={() => setIsMobileMenuOpen(false)}>Pricing</a>
+            <a href="/#faq" onClick={() => setIsMobileMenuOpen(false)}>FAQ</a>
+            <a href="/#waitlist" onClick={() => setIsMobileMenuOpen(false)}>Waitlist</a>
           </motion.div>
 
           <motion.div
@@ -145,8 +108,8 @@ export default function Header() {
           >
             <h3 className={styles['nav-link-caps']} style={{ color: 'var(--text-secondary)', marginBottom: '12px' }}>Resources</h3>
             <a href="/blog" onClick={() => setIsMobileMenuOpen(false)}>Blog</a>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Benchmarks</a>
-            <a href="#" onClick={() => setIsMobileMenuOpen(false)}>Documentation</a>
+            <a href="/#compare" onClick={() => setIsMobileMenuOpen(false)}>Compare</a>
+            <a href="/#faq" onClick={() => setIsMobileMenuOpen(false)}>Documentation</a>
           </motion.div>
 
           <motion.div
@@ -155,7 +118,7 @@ export default function Header() {
             animate={isMobileMenuOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
             transition={{ delay: 0.3 }}
           >
-            <a href="#" className={`${styles['mobile-nav-link']} ${styles['nav-link-serif']}`} onClick={() => setIsMobileMenuOpen(false)}>Our Story</a>
+            <a href="/#waitlist" className={`${styles['mobile-nav-link']} ${styles['nav-link-serif']}`} onClick={() => setIsMobileMenuOpen(false)}>Our Story</a>
           </motion.div>
         </div>
       </div>

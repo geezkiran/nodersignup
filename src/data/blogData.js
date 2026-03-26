@@ -10,19 +10,36 @@ export const blogPosts = [
     author: "Kiran Prakash",
     excerpt: "Discover how spatial indexing and lightning-fast infrastructure are transforming the way we learn in the age of AI.",
     image: img1,
-    content: `
-      <p>In the rapidly evolving landscape of artificial intelligence, the traditional methods of learning and information retrieval are being challenged. At Noder, we believe that the key to unlocking true productivity lies in the intersection of advanced infrastructure and intuitive design.</p>
-      
-      <h2>The Shift to Spatial Indexing</h2>
-      <p>Spatial indexing isn't just a technical term; it's a paradigm shift in how we organize knowledge. By representing data in multi-dimensional space, we can create connections that were previously invisible, allowing for faster search and deeper insights.</p>
-      
-      <blockquote>"The future of learning isn't about more data; it's about better connections."</blockquote>
-      
-      <h2>Scaling for the Enterprise</h2>
-      <p>As organizations adopt AI at scale, the demand for robust, secure, and globally distributed infrastructure has never been higher. Enterprise security and global scalability are no longer optional—they are the foundation upon which the next generation of tools will be built.</p>
-      
-      <p>Stay tuned as we continue to push the boundaries of what's possible with Noder.</p>
-    `
+    content: [
+      {
+        type: "paragraph",
+        text: "In the rapidly evolving landscape of artificial intelligence, traditional learning and information retrieval are being challenged. At Noder, we believe true productivity comes from pairing advanced infrastructure with intuitive design.",
+      },
+      {
+        type: "heading",
+        text: "The Shift to Spatial Indexing",
+      },
+      {
+        type: "paragraph",
+        text: "Spatial indexing is a shift in how we organize knowledge. By representing data in multi-dimensional space, we can surface relationships that were previously hard to find, enabling faster search and stronger context.",
+      },
+      {
+        type: "quote",
+        text: "The future of learning is not about more data. It is about better connections.",
+      },
+      {
+        type: "heading",
+        text: "Scaling for the Enterprise",
+      },
+      {
+        type: "paragraph",
+        text: "As organizations adopt AI at scale, the demand for secure and globally distributed infrastructure keeps rising. Enterprise security and global scalability are no longer optional. They are the foundation of the next generation of tools.",
+      },
+      {
+        type: "paragraph",
+        text: "We are continuing to push this forward at Noder, with speed and clarity as equal priorities.",
+      },
+    ]
   },
   {
     title: "Designing for Speed and Security",
@@ -31,15 +48,28 @@ export const blogPosts = [
     author: "Alice W",
     excerpt: "A deep dive into the design principles that ensure Noder remains the fastest and most secure platform for your workflow.",
     image: img2,
-    content: `
-      <p>Speed and security are often seen as competing priorities in software development. However, at Noder, we've found that they can—and should—work in harmony.</p>
-      
-      <h2>Optimizing the Edge</h2>
-      <p>By deploying our compute resources at the edge, we reduce latency and improve response times for users worldwide. But speed is nothing without security. That's why every node in our network is protected by bank-grade encryption and advanced access controls.</p>
-      
-      <h2>Built-in Compliance</h2>
-      <p>We've integrated security into every layer of our stack, from the database to the API. This ensures that your data remains compliant with global standards without sacrificing the performance your team needs to stay productive.</p>
-    `
+    content: [
+      {
+        type: "paragraph",
+        text: "Speed and security are often framed as tradeoffs in software development. At Noder, we treat them as design partners.",
+      },
+      {
+        type: "heading",
+        text: "Optimizing the Edge",
+      },
+      {
+        type: "paragraph",
+        text: "Deploying compute resources closer to users reduces latency and improves responsiveness. That speed only matters if the system is trustworthy, which is why access controls and encryption need to be part of the architecture from the start.",
+      },
+      {
+        type: "heading",
+        text: "Built-in Compliance",
+      },
+      {
+        type: "paragraph",
+        text: "Security belongs in every layer of the stack, from the database to the API surface. The goal is to preserve performance without creating separate systems for governance and compliance.",
+      },
+    ]
   },
   {
     title: "Global Scalability at Your Fingertips",
@@ -48,14 +78,27 @@ export const blogPosts = [
     author: "Bob S",
     excerpt: "Learn how Noder's distributed network of edge nodes allows you to deploy and scale applications anywhere in the world.",
     image: img3,
-    content: `
-      <p>Scaling a global application used to require a dedicated team of DevOps engineers. With Noder, those days are over.</p>
-      
-      <h2>Zero-Config Scaling</h2>
-      <p>Our serverless compute layer automatically scales to meet demand, whether you're serving ten users or ten million. No complicated configuration, no manual scaling—just pure performance.</p>
-      
-      <h2>The Power of the Grid</h2>
-      <p>Noder's grid-based architecture ensures that your application is always close to your users, no matter where they are. This reduces network hop and provides a seamless experience, regardless of geographical location.</p>
-    `
+    content: [
+      {
+        type: "paragraph",
+        text: "Scaling a global product used to require a dedicated infrastructure team. Noder is built to reduce that operational burden.",
+      },
+      {
+        type: "heading",
+        text: "Zero-Config Scaling",
+      },
+      {
+        type: "paragraph",
+        text: "Our compute layer is designed to expand with demand, whether you are serving ten users or ten million. The experience should feel simple even when the system underneath is doing complex work.",
+      },
+      {
+        type: "heading",
+        text: "The Power of the Grid",
+      },
+      {
+        type: "paragraph",
+        text: "A distributed architecture keeps your application closer to your users, lowering network distance and improving consistency across regions.",
+      },
+    ]
   }
 ];

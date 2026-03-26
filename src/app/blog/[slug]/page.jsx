@@ -1,16 +1,26 @@
 'use client';
-import React from 'react';
 import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 import BlogNavbar from '../../../components/Blog/BlogNavbar';
 import Footer from '../../../components/Footer/Footer';
 import { blogPosts } from '../../../data/blogData';
 import styles from '../../../components/Blog/Blog.module.css';
 
+function renderContentBlock(block, index) {
+  if (block.type === 'heading') {
+    return <h2 key={index}>{block.text}</h2>;
+  }
+
+  if (block.type === 'quote') {
+    return <blockquote key={index}>{block.text}</blockquote>;
+  }
+
+  return <p key={index}>{block.text}</p>;
+}
+
 export default function BlogPostPage() {
   const { slug } = useParams();
-  const router = useRouter();
 
   const post = blogPosts.find((p) => p.slug === slug);
 
@@ -53,10 +63,9 @@ export default function BlogPostPage() {
 
         <img src={post.image.src} alt={post.title} className={styles.postHeroImage} />
 
-        <div
-          className={styles.postContent}
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+        <div className={styles.postContent}>
+          {post.content.map((block, index) => renderContentBlock(block, index))}
+        </div>
       </main>
       <Footer />
     </div>

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Zap, Shield, Globe, Cpu, Cloud, Database, ChevronLeft, ChevronRight } from 'lucide-react';
-import { motion, translateAxis, useScroll, useSpring, useTransform } from 'framer-motion';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import img1 from '../../app/assets/card1.jpg';
 import img2 from '../../app/assets/Card2 .jpg';
 import img3 from '../../app/assets/Card3 .jpg';
@@ -43,34 +43,15 @@ const features = [
 
 ];
 
-function FeatureCard({ feature, index, containerRef, isMobile }) {
-  const cardRef = useRef(null);
-
-  // Track scroll progress of this specific card relative to the container
-  const { scrollXProgress } = useScroll({
-    container: containerRef,
-    target: cardRef,
-    offset: ["start end", "center center", "end start"]
-  });
-
-  // Map progress to opacity: faint at edges, full in middle
-  // [0, 0.2, 0.8, 1] mapped to [0.1, 1, 1, 0.1]
-  const opacity = useTransform(
-    scrollXProgress,
-    [0, 0.15, 0.85, 1],
-    [0.7, 1, 1, 0.7]
-  );
-
+function FeatureCard({ feature, index, isMobile }) {
   const motionProps = isMobile
     ? { initial: { opacity: 1, y: 0 }, animate: { opacity: 1, y: 0 } }
     : fadeUp(0.1 + (index % 3) * 0.1);
 
   return (
     <motion.div
-      ref={cardRef}
       key={index}
       className={styles.carouselCard}
-      style={{ opacity: isMobile ? 1 : opacity }}
       {...motionProps}
     >
       <img
@@ -118,7 +99,11 @@ export default function FeaturesSection() {
           >
             Why we do<span style={{ fontStyle: 'italic' }}>What we do</span>
           </h2>
-          <p className="text-muted-foreground mx-auto pl-2 pr-2 text-base">The ultimate platform to accelerate your workflow, offering enterprise security and global scalability.</p>
+          <p
+            className={`text-muted-foreground ${styles.featureTagline}`}
+          >
+            The ultimate platform to accelerate your workflow, offering enterprise security and global scalability.
+          </p>
         </motion.div>
 
         <div className={styles.carouselWrapper}>
@@ -145,7 +130,6 @@ export default function FeaturesSection() {
                   key={i}
                   feature={feature}
                   index={i}
-                  containerRef={containerRef}
                   isMobile={isMobile}
                 />
               ))}

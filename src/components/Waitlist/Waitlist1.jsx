@@ -6,6 +6,7 @@ import img2 from "../../app/assets/2.jpg";
 import img3 from "../../app/assets/3.jpg";
 import img4 from "../../app/assets/4.jpg";
 import img5 from "../../app/assets/5.jpg";
+import styles from "./Waitlist1.module.css";
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
@@ -85,94 +86,9 @@ export default function Waitlist1() {
 
   return (
     <>
-      <style>{`
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: var(--bg-color); color: var(--text-primary); font-family: var(--font-geist-sans), system-ui, sans-serif; }
-
-        .wl-input {
-          flex: 1;
-          height: 44px;
-          padding: 0 14px;
-          border: 1px solid var(--border-color);
-          border-radius: 10px;
-          font-family: inherit;
-          font-size: 14px;
-          color: var(--text-primary);
-          background: rgb(var(--rgb-text) / 0.05);
-          outline: none;
-          transition: border-color 0.15s, box-shadow 0.15s;
-        }
-        .wl-input::placeholder { color: var(--text-secondary); }
-        .wl-input:focus {
-          border-color: var(--text-secondary);
-          box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
-        }
-        .wl-input.error {
-          border-color: var(--danger);
-          box-shadow: 0 0 0 3px rgb(var(--rgb-danger) / 0.1);
-        }
-
-        .wl-btn {
-          height: 44px;
-          padding: 0 20px;
-          border-radius: 8px;
-          background: var(--text-primary);
-          color: var(--bg-color);
-          font-family: var(--font-geist-sans), sans-serif;
-          font-size: 13px;
-          font-weight: 500;
-          text-transform: uppercase;
-          letter-spacing: 0.04em;
-          border: none;
-          cursor: pointer;
-          white-space: nowrap;
-          transition: background 0.15s, transform 0.1s;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-        .wl-btn:hover:not(:disabled) { opacity: 0.88; }
-        .wl-btn:active:not(:disabled) { transform: scale(0.98); }
-        .wl-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-        .spinner {
-          width: 14px; height: 14px;
-          border: 2px solid rgb(var(--rgb-text) / 0.3);
-          border-top-color: var(--text-primary);
-          border-radius: 50%;
-          animation: spin 0.7s linear infinite;
-        }
-
-        @keyframes pop-in {
-          0%   { opacity: 0; transform: scale(0.92); }
-          60%  { transform: scale(1.04); }
-          100% { opacity: 1; transform: scale(1); }
-        }
-        .success-msg {
-          animation: pop-in 0.4s cubic-bezier(.4,0,.2,1) forwards;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 14px;
-          color: var(--success);
-          font-weight: 500;
-        }
-      `}</style>
-
-      <div>
+      <div className={styles.section}>
         <motion.div
-          style={{
-            minHeight: "auto",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "60px 20px",
-            textAlign: "center",
-          }}
+          className={styles.panel}
           {...fadeUp(0)}
         >
           {/* Badge */}
@@ -181,7 +97,6 @@ export default function Waitlist1() {
               display: "inline-flex",
               alignItems: "center",
               gap: 6,
-              background: "rgba(255, 255, 255, 0.05)",
               border: "1px solid var(--border-color)",
               borderRadius: 99,
               padding: "4px 12px",
@@ -192,12 +107,8 @@ export default function Waitlist1() {
               boxShadow: "0 1px 2px rgba(0,0,0,0.08)",
             }}
           >
-            <span style={{
-              width: 6, height: 6, borderRadius: "50%",
-              background: "#22c55e",
-              boxShadow: "0 0 0 2px #dcfce7",
-            }} />
-            Now accepting early access
+
+            EARLY ACCESS
           </div>
 
           {/* Heading */}
@@ -219,7 +130,7 @@ export default function Waitlist1() {
           {/* Description */}
           <p
             style={{
-              fontSize: 16,
+              fontSize: 18,
               color: "#a1a1aa",
               maxWidth: 600,
               marginBottom: 36,
@@ -235,7 +146,7 @@ export default function Waitlist1() {
           <div style={{ width: "100%", maxWidth: 440, marginBottom: 28 }}>
             {status === "success" ? (
               <div style={{ height: 44, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <span className="success-msg">
+                <span className={styles.successMessage}>
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                     <circle cx="9" cy="9" r="9" fill="#dcfce7" />
                     <path d="M5.5 9l2.5 2.5 4.5-4.5" stroke="#16a34a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -247,7 +158,7 @@ export default function Waitlist1() {
               <form onSubmit={handleSubmit} style={{ display: "flex", gap: 8 }} noValidate>
                 <input
                   ref={inputRef}
-                  className={`wl-input${status === "error" ? " error" : ""}`}
+                  className={`${styles.input} ${status === "error" ? styles.inputError : ""}`}
                   type="email"
                   placeholder="Enter your email address"
                   value={email}
@@ -256,9 +167,9 @@ export default function Waitlist1() {
                   autoComplete="email"
                   disabled={status === "loading"}
                 />
-                <button type="submit" className="wl-btn" disabled={status === "loading"}>
+                <button type="submit" className={styles.button} disabled={status === "loading"}>
                   {status === "loading" ? (
-                    <><span className="spinner" /> Joining…</>
+                    <><span className={styles.spinner} /> Joining…</>
                   ) : (
                     "Join Waitlist"
                   )}

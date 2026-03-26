@@ -10,10 +10,13 @@
   width: 100%;
 }
 
-.featuresContainer p {
-  font-size: 16px;
+.featureTagline {
+  width: 100%;
+  max-width: 36rem;
+  margin: 0 auto;
+  font-size: 1.125rem;
+  line-height: 1.5;
 }
-
 
 .carouselWrapper {
   position: relative;
@@ -80,9 +83,9 @@
   gap: 24px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 24px 0px 48px;
-  scroll-padding-left: 96px;
-  scroll-padding-right: 96px;
+  padding: 24px 140px 48px;
+  scroll-padding-left: 140px;
+  scroll-padding-right: 140px;
   scrollbar-width: none;
   /* Firefox */
   -ms-overflow-style: none;
@@ -205,12 +208,16 @@
 }
 
 @media (max-width: 768px) {
+  .featureTagline {
+    padding: 0 16px;
+  }
+
   .carouselCard {
     flex: 0 0 300px;
   }
 
   .carouselTrack {
-    padding: 16px 20px 30px;
+    padding: 16px 20px 30px 36px;
     gap: 16px;
   }
 

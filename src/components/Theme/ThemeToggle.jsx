@@ -1,47 +1,39 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Monitor, Sun, Moon } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 
 const STORAGE_KEY = "themeMode";
 
 function getSystemPrefersDark() {
-  if (typeof window === "undefined") return true;
-  return window.matchMedia?.("(prefers-color-scheme: dark)")?.matches ?? true;
+  if (typeof window === "undefined") return false;
+  return window.matchMedia?.("(prefers-color-scheme: dark)")?.matches ?? false;
 }
 
 function applyTheme(mode) {
   if (typeof document === "undefined") return;
   const root = document.documentElement;
-  const dark = mode === "dark" || (mode === "system" && getSystemPrefersDark());
-  root.classList.toggle("dark", Boolean(dark));
+  root.classList.toggle("dark", mode === "dark");
 }
 
 export default function ThemeToggle({ className = "" }) {
-  const [mode, setMode] = useState("system");
+  const [mode, setMode] = useState("light");
 
   useEffect(() => {
     const saved = typeof window !== "undefined" ? window.localStorage.getItem(STORAGE_KEY) : null;
-    const initial = saved === "light" || saved === "dark" || saved === "system" ? saved : "system";
+    const initial =
+      saved === "light" || saved === "dark"
+        ? saved
+        : getSystemPrefersDark()
+          ? "dark"
+          : "light";
     setMode(initial);
     applyTheme(initial);
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const mq = window.matchMedia?.("(prefers-color-scheme: dark)");
-    if (!mq) return;
-    const onChange = () => {
-      const saved = window.localStorage.getItem(STORAGE_KEY) || "system";
-      if (saved === "system") applyTheme("system");
-    };
-    mq.addEventListener?.("change", onChange);
-    return () => mq.removeEventListener?.("change", onChange);
+    if (typeof window !== "undefined") window.localStorage.setItem(STORAGE_KEY, initial);
   }, []);
 
   const options = useMemo(
     () => [
-      { id: "system", Icon: Monitor },
       { id: "light", Icon: Sun },
       { id: "dark", Icon: Moon },
     ],
@@ -55,7 +47,7 @@ export default function ThemeToggle({ className = "" }) {
   };
 
   return (
-    <div className={`theme-toggle-container ${className}`} role="group" aria-label="Theme">
+    <div className={`theme-toggle-container ${className}`} role="group" aria-label="Theme toggle">
       {options.map(({ id, Icon }) => {
         const active = mode === id;
         return (

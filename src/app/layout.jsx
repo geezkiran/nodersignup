@@ -54,7 +54,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        {children}
+        <main style={{ position: 'relative' }}>
+          {children}
+        </main>
         <Analytics />
       </body>
     </html>

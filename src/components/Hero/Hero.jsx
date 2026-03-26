@@ -1,6 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { Sparkles, Sparkle, CirclePlus } from 'lucide-react';
+import { Sparkle, CirclePlus } from 'lucide-react';
 import { motion } from 'framer-motion';
 import dashboardImg from '../../app/assets/cardwebp.webp';
 import styles from './Hero.module.css';
@@ -15,24 +15,25 @@ export default function Hero() {
   const router = useRouter();
   return (
     <main className={styles.heroContainer}>
-      <div className={styles.heroBackground}>
+      <motion.div 
+        className={styles.heroBackground}
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+      >
         <img
           src={dashboardImg.src}
           alt="Dashboard Preview"
           className={styles.bgImage}
         />
         <div className={styles.overlay} />
-      </div>
+      </motion.div>
 
       <div className={styles.heroContent}>
 
 
         <motion.h1
           className={styles.title}
-          style={{
-            fontFamily: 'var(--font-geist-sans)',
-            fontWeight: 500
-          }}
           {...fadeUp(0.12)}
         >
           Supercharge Learning
@@ -47,8 +48,12 @@ export default function Hero() {
             <button className="btn btn-white" onClick={() => router.push('/signup')}>
               <Sparkle size={17} />Watch Demo
             </button>
-            <button className="btn btn-primary" onClick={() => router.push('/#')}>
-              <CirclePlus size={16} strokeWidth={1.7} color="var(--text-primary)" />
+            <button
+              className="btn btn-primary"
+              onClick={() => router.push('/#waitlist')}
+              aria-label="Jump to waitlist"
+            >
+              <CirclePlus size={18} strokeWidth={1.7} />
             </button>
           </div>
         </motion.div>

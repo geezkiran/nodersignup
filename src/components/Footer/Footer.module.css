@@ -17,7 +17,7 @@
 /* --- Top nav grid ------------------------------------------- */
 .footerTop {
   display: grid;
-  grid-template-columns: repeat(4, minmax(160px, 1fr));
+  grid-template-columns: repeat(3, minmax(160px, 1fr));
   gap: 64px;
   padding-bottom: 48px;
   justify-content: space-between;
@@ -32,11 +32,12 @@
 }
 
 .groupTitle {
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 500;
   color: var(--text-primary);
-  margin: 0 0 4px 0;
-  letter-spacing: 0.01em;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .link {
@@ -88,13 +89,6 @@
   filter: invert(1) brightness(1.1) contrast(1.05);
 }
 
-.socialIcons {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  color: var(--text-secondary);
-}
-
 .rightBlock {
   display: flex;
   flex-direction: column;
@@ -102,10 +96,6 @@
   gap: 14px;
   flex: 1;
   align-self: flex-start;
-}
-
-.socialIcon:hover {
-  color: var(--text-primary);
 }
 
 .tagline {
@@ -180,15 +170,6 @@
 
   .logo {
     margin-bottom: 10px;
-  }
-
-  .socialIcons {
-    justify-content: flex-start;
-    margin: 4px 0 0;
-  }
-
-  .themeToggle {
-    width: fit-content;
   }
 
   .rightBlock {

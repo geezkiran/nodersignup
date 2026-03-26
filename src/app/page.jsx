@@ -12,11 +12,21 @@ export default function Home() {
     <div className="noder-app">
       <Header />
       <div className="flex w-full flex-col divide-y divide-border">
-        <Hero />
-        <FeaturesSection />
-        <Compare8 />
-        <FAQ2 />
-        <Waitlist1 />
+        <section id="hero">
+          <Hero />
+        </section>
+        <section id="features">
+          <FeaturesSection />
+        </section>
+        <section id="compare">
+          <Compare8 />
+        </section>
+        <section id="faq">
+          <FAQ2 />
+        </section>
+        <section id="waitlist">
+          <Waitlist1 />
+        </section>
       </div>
       <Footer />
     </div>
