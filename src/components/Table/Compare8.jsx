@@ -86,14 +86,7 @@ const features = [
     shadcnNote: "Headless primitives allow full composition patterns",
     bootstrapNote: "Fixed component structure; limited composition",
   },
-  {
-    name: "Dark Mode",
-    icon: <Shield className="size-4" />,
-    shadcn: "full",
-    bootstrap: "partial",
-    shadcnNote: "First-class dark mode via CSS variables",
-    bootstrapNote: "Added in v5.3 via data-bs-theme attribute",
-  },
+  
 
 
 ];
