@@ -29,8 +29,12 @@ export function SpotlightInput({
       return undefined;
     }
 
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    const { body, documentElement } = document;
+    const previousBodyOverflow = body.style.overflow;
+    const previousHtmlOverflow = documentElement.style.overflow;
+
+    body.style.overflow = 'hidden';
+    documentElement.style.overflow = 'hidden';
 
     const frame = window.requestAnimationFrame(() => {
       overlayInputRef.current?.focus();
@@ -38,7 +42,8 @@ export function SpotlightInput({
     });
 
     return () => {
-      document.body.style.overflow = previousOverflow;
+      body.style.overflow = previousBodyOverflow;
+      documentElement.style.overflow = previousHtmlOverflow;
       window.cancelAnimationFrame(frame);
     };
   }, [isActive]);
@@ -113,6 +118,7 @@ export function SpotlightInput({
                 onKeyDown={handleKeyDown}
                 placeholder={placeholder}
                 className={`${styles.textInput} ${styles.spotlightInput}`}
+                onBlur={() => setIsActive(false)}
               />
             </div>
           </div>,

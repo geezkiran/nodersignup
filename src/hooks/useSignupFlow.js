@@ -305,8 +305,9 @@ export function useSignupFlow() {
     canContinueStep1:
       isValidEmail(formData.email) && formData.otp.trim().length === 4,
     canContinueStep2:
-      Boolean(formData.profileUsername.trim()) &&
       formData.password.trim().length >= 6,
+    canContinueStep3:
+      Boolean(formData.profileUsername.trim()),
     photoPreviewStyle,
     isCropModalOpen,
     setIsCropModalOpen,

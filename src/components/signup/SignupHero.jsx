@@ -7,7 +7,7 @@ export function SignupHero({ step }) {
   return (
     <div className={`${styles.mobilePanel} relative`}>
       <p className="absolute bottom-4 right-4 text-xs uppercase tracking-[0.08em] text-[var(--text-secondary)]">
-        Step {step} of 3
+        Step {step} of 4
       </p>
       <h1 className={styles.mobileTitle}>{content.title}</h1>
       <p className={styles.mobileDescription}>{content.description}</p>

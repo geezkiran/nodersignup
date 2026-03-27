@@ -2,6 +2,7 @@
 
 import { SignupCropModal } from '@/components/signup/SignupCropModal';
 import { SignupHero } from '@/components/signup/SignupHero';
+import { SignupStepFour } from '@/components/signup/SignupStepFour';
 import { SignupStepOne } from '@/components/signup/SignupStepOne';
 import { SignupStepThree } from '@/components/signup/SignupStepThree';
 import { SignupStepTwo } from '@/components/signup/SignupStepTwo';
@@ -44,10 +45,7 @@ export default function SignupPage() {
               {signup.step === 2 && (
                 <SignupStepTwo
                   formData={signup.formData}
-                  photoPreviewStyle={signup.photoPreviewStyle}
                   updateField={signup.updateField}
-                  handlePhotoUpload={signup.handlePhotoUpload}
-                  openCropModal={signup.openCropModal}
                   setStep={signup.setStep}
                   canContinue={signup.canContinueStep2}
                 />
@@ -55,6 +53,18 @@ export default function SignupPage() {
 
               {signup.step === 3 && (
                 <SignupStepThree
+                  formData={signup.formData}
+                  photoPreviewStyle={signup.photoPreviewStyle}
+                  updateField={signup.updateField}
+                  handlePhotoUpload={signup.handlePhotoUpload}
+                  openCropModal={signup.openCropModal}
+                  setStep={signup.setStep}
+                  canContinue={signup.canContinueStep3}
+                />
+              )}
+
+              {signup.step === 4 && (
+                <SignupStepFour
                   formData={signup.formData}
                   photoPreviewStyle={signup.photoPreviewStyle}
                   setStep={signup.setStep}

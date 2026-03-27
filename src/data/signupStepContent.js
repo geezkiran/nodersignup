@@ -6,12 +6,18 @@ export const signupStepContent = {
     leftPoints: [ 'Google OAuth recommended'],
   },
   2: {
-    title: 'Craft your uniqeness',
+    title: 'Secure your account',
+    description: 'Create a strong password to keep your data safe.',
+    message: 'Lock it down.',
+    leftPoints: ['Must be at least 6 characters.'],
+  },
+  3: {
+    title: 'Craft your uniqueness',
     description: 'Lets be real, nothing feels better than having a short username.',
     message: 'Personalize your identity.',
     leftPoints: ['Usernames are case insensitive.'],
   },
-  3: {
+  4: {
     title: 'Welcome aboard',
     description: 'Your account setup is complete.',
     message: 'You are ready to go.',
