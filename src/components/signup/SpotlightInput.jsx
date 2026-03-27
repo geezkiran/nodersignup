@@ -12,6 +12,7 @@ export function SpotlightInput({
   placeholder,
   type = 'text',
   autoComplete,
+  name,
   labelMode = 'label',
 }) {
   const generatedId = useId();
@@ -88,6 +89,7 @@ export function SpotlightInput({
           type={type}
           value={value}
           autoComplete={autoComplete}
+          name={name}
           onChange={(event) => onChange(event.target.value)}
           onFocus={() => setIsActive(true)}
           placeholder={placeholder}
@@ -114,6 +116,7 @@ export function SpotlightInput({
                 type={type}
                 value={value}
                 autoComplete={autoComplete}
+                name={name}
                 onChange={(event) => onChange(event.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder={placeholder}

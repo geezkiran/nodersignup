@@ -78,8 +78,8 @@
 .spotlightPanel {
   width: min(100%, 44rem);
   border-radius: 1.75rem;
-  
- 
+
+
   animation: spotlightPanelIn 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -97,7 +97,7 @@
   box-shadow:
     0 0 0 1px rgb(255 255 255 / 0.02),
     0 1.25rem 2.5rem rgb(0 0 0 / 0.28);
-  
+
 }
 
 .spotlightInput:focus {
@@ -215,11 +215,28 @@
 }
 
 .uploadPlaceholder {
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 100%;
+  width: 100%;
   border-radius: 999px;
   border: 1px solid var(--border-color);
   background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uploadPlaceholderImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 999px;
+  filter: grayscale(1) invert(1);
+  opacity: 0.8;
+}
+
+.uploadIcon {
+  color: var(--text-secondary);
+  opacity: 0.5;
 }
 
 .uploadAdd {

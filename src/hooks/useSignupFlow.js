@@ -273,6 +273,9 @@ export function useSignupFlow() {
     if (event.key === 'Backspace' && !otpDigits[index] && index > 0) {
       otpInputRefs.current[index - 1]?.focus();
     }
+    if (event.key === 'Enter' && isValidEmail(formData.email) && formData.otp.trim().length === 4) {
+      setStep(2);
+    }
   };
 
   const handleOtpPaste = (event) => {
@@ -319,5 +322,11 @@ export function useSignupFlow() {
     applySquareCrop,
     handlePhotoUpload,
     openCropModal,
+    handleKeyDown: (event, canContinue, nextStep) => {
+      if (event.key === 'Enter' && canContinue) {
+        event.preventDefault();
+        setStep(nextStep);
+      }
+    },
   };
 }

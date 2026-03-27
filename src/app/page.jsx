@@ -39,6 +39,7 @@ export default function SignupPage() {
                   handleOtpPaste={signup.handleOtpPaste}
                   generatedOtp={signup.generatedOtp}
                   canContinue={signup.canContinueStep1}
+                  handleKeyDown={signup.handleKeyDown}
                 />
               )}
 
@@ -48,6 +49,7 @@ export default function SignupPage() {
                   updateField={signup.updateField}
                   setStep={signup.setStep}
                   canContinue={signup.canContinueStep2}
+                  handleKeyDown={signup.handleKeyDown}
                 />
               )}
 
@@ -60,6 +62,7 @@ export default function SignupPage() {
                   openCropModal={signup.openCropModal}
                   setStep={signup.setStep}
                   canContinue={signup.canContinueStep3}
+                  handleKeyDown={signup.handleKeyDown}
                 />
               )}
 

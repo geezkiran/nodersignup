@@ -30,7 +30,7 @@ export function SignupStepFour({ formData, photoPreviewStyle, setStep }) {
         >
           Edit profile
         </button>
-        <a href="/" className={`${styles.returnHome} btn btn-primary`}>
+        <a href="https://noderhq.com" className={`${styles.returnHome} btn btn-primary`}>
           Return home
         </a>
       </div>

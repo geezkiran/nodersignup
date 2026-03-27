@@ -6,9 +6,13 @@ export function SignupStepTwo({
   updateField,
   setStep,
   canContinue,
+  handleKeyDown,
 }) {
   return (
-    <div className={styles.formStack}>
+    <div 
+      className={styles.formStack}
+      onKeyDown={(e) => handleKeyDown(e, canContinue, 3)}
+    >
       <div>
         <SpotlightInput
           id="password"
@@ -18,6 +22,7 @@ export function SignupStepTwo({
           placeholder="Create password"
           type="password"
           autoComplete="new-password"
+          name="password"
           labelMode="spacer"
         />
       </div>

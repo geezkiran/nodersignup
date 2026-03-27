@@ -1,5 +1,6 @@
 import styles from './signup-form.module.css';
 import { SpotlightInput } from './SpotlightInput';
+import pfp from '@/app/assets/pfp.png';
 
 export function SignupStepThree({
   formData,
@@ -9,9 +10,13 @@ export function SignupStepThree({
   openCropModal,
   setStep,
   canContinue,
+  handleKeyDown,
 }) {
   return (
-    <div className={styles.formStack}>
+    <div 
+      className={styles.formStack}
+      onKeyDown={(e) => handleKeyDown(e, canContinue, 4)}
+    >
       <div>
         <input
           id="photo"
@@ -27,7 +32,9 @@ export function SignupStepThree({
                 <span className={styles.uploadPreview} style={photoPreviewStyle} />
               </span>
             ) : (
-              <span className={styles.uploadPlaceholder} />
+              <span className={styles.uploadPlaceholder}>
+                <img src={pfp.src} alt="Profile" className={styles.uploadPlaceholderImg} />
+              </span>
             )}
             <span className={styles.uploadAdd}>+</span>
           </span>
@@ -52,7 +59,7 @@ export function SignupStepThree({
           onChange={(nextValue) => updateField('profileUsername', nextValue)}
           placeholder="Username"
           autoComplete="username"
-          labelMode="spacer"
+          name="username"
         />
       </div>
 

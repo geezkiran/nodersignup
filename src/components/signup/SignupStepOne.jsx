@@ -53,9 +53,13 @@ export function SignupStepOne({
   handleOtpPaste,
   generatedOtp,
   canContinue,
+  handleKeyDown,
 }) {
   return (
-    <div className={styles.formStack}>
+    <div 
+      className={styles.formStack}
+      onKeyDown={(e) => handleKeyDown(e, canContinue, 2)}
+    >
       <button
         type="button"
         onClick={() => setStep(2)}
@@ -89,6 +93,7 @@ export function SignupStepOne({
           placeholder="Enter your email"
           type="email"
           autoComplete="email"
+          name="email"
         />
       </div>
 
