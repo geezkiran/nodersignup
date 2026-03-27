@@ -176,7 +176,7 @@
   gap: 8px;
   font-size: 14px;
   font-family: var(--font-geist-sans), sans-serif;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: -0.02em;
   color: var(--text-primary);
   text-decoration: none;
@@ -265,7 +265,59 @@
 
 @media (max-width: 768px) {
   .blogFeed {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding: 0 12px 72px;
+  }
+
+  .cardImageContainer {
+    aspect-ratio: 4 / 3;
+  }
+
+  .categoryBadge {
+    top: 8px;
+    right: 8px;
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .cardContent {
+    padding: 12px;
+  }
+
+  .cardMeta {
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 11px;
+  }
+
+  .cardMeta svg {
+    width: 11px;
+    height: 11px;
+  }
+
+  .cardTitle {
+    font-size: 16px;
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+
+  .cardExcerpt {
+    display: none;
+  }
+
+  .dateMeta {
+    display: none;
+  }
+
+  .readMore {
+    font-size: 11px;
+    gap: 6px;
+  }
+
+  .readMore svg {
+    width: 12px;
+    height: 12px;
   }
 
   .postContent p {

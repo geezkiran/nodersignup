@@ -100,5 +100,95 @@ export const blogPosts = [
         text: "A distributed architecture keeps your application closer to your users, lowering network distance and improving consistency across regions.",
       },
     ]
+  },
+  {
+    title: "Global Scalability at Your Fingertips",
+    slug: "scale-scalability",
+    date: "March 24, 2026",
+    author: "Bob S",
+    excerpt: "Learn how Noder's distributed network of edge nodes allows you to deploy and scale applications anywhere in the world.",
+    image: img3,
+    content: [
+      {
+        type: "paragraph",
+        text: "Scaling a global product used to require a dedicated infrastructure team. Noder is built to reduce that operational burden.",
+      },
+      {
+        type: "heading",
+        text: "Zero-Config Scaling",
+      },
+      {
+        type: "paragraph",
+        text: "Our compute layer is designed to expand with demand, whether you are serving ten users or ten million. The experience should feel simple even when the system underneath is doing complex work.",
+      },
+      {
+        type: "heading",
+        text: "The Power of the Grid",
+      },
+      {
+        type: "paragraph",
+        text: "A distributed architecture keeps your application closer to your users, lowering network distance and improving consistency across regions.",
+      },
+    ]
+  },
+  {
+    title: "Global Scalability at Your Fingertips",
+    slug: "local-scalability",
+    date: "March 24, 2026",
+    author: "Bob S",
+    excerpt: "Learn how Noder's distributed network of edge nodes allows you to deploy and scale applications anywhere in the world.",
+    image: img3,
+    content: [
+      {
+        type: "paragraph",
+        text: "Scaling a global product used to require a dedicated infrastructure team. Noder is built to reduce that operational burden.",
+      },
+      {
+        type: "heading",
+        text: "Zero-Config Scaling",
+      },
+      {
+        type: "paragraph",
+        text: "Our compute layer is designed to expand with demand, whether you are serving ten users or ten million. The experience should feel simple even when the system underneath is doing complex work.",
+      },
+      {
+        type: "heading",
+        text: "The Power of the Grid",
+      },
+      {
+        type: "paragraph",
+        text: "A distributed architecture keeps your application closer to your users, lowering network distance and improving consistency across regions.",
+      },
+    ]
+  },
+  {
+    title: "Global Scalability at Your Fingertips",
+    slug: "global-advance",
+    date: "March 24, 2026",
+    author: "Bob S",
+    excerpt: "Learn how Noder's distributed network of edge nodes allows you to deploy and scale applications anywhere in the world.",
+    image: img3,
+    content: [
+      {
+        type: "paragraph",
+        text: "Scaling a global product used to require a dedicated infrastructure team. Noder is built to reduce that operational burden.",
+      },
+      {
+        type: "heading",
+        text: "Zero-Config Scaling",
+      },
+      {
+        type: "paragraph",
+        text: "Our compute layer is designed to expand with demand, whether you are serving ten users or ten million. The experience should feel simple even when the system underneath is doing complex work.",
+      },
+      {
+        type: "heading",
+        text: "The Power of the Grid",
+      },
+      {
+        type: "paragraph",
+        text: "A distributed architecture keeps your application closer to your users, lowering network distance and improving consistency across regions.",
+      },
+    ]
   }
 ];

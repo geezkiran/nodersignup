@@ -21,7 +21,7 @@ export default function BlogCard({ post, index }) {
         </div>
         <div className={styles.cardContent}>
           <div className={styles.cardMeta}>
-            <span className={styles.metaItem}>
+            <span className={`${styles.metaItem} ${styles.dateMeta}`}>
               <Calendar size={14} /> {post.date}
             </span>
             <span className={styles.metaItem}>
