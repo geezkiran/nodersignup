@@ -100,7 +100,7 @@ export function SpotlightInput({
             <div className={styles.spotlightPanel}>
               {label && (
                 <label htmlFor={`${inputId}-overlay`} className={styles.spotlightLabel}>
-                  {label}
+                  
                 </label>
               )}
               <input
