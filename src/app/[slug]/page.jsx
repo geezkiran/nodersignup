@@ -64,6 +64,8 @@ export default function BlogPostPage() {
 
         <img src={post.image.src} alt={post.title} className={styles.postHeroImage} />
 
+        <p className={styles.imageDescription}>Featured image for: {post.title}</p>
+
         <div className={styles.postContent}>
           {post.content.map((block, index) => renderContentBlock(block, index))}
         </div>
