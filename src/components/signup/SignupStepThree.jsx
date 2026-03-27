@@ -16,7 +16,7 @@ export function SignupStepThree({ formData, photoPreviewStyle, setStep }) {
         </div>
 
         <p className={styles.successUsername}>@{username}</p>
-        <h3 className={styles.successHeading}>Hello, {displayName}!</h3>
+        
         <p className={styles.successText}>The profile feels just right.</p>
       </div>
 

@@ -3,13 +3,13 @@ export const signupStepContent = {
     title: 'We are excited to have you',
     description: 'Lets not miss out on our traditions',
     message: 'Secure your login details.',
-    leftPoints: ['Set your login credentials', 'Use Google for faster signup'],
+    leftPoints: [ 'Google OAuth recommended'],
   },
   2: {
     title: 'Craft your uniqeness',
     description: 'Lets be real, nothing feels better than having a short username.',
     message: 'Personalize your identity.',
-    leftPoints: ['Usernames are always displayed in lowercase.'],
+    leftPoints: ['Usernames are case insensitive.'],
   },
   3: {
     title: 'Welcome aboard',
