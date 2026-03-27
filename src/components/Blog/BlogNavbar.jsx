@@ -29,7 +29,7 @@ export default function BlogNavbar() {
             <img src={logoMob.src} alt="Noder Mobile" className={styles.logoIconMob} />
           </a>
           <div className={styles.divider} />
-          <Link href="/blog" className={styles.navLink}>Blog</Link>
+          <Link href="/" className={styles.navLink}>Blog</Link>
         </div>
 
         <div className={styles.navbarRight}>

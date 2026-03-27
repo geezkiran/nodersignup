@@ -331,7 +331,7 @@
 .divider {
   width: 1px;
   height: 24px;
-  background-color: var(--border-color);
+  background-color: #7d7d7d97;
 }
 
 .navLink {

@@ -2,10 +2,10 @@
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ArrowLeft, Calendar, User, Clock3 } from 'lucide-react';
-import BlogNavbar from '../../../components/Blog/BlogNavbar';
-import BlogFooter from '../../../components/Blog/BlogFooter';
-import { blogPosts } from '../../../data/blogData';
-import styles from '../../../components/Blog/Blog.module.css';
+import BlogNavbar from '../../components/Blog/BlogNavbar';
+import BlogFooter from '../../components/Blog/BlogFooter';
+import { blogPosts } from '../../data/blogData';
+import styles from '../../components/Blog/Blog.module.css';
 
 function renderContentBlock(block, index) {
   if (block.type === 'heading') {
@@ -31,7 +31,7 @@ export default function BlogPostPage() {
         <main className={styles.postLayout}>
           <div className="text-center py-20">
             <h1 className="text-4xl font-bold mb-4">Post Not Found</h1>
-            <Link href="/blog" className={styles.backButton}>
+            <Link href="/" className={styles.backButton}>
               <ArrowLeft size={16} /> Back to Blog
             </Link>
           </div>

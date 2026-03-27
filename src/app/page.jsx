@@ -1,34 +1,25 @@
 'use client';
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
-import Hero from '../components/Hero/Hero';
-import FeaturesSection from '../components/FeatureSection/FeaturesSection';
-import Waitlist1 from '../components/Waitlist/Waitlist1';
-import FAQ2 from '../components/FAQ/FAQ2';
-import Compare8 from "../components/Table/Compare8";
+import React from 'react';
+import BlogNavbar from '../components/Blog/BlogNavbar';
+import BlogFooter from '../components/Blog/BlogFooter';
+import BlogHeader from '../components/Blog/BlogHeader';
+import BlogCard from '../components/Blog/BlogCard';
+import { blogPosts } from '../data/blogData';
+import styles from '../components/Blog/Blog.module.css';
 
-export default function Home() {
+export default function BlogPage() {
   return (
-    <div className="noder-app">
-      <Header />
-      <div className="flex w-full flex-col divide-y divide-border">
-        <section id="hero">
-          <Hero />
+    <div className="min-h-screen bg-transparent">
+      <BlogNavbar />
+      <main>
+        <BlogHeader />
+        <section className={styles.blogFeed}>
+          {blogPosts.map((post, i) => (
+            <BlogCard key={post.slug} post={post} index={i} />
+          ))}
         </section>
-        <section id="features">
-          <FeaturesSection />
-        </section>
-        <section id="compare">
-          <Compare8 />
-        </section>
-        <section id="faq">
-          <FAQ2 />
-        </section>
-        <section id="waitlist">
-          <Waitlist1 />
-        </section>
-      </div>
-      <Footer />
+      </main>
+      <BlogFooter />
     </div>
   );
 }

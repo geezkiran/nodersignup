@@ -1,4 +1,4 @@
-import img1 from '../app/assets/card1.jpg';
+import img1 from '../app/assets/Card1.jpg';
 import img2 from '../app/assets/Card2 .jpg';
 import img3 from '../app/assets/Card3 .jpg';
 

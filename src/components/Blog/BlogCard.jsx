@@ -14,7 +14,7 @@ export default function BlogCard({ post, index }) {
       viewport={{ once: true }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
     >
-      <Link href={`/blog/${post.slug}`} className={styles.cardLink}>
+      <Link href={`/${post.slug}`} className={styles.cardLink}>
         <div className={styles.cardImageContainer}>
           <img src={post.image.src} alt={post.title} className={styles.cardImage} />
           <div className={styles.categoryBadge}>Article</div>
