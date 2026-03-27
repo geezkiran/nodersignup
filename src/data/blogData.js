@@ -4,8 +4,8 @@ import img3 from '../app/assets/Card3 .jpg';
 
 export const blogPosts = [
   {
-    title: "The Future of AI Learning",
-    slug: "future-of-ai-learning",
+    title: "Why most people fail at learning new skills",
+    slug: "learningpath",
     date: "March 26, 2026",
     author: "Kiran Prakash",
     excerpt: "Discover how spatial indexing and lightning-fast infrastructure are transforming the way we learn in the age of AI.",

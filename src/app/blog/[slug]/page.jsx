@@ -1,9 +1,9 @@
 'use client';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { ArrowLeft, Calendar, User } from 'lucide-react';
+import { ArrowLeft, Calendar, User, Clock3 } from 'lucide-react';
 import BlogNavbar from '../../../components/Blog/BlogNavbar';
-import Footer from '../../../components/Footer/Footer';
+import BlogFooter from '../../../components/Blog/BlogFooter';
 import { blogPosts } from '../../../data/blogData';
 import styles from '../../../components/Blog/Blog.module.css';
 
@@ -36,7 +36,7 @@ export default function BlogPostPage() {
             </Link>
           </div>
         </main>
-        <Footer />
+        <BlogFooter />
       </div>
     );
   }
@@ -45,9 +45,7 @@ export default function BlogPostPage() {
     <div className="min-h-screen">
       <BlogNavbar />
       <main className={styles.postLayout}>
-        <Link href="/blog" className={styles.backButton}>
-          <ArrowLeft size={16} /> Back to Blog
-        </Link>
+        
 
         <article className={styles.postHeader}>
           <div className={styles.cardMeta}>
@@ -56,6 +54,9 @@ export default function BlogPostPage() {
             </span>
             <span className={styles.metaItem}>
               <User size={14} /> {post.author}
+            </span>
+            <span className={styles.metaItem}>
+              <Clock3 size={14} /> 4m
             </span>
           </div>
           <h1 className={styles.postTitle}>{post.title}</h1>
@@ -67,7 +68,7 @@ export default function BlogPostPage() {
           {post.content.map((block, index) => renderContentBlock(block, index))}
         </div>
       </main>
-      <Footer />
+      <BlogFooter />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import BlogNavbar from '../../components/Blog/BlogNavbar';
-import Footer from '../../components/Footer/Footer';
+import BlogFooter from '../../components/Blog/BlogFooter';
 import BlogHeader from '../../components/Blog/BlogHeader';
 import BlogCard from '../../components/Blog/BlogCard';
 import { blogPosts } from '../../data/blogData';
@@ -19,7 +19,7 @@ export default function BlogPage() {
           ))}
         </section>
       </main>
-      <Footer />
+      <BlogFooter />
     </div>
   );
 }

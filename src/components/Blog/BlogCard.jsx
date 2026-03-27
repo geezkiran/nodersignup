@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Calendar, User, ArrowRight } from 'lucide-react';
+import { Calendar, User, Clock3, ArrowRight } from 'lucide-react';
 import styles from './Blog.module.css';
 
 export default function BlogCard({ post, index }) {
@@ -27,9 +27,14 @@ export default function BlogCard({ post, index }) {
             <span className={styles.metaItem}>
               <User size={14} /> {post.author}
             </span>
+            <span className={styles.metaItem}>
+              <Clock3 size={14} /> 2min
+            </span>
           </div>
-          <h3 className={styles.cardTitle}>{post.title}</h3>
-          <p className={styles.cardExcerpt}>{post.excerpt}</p>
+
+          <h3 className={`${styles.cardTitle} ${styles.clampTwoLines}`}>{post.title}</h3>
+          <p className={`${styles.cardExcerpt} ${styles.clampTwoLines}`}>{post.excerpt}</p>
+
           <div className={styles.readMore}>
             READ MORE <ArrowRight size={16} />
           </div>
