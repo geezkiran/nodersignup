@@ -29,17 +29,6 @@ function GoogleIcon() {
   );
 }
 
-function GitHubIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className="h-4 w-4 fill-current"
-    >
-      <path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.49.99.11-.77.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.92 0-1.31.47-2.37 1.23-3.2-.12-.3-.53-1.51.12-3.14 0 0 1.01-.32 3.3 1.22a11.4 11.4 0 0 1 6 0c2.29-1.54 3.3-1.22 3.3-1.22.65 1.63.24 2.84.12 3.14.77.83 1.23 1.89 1.23 3.2 0 4.6-2.81 5.62-5.49 5.92.43.37.81 1.09.81 2.2v3.26c0 .32.22.7.83.58A12 12 0 0 0 12 .5Z" />
-    </svg>
-  );
-}
 
 export function SignupStepOne({
   formData,
@@ -54,6 +43,7 @@ export function SignupStepOne({
   generatedOtp,
   canContinue,
   handleKeyDown,
+  signInWithProvider,
 }) {
   return (
     <div 
@@ -62,20 +52,11 @@ export function SignupStepOne({
     >
       <button
         type="button"
-        onClick={() => setStep(2)}
+        onClick={() => signInWithProvider('google')}
         className={`${styles.socialButton} ${styles.socialButtonLight}`}
       >
         <GoogleIcon />
         Continue with Google
-      </button>
-
-      <button
-        type="button"
-        onClick={() => setStep(2)}
-        className={`${styles.socialButton} ${styles.socialButtonDark}`}
-      >
-        <GitHubIcon />
-        Continue with GitHub
       </button>
 
       <div className={styles.divider}>

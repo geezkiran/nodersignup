@@ -14,6 +14,7 @@ export function SpotlightInput({
   autoComplete,
   name,
   labelMode = 'label',
+  children,
 }) {
   const generatedId = useId();
   const inputId = id || generatedId;
@@ -95,6 +96,7 @@ export function SpotlightInput({
           placeholder={placeholder}
           className={styles.textInput}
         />
+        {children}
       </div>
 
       {isMounted &&
@@ -123,6 +125,7 @@ export function SpotlightInput({
                 className={`${styles.textInput} ${styles.spotlightInput}`}
                 onBlur={() => setIsActive(false)}
               />
+              {children}
             </div>
           </div>,
           document.body

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { createClient } from '@/lib/supabase';
 
 const INITIAL_FORM = {
   email: '',
@@ -21,11 +22,62 @@ export const cropGridOverlayStyle = {
 
 export function useSignupFlow() {
   const [step, setStep] = useState(1);
+  const supabase = createClient();
+
   const [formData, setFormData] = useState(INITIAL_FORM);
   const [isCropModalOpen, setIsCropModalOpen] = useState(false);
   const [cropBox, setCropBox] = useState(INITIAL_CROP_BOX);
   const [generatedOtp, setGeneratedOtp] = useState('');
   const [otpEmail, setOtpEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
+  const [usernameAvailability, setUsernameAvailability] = useState(null); // null, 'available', 'taken'
+  const [isCheckingUsername, setIsCheckingUsername] = useState(false);
+
+  // Debounced username check
+  useEffect(() => {
+    const username = formData.profileUsername.trim();
+    if (username.length < 3) {
+      setUsernameAvailability(null);
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      setIsCheckingUsername(true);
+      try {
+        const { data, error: checkError } = await supabase
+          .from('profiles')
+          .select('username')
+          .eq('username', username)
+          .maybeSingle();
+
+        if (checkError) throw checkError;
+        setUsernameAvailability(data ? 'taken' : 'available');
+      } catch (err) {
+        console.error('Error checking username:', err);
+      } finally {
+        setIsCheckingUsername(false);
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [formData.profileUsername, supabase]);
+
+  const signInWithProvider = async (provider) => {
+    if (!supabase) {
+      setError('Supabase client not initialized. Please check your environment variables.');
+      return;
+    }
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: window.location.hostname === 'localhost' 
+          ? window.location.origin 
+          : 'https://signup.noderhq.com',
+      },
+    });
+    if (error) setError(error.message);
+  };
 
   const otpInputRefs = useRef([]);
   const cropFrameRef = useRef(null);
@@ -60,6 +112,58 @@ export function useSignupFlow() {
   };
 
   const isValidEmail = (value) => /\S+@\S+\.\S+/.test(value);
+
+  useEffect(() => {
+    if (!supabase) return;
+    
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        setFormData((prev) => ({ ...prev, email: session.user.email }));
+        // Check if profile exists
+        supabase
+          .from('profiles')
+          .select('username')
+          .eq('id', session.user.id)
+          .single()
+          .then(({ data, error }) => {
+            if (data?.username && !error) {
+              setStep(4);
+            } else {
+              setStep(2);
+            }
+          })
+          .catch(() => {
+            setStep(2);
+          });
+      }
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        if (session) {
+          setFormData((prev) => ({ ...prev, email: session.user.email }));
+          // Check if profile exists also here
+          supabase
+            .from('profiles')
+            .select('username')
+            .eq('id', session.user.id)
+            .single()
+            .then(({ data, error }) => {
+              if (data?.username && !error) {
+                setStep(4);
+              } else {
+                setStep(2);
+              }
+            })
+            .catch(() => {
+              setStep(2);
+            });
+        }
+      }
+    );
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   useEffect(() => {
     if (isValidEmail(formData.email) && formData.email !== otpEmail) {
@@ -305,12 +409,117 @@ export function useSignupFlow() {
     handleOtpDigitChange,
     handleOtpKeyDown,
     handleOtpPaste,
+    isSubmitting,
+    error,
+    signInWithProvider,
+    completeSignup: async () => {
+      if (!supabase) {
+        setError('Supabase client not initialized. Please check your environment variables.');
+        return;
+      }
+      setIsSubmitting(true);
+      setError(null);
+      console.log('Starting completeSignup...');
+      try {
+        let authUserResponse = await supabase.auth.getUser();
+        let authUser = authUserResponse.data.user;
+
+        console.log('Current Auth User:', authUser);
+
+        // 1. Sign up user if not already signed in via OAuth
+        if (!authUser) {
+          console.log('No active session, signing up with email/password...');
+          const { data, error: authError } = await supabase.auth.signUp({
+            email: formData.email,
+            password: formData.password,
+          });
+          if (authError) throw authError;
+          authUser = data.user;
+          console.log('Signup successful:', authUser.id);
+        } else if (formData.password) {
+          // If already signed in (OAuth), but provided a password, update it for future use
+          console.log('Updating password for existing session...');
+          const { error: updateError } = await supabase.auth.updateUser({
+            password: formData.password,
+          });
+          if (updateError) throw updateError;
+          console.log('Password updated successfully!');
+        }
+
+        let avatarUrl = null;
+
+        // 2. Upload photo if exists
+        if (formData.photo) {
+          console.log('Uploading photo...');
+          const blob = await (await fetch(formData.photo)).blob();
+          const fileExt = 'png';
+          const fileName = `${authUser.id}.${fileExt}`;
+          const filePath = `${fileName}`;
+
+          const { error: uploadError } = await supabase.storage
+            .from('avatars')
+            .upload(filePath, blob, { upsert: true });
+
+          if (uploadError) throw uploadError;
+
+          const { data: { publicUrl } } = supabase.storage
+            .from('avatars')
+            .getPublicUrl(filePath);
+          
+          avatarUrl = publicUrl;
+          console.log('Photo uploaded successfully:', avatarUrl);
+        }
+
+        // 3. Create profile
+        console.log('Creating profile in database...');
+        const { error: profileError } = await supabase
+          .from('profiles')
+          .upsert([
+            {
+              id: authUser.id,
+              username: formData.profileUsername,
+              full_name: '', // Optional
+              avatar_url: avatarUrl,
+              updated_at: new Date().toISOString(),
+            },
+          ]);
+
+        if (profileError) {
+          console.error('Profile creation error:', profileError);
+          throw profileError;
+        }
+
+        console.log('Profile created successfully!');
+        setStep(4);
+      } catch (err) {
+        console.error('completeSignup failed:', err);
+        setError(err.message || 'An unexpected error occurred');
+      } finally {
+        setIsSubmitting(false);
+      }
+    },
     canContinueStep1:
       isValidEmail(formData.email) && formData.otp.trim().length === 4,
     canContinueStep2:
-      formData.password.trim().length >= 6,
+      formData.password.length >= 6 &&
+      /[a-z]/.test(formData.password) &&
+      /[A-Z]/.test(formData.password) &&
+      /[0-9]/.test(formData.password) &&
+      /[^a-zA-Z0-9]/.test(formData.password),
+    passwordRequirements: {
+      hasMinLength: formData.password.length >= 6,
+      hasLower: /[a-z]/.test(formData.password),
+      hasUpper: /[A-Z]/.test(formData.password),
+      hasNumber: /[0-9]/.test(formData.password),
+      hasSymbol: /[^a-zA-Z0-9]/.test(formData.password),
+    },
     canContinueStep3:
-      Boolean(formData.profileUsername.trim()),
+      Boolean(formData.profileUsername.trim()) && 
+      formData.profileUsername.trim().length >= 3 &&
+      usernameAvailability === 'available' &&
+      !isCheckingUsername,
+    usernameAvailability,
+    isCheckingUsername,
     photoPreviewStyle,
     isCropModalOpen,
     setIsCropModalOpen,
@@ -322,6 +531,9 @@ export function useSignupFlow() {
     applySquareCrop,
     handlePhotoUpload,
     openCropModal,
+    removePhoto: () => {
+      setFormData((prev) => ({ ...prev, photo: '' }));
+    },
     handleKeyDown: (event, canContinue, nextStep) => {
       if (event.key === 'Enter' && canContinue) {
         event.preventDefault();

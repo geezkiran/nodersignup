@@ -114,8 +114,8 @@
   justify-content: center;
   gap: 0.5rem;
   border-radius: 0.75rem;
-  padding: 0.75rem 1rem;
-  font-size: 0.875rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.8125rem;
   transition: background-color 0.2s ease;
 }
 
@@ -277,8 +277,8 @@
 .secondaryButton {
   width: 100%;
   border-radius: 1.25rem;
-  padding: 0.625rem 1rem;
-  font-size: 0.875rem;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.8125rem;
   transition:
     opacity 0.2s ease,
     background-color 0.2s ease,
@@ -417,4 +417,85 @@
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+.requirementsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.5rem 1.5rem;
+}
+
+.requirementItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.requirementMet {
+  color: #4CAF50 !important;
+  opacity: 1 !important;
+}
+
+.requirementUnmet {
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.checkIcon {
+  width: 12px;
+  height: 12px;
+}
+
+.usernameContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.availabilityWrapper {
+  margin-top: -0.5rem;
+  margin-left: 1rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.75rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.checkingText {
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.takenText {
+  color: #ff4d4d;
+}
+
+.availableText {
+  color: #4CAF50;
+}
+
+.photoActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.actionDivider {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  opacity: 0.4;
+}
+
+.removeButton {
+  color: #ff4d4d !important;
+}
+
+.removeButton:hover {
+  text-decoration: underline;
 }

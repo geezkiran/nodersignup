@@ -10,68 +10,94 @@ export function SignupStepThree({
   openCropModal,
   setStep,
   canContinue,
-  handleKeyDown,
+  usernameAvailability,
+  isCheckingUsername,
+  completeSignup,
+  removePhoto,
+  isSubmitting,
+  error,
 }) {
   return (
-    <div 
-      className={styles.formStack}
-      onKeyDown={(e) => handleKeyDown(e, canContinue, 4)}
-    >
+    <div className={styles.formStack}>
+      {error && <p className={styles.errorText}>{error}</p>}
       <div>
         <input
-          id="photo"
           type="file"
+          id="photo-upload"
           accept="image/*"
-          onChange={handlePhotoUpload}
           className={styles.hiddenInput}
+          onChange={handlePhotoUpload}
         />
-        <label htmlFor="photo" className={styles.uploadLabel}>
-          <span className={styles.uploadFrame}>
+        <label htmlFor="photo-upload" className={styles.uploadLabel}>
+          <div className={styles.uploadFrame}>
             {formData.photo ? (
-              <span className={styles.uploadPreviewFrame}>
-                <span className={styles.uploadPreview} style={photoPreviewStyle} />
-              </span>
+              <div className={styles.uploadPreviewFrame}>
+                <div
+                  className={styles.uploadPreview}
+                  style={photoPreviewStyle}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    openCropModal();
+                  }}
+                />
+              </div>
             ) : (
-              <span className={styles.uploadPlaceholder}>
-                <img src={pfp.src} alt="Profile" className={styles.uploadPlaceholderImg} />
-              </span>
+              <div className={styles.uploadPlaceholder}>
+                <img src={pfp.src} alt="Profile Placeholder" className={styles.uploadPlaceholderImg} />
+                <div className={styles.uploadAdd}>+</div>
+              </div>
             )}
-            <span className={styles.uploadAdd}>+</span>
-          </span>
+          </div>
         </label>
-
-        {formData.photo && (
-          <button
-            type="button"
-            onClick={openCropModal}
-            className={styles.linkButton}
-          >
-            Edit crop
+        <div className={styles.photoActions}>
+          <button type="button" onClick={openCropModal} className={styles.linkButton}>
+            {formData.photo ? 'Edit photo' : 'Add profile photo'}
           </button>
-        )}
+          {formData.photo && (
+            <>
+              <span className={styles.actionDivider}>•</span>
+              <button type="button" onClick={removePhoto} className={`${styles.linkButton} ${styles.removeButton}`}>
+                Remove
+              </button>
+            </>
+          )}
+        </div>
       </div>
 
-      <div>
+      <div className={styles.usernameContainer}>
         <SpotlightInput
           id="profileUsername"
-          label="Username"
+          label="Choose a username"
           value={formData.profileUsername}
           onChange={(nextValue) => updateField('profileUsername', nextValue)}
-          placeholder="Username"
+          placeholder="username"
           autoComplete="username"
           name="username"
-        />
+          labelMode="spacer"
+        >
+          <div className={styles.availabilityWrapper}>
+            {isCheckingUsername && (
+              <span className={styles.checkingText}>Checking...</span>
+            )}
+            {!isCheckingUsername && usernameAvailability === 'taken' && (
+              <span className={styles.takenText}>Username already taken</span>
+            )}
+            {!isCheckingUsername && usernameAvailability === 'available' && (
+              <span className={styles.availableText}>Username available</span>
+            )}
+          </div>
+        </SpotlightInput>
       </div>
 
       <div className={styles.actionRow}>
         <div /> {/* Spacer to push button to the right */}
         <button
           type="button"
-          onClick={() => setStep(4)}
-          disabled={!canContinue}
+          onClick={completeSignup}
+          disabled={!canContinue || isSubmitting}
           className={styles.primaryButton}
         >
-          Finish
+          {isSubmitting ? 'Finishing...' : 'Finish'}
         </button>
       </div>
     </div>

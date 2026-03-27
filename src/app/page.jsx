@@ -17,9 +17,8 @@ export default function SignupPage() {
     <div className={styles.pageShell}>
       <section
         id="waitlist"
-        className={`${styles.pageCard} ${
-          signup.isCropModalOpen ? styles.pageCardMuted : ''
-        }`}
+        className={`${styles.pageCard} ${signup.isCropModalOpen ? styles.pageCardMuted : ''
+          }`}
       >
         <div className={styles.contentStack}>
           <SignupHero step={signup.step} />
@@ -40,6 +39,7 @@ export default function SignupPage() {
                   generatedOtp={signup.generatedOtp}
                   canContinue={signup.canContinueStep1}
                   handleKeyDown={signup.handleKeyDown}
+                  signInWithProvider={signup.signInWithProvider}
                 />
               )}
 
@@ -49,7 +49,7 @@ export default function SignupPage() {
                   updateField={signup.updateField}
                   setStep={signup.setStep}
                   canContinue={signup.canContinueStep2}
-                  handleKeyDown={signup.handleKeyDown}
+                  passwordRequirements={signup.passwordRequirements}
                 />
               )}
 
@@ -62,7 +62,12 @@ export default function SignupPage() {
                   openCropModal={signup.openCropModal}
                   setStep={signup.setStep}
                   canContinue={signup.canContinueStep3}
-                  handleKeyDown={signup.handleKeyDown}
+                   usernameAvailability={signup.usernameAvailability}
+                  isCheckingUsername={signup.isCheckingUsername}
+                  completeSignup={signup.completeSignup}
+                  removePhoto={signup.removePhoto}
+                  isSubmitting={signup.isSubmitting}
+                  error={signup.error}
                 />
               )}
 
@@ -78,7 +83,7 @@ export default function SignupPage() {
         </div>
       </section>
 
-      {/*<StepSwitcher step={signup.step} setStep={signup.setStep} />*/}
+      <StepSwitcher step={signup.step} setStep={signup.setStep} />
 
       <SignupCropModal
         isOpen={signup.isCropModalOpen}

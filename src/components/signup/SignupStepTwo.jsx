@@ -6,17 +6,16 @@ export function SignupStepTwo({
   updateField,
   setStep,
   canContinue,
-  handleKeyDown,
+  passwordRequirements,
 }) {
+  const { hasMinLength, hasLower, hasUpper, hasNumber, hasSymbol } = passwordRequirements;
+
   return (
-    <div 
-      className={styles.formStack}
-      onKeyDown={(e) => handleKeyDown(e, canContinue, 3)}
-    >
+    <div className={styles.formStack}>
       <div>
         <SpotlightInput
           id="password"
-          label="Minimum 6 characters"
+          label="Create your password"
           value={formData.password}
           onChange={(nextValue) => updateField('password', nextValue)}
           placeholder="Create password"
@@ -24,7 +23,15 @@ export function SignupStepTwo({
           autoComplete="new-password"
           name="password"
           labelMode="spacer"
-        />
+        >
+          <div className={styles.requirementsList}>
+            <RequirementItem met={hasUpper} label="Uppercase letter" />
+            <RequirementItem met={hasLower} label="Lowercase letter" />
+            <RequirementItem met={hasSymbol} label="A symbol" />
+            <RequirementItem met={hasNumber} label="A digit" />
+            <RequirementItem met={hasMinLength} label="At least 6 characters" />
+          </div>
+        </SpotlightInput>
       </div>
 
       <div className={styles.actionRow}>
@@ -44,6 +51,29 @@ export function SignupStepTwo({
           Continue
         </button>
       </div>
+    </div>
+  );
+}
+
+function RequirementItem({ met, label }) {
+  return (
+    <div className={`${styles.requirementItem} ${met ? styles.requirementMet : styles.requirementUnmet}`}>
+      <svg
+        className={styles.checkIcon}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {met ? (
+          <polyline points="20 6 9 17 4 12" />
+        ) : (
+          <circle cx="12" cy="12" r="10" />
+        )}
+      </svg>
+      {label}
     </div>
   );
 }
