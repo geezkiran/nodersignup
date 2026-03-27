@@ -1,4 +1,5 @@
 import styles from './signup-form.module.css';
+import { SpotlightInput } from './SpotlightInput';
 
 export function SignupStepTwo({
   formData,
@@ -44,29 +45,26 @@ export function SignupStepTwo({
       </div>
 
       <div>
-        <div className={styles.fieldSpacer} aria-hidden="true" />
-        <input
+        <SpotlightInput
           id="profileUsername"
+          label="Username"
           value={formData.profileUsername}
-          onChange={(event) =>
-            updateField('profileUsername', event.target.value)
-          }
+          onChange={(nextValue) => updateField('profileUsername', nextValue)}
           placeholder="Username"
-          className={styles.textInput}
+          autoComplete="username"
+          labelMode="spacer"
         />
       </div>
 
       <div>
-        <label htmlFor="password" className={styles.fieldLabel}>
-          Create password
-        </label>
-        <input
+        <SpotlightInput
           id="password"
-          type="password"
+          label="Create password"
           value={formData.password}
-          onChange={(event) => updateField('password', event.target.value)}
+          onChange={(nextValue) => updateField('password', nextValue)}
           placeholder="minimum 6 characters"
-          className={styles.textInput}
+          type="password"
+          autoComplete="new-password"
         />
       </div>
 

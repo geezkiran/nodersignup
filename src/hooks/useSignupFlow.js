@@ -53,7 +53,10 @@ export function useSignupFlow() {
   }, [formData.photo]);
 
   const updateField = (key, value) => {
-    setFormData((previous) => ({ ...previous, [key]: value }));
+    const nextValue =
+      key === 'profileUsername' ? value.toLowerCase() : value;
+
+    setFormData((previous) => ({ ...previous, [key]: nextValue }));
   };
 
   const isValidEmail = (value) => /\S+@\S+\.\S+/.test(value);
@@ -302,7 +305,6 @@ export function useSignupFlow() {
     canContinueStep1:
       isValidEmail(formData.email) && formData.otp.trim().length === 4,
     canContinueStep2:
-      Boolean(formData.photo) &&
       Boolean(formData.profileUsername.trim()) &&
       formData.password.trim().length >= 6,
     photoPreviewStyle,

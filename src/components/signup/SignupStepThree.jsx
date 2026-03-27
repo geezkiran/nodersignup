@@ -5,18 +5,20 @@ export function SignupStepThree({ formData, photoPreviewStyle, setStep }) {
     formData.profileUsername || formData.email.split('@')[0] || 'user'
   ).replace(/^@+/, '');
 
-  const displayName =
-    formData.profileUsername || formData.email.split('@')[0];
-
   return (
     <div className={styles.successStack}>
       <div className={styles.successCard}>
         <div className={styles.successAvatarWrap}>
-          <div className={styles.successAvatar} style={photoPreviewStyle} />
+          <div
+            className={`${styles.successAvatar} ${
+              formData.photo ? '' : styles.successAvatarFallback
+            }`}
+            style={photoPreviewStyle}
+          />
         </div>
 
         <p className={styles.successUsername}>@{username}</p>
-        
+
         <p className={styles.successText}>The profile feels just right.</p>
       </div>
 

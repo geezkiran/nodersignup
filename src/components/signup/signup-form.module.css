@@ -27,7 +27,12 @@
   background: transparent;
   color: var(--text-primary);
   outline: none;
-  transition: border-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .textInput {
@@ -43,6 +48,73 @@
 .textInput:focus,
 .otpInput:focus {
   border-color: var(--text-primary);
+}
+
+.spotlightField {
+  position: relative;
+  transition: opacity 0.2s ease;
+}
+
+.spotlightFieldActive {
+  opacity: 0.18;
+}
+
+.spotlightFieldActive .textInput {
+  pointer-events: none;
+}
+
+.spotlightBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  
+  backdrop-filter: blur(4px);
+  animation: spotlightBackdropIn 0.22s ease;
+}
+
+.spotlightPanel {
+  width: min(100%, 44rem);
+  border-radius: 1.75rem;
+  border: 1px solid rgb(255 255 255 / 0.15);
+  background: linear-gradient(180deg, rgb(24 24 24 / 0.96), rgb(12 12 12 / 0.96));
+  padding: 1rem;
+  box-shadow:
+    0 2.5rem 5rem rgb(0 0 0 / 0.45),
+    inset 0 1px 0 rgb(255 255 255 / 0.06);
+  animation: spotlightPanelIn 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.spotlightLabel {
+  margin-bottom: 0.7rem;
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.58);
+}
+
+.spotlightInput {
+  min-height: 4.5rem;
+  border-radius: 1.4rem;
+  border-color: rgb(255 255 255 / 0.18);
+  background: rgb(255 255 255 / 0.05);
+  padding: 1.15rem 1.4rem;
+  font-size: clamp(1.125rem, 1rem + 0.7vw, 1.55rem);
+  line-height: 1.25;
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.02),
+    0 1.25rem 2.5rem rgb(0 0 0 / 0.28);
+}
+
+.spotlightInput:focus {
+  border-color: rgb(255 255 255 / 0.32);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.06),
+    0 1.25rem 2.5rem rgb(0 0 0 / 0.28);
 }
 
 .socialButton {
@@ -261,6 +333,13 @@
   border-radius: 999px;
 }
 
+.successAvatarFallback {
+  border: 1px solid var(--border-color);
+  background:
+    radial-gradient(circle at 30% 30%, rgb(255 255 255 / 0.18), transparent 32%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.02));
+}
+
 .successUsername {
   margin-top: 0.25rem;
   font-size: 0.875rem;
@@ -303,5 +382,27 @@
 @media (min-width: 768px) {
   .successHeading {
     font-size: 1.875rem;
+  }
+}
+
+@keyframes spotlightBackdropIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spotlightPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }

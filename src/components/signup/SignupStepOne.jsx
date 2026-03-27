@@ -1,4 +1,5 @@
 import styles from './signup-form.module.css';
+import { SpotlightInput } from './SpotlightInput';
 
 function GoogleIcon() {
   return (
@@ -80,16 +81,14 @@ export function SignupStepOne({
       </div>
 
       <div>
-        <label htmlFor="email" className={styles.fieldLabel}>
-          Email
-        </label>
-        <input
+        <SpotlightInput
           id="email"
-          type="email"
+          label="Email"
           value={formData.email}
-          onChange={(event) => updateField('email', event.target.value)}
+          onChange={(nextValue) => updateField('email', nextValue)}
           placeholder="Enter your email"
-          className={styles.textInput}
+          type="email"
+          autoComplete="email"
         />
       </div>
 
