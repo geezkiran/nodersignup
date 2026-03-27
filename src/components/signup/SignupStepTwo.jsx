@@ -59,10 +59,10 @@ export function SignupStepTwo({
       <div>
         <SpotlightInput
           id="password"
-          label="Create password"
+          label="Minimum 6 characters"
           value={formData.password}
           onChange={(nextValue) => updateField('password', nextValue)}
-          placeholder="minimum 6 characters"
+          placeholder="Create password"
           type="password"
           autoComplete="new-password"
         />
