@@ -12,6 +12,8 @@ export default function StepTwoPage() {
       updateField={signup.updateField}
       setStep={signup.setStep}
       canContinue={signup.canContinueStep2}
+      usernameAvailability={signup.usernameAvailability}
+      isCheckingUsername={signup.isCheckingUsername}
     />
   );
 }

@@ -446,8 +446,11 @@ export function SignupProvider({ children }) {
     otpSent,
     sendOtp,
     countdown,
-    canContinueStep2: formData.password.length >= 6 && formData.displayName.trim().length > 0,
-    canContinueStep3: formData.profileUsername.trim().length >= 3 && usernameAvailability === 'available' && !isCheckingUsername,
+    canContinueStep2: formData.profileUsername.trim().length >= 3 && 
+                     usernameAvailability === 'available' && 
+                     !isCheckingUsername && 
+                     formData.password.length >= 6,
+    canContinueStep3: formData.displayName.trim().length > 0,
     usernameAvailability,
     isCheckingUsername,
     photoPreviewStyle,

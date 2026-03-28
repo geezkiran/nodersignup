@@ -10,16 +10,15 @@ export function SignupStepFour({ formData, photoPreviewStyle, setStep }) {
       <div className={styles.successCard}>
         <div className={styles.successAvatarWrap}>
           <div
-            className={`${styles.successAvatar} ${
-              formData.photo ? '' : styles.successAvatarFallback
-            }`}
+            className={`${styles.successAvatar} ${formData.photo ? '' : styles.successAvatarFallback
+              }`}
             style={photoPreviewStyle}
           />
         </div>
 
         <p className={styles.successUsername}>@{username}</p>
 
-        <p className={styles.successText}>The profile feels just right.</p>
+        <p className={styles.successText}>Your profile feels just right.</p>
       </div>
 
       <div className={styles.actionRow}>
@@ -31,17 +30,17 @@ export function SignupStepFour({ formData, photoPreviewStyle, setStep }) {
           >
             Edit profile
           </button>
-          <a 
-            href="https://noderhq.com/survey" 
-            target="_blank" 
-            rel="noopener noreferrer" 
+          <a
+            href="https://noderhq.com/survey"
+            target="_blank"
+            rel="noopener noreferrer"
             className={styles.surveyButton}
           >
             Take survey
           </a>
         </div>
-        <a 
-          href="https://noderhq.com" 
+        <a
+          href="https://noderhq.com"
           className={`${styles.secondaryButton} ${styles.returnHomeSecondary}`}
         >
           Return home

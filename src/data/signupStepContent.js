@@ -6,16 +6,19 @@ export const signupStepContent = {
     leftPoints: [''],
   },
   2: {
-    title: 'Secure your account',
-    description: 'Create a strong password to keep your data safe.',
+    title: 'Your Identity',
+    description: 'Choose a unique username and secure your account.',
     message: 'Lock it down.',
-    leftPoints: ['Must be at least 6 characters.'],
+    leftPoints: [
+      'Usernames are case insensitive.',
+      'Must be at least 6 characters.',
+    ],
   },
   3: {
-    title: 'Craft your uniqueness',
-    description: 'Choose a unique username and upload a profile photo.',
+    title: 'Personalize profile',
+    description: 'Tell us what to call you and upload a profile photo.',
     message: 'Personalize your profile.',
-    leftPoints: ['Usernames are case insensitive.'],
+    leftPoints: ['Adding a profile is optional'],
   },
   4: {
     title: 'Welcome aboard',

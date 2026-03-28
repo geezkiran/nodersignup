@@ -14,6 +14,7 @@ export function SpotlightInput({
   autoComplete,
   name,
   labelMode = 'label',
+  required,
   children,
 }) {
   const generatedId = useId();
@@ -77,6 +78,12 @@ export function SpotlightInput({
       </label>
     ) : null;
 
+  const requiredStar = required && (
+    <span className={styles.requiredStar} aria-hidden="true">
+      *
+    </span>
+  );
+
   return (
     <>
       <div
@@ -85,17 +92,20 @@ export function SpotlightInput({
         }`}
       >
         {labelNode}
-        <input
-          id={inputId}
-          type={type}
-          value={value}
-          autoComplete={autoComplete}
-          name={name}
-          onChange={(event) => onChange(event.target.value)}
-          onFocus={() => setIsActive(true)}
-          placeholder={placeholder}
-          className={styles.textInput}
-        />
+        <div className={styles.inputWrapper}>
+          <input
+            id={inputId}
+            type={type}
+            value={value}
+            autoComplete={autoComplete}
+            name={name}
+            onChange={(event) => onChange(event.target.value)}
+            onFocus={() => setIsActive(true)}
+            placeholder={placeholder}
+            className={styles.textInput}
+          />
+          {requiredStar}
+        </div>
         {children}
       </div>
 
@@ -107,24 +117,25 @@ export function SpotlightInput({
             onMouseDown={handleBackdropPointerDown}
           >
             <div className={styles.spotlightPanel}>
-              {label && (
-                <label htmlFor={`${inputId}-overlay`} className={styles.spotlightLabel}>
-                  
-                </label>
-              )}
-              <input
-                ref={overlayInputRef}
-                id={`${inputId}-overlay`}
-                type={type}
-                value={value}
-                autoComplete={autoComplete}
-                name={name}
-                onChange={(event) => onChange(event.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder={placeholder}
-                className={`${styles.textInput} ${styles.spotlightInput}`}
-                onBlur={() => setIsActive(false)}
-              />
+              <div className={styles.inputWrapper}>
+                <div className={styles.spotlightFloatingLabel}>
+                  {placeholder}
+                </div>
+                <input
+                  ref={overlayInputRef}
+                  id={`${inputId}-overlay`}
+                  type={type}
+                  value={value}
+                  autoComplete={autoComplete}
+                  name={name}
+                  onChange={(event) => onChange(event.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder=""
+                  className={`${styles.textInput} ${styles.spotlightInput}`}
+                  onBlur={() => setIsActive(false)}
+                />
+                {requiredStar}
+              </div>
               {children}
             </div>
           </div>,

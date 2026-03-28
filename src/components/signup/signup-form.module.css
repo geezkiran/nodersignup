@@ -59,6 +59,32 @@
   opacity: 0.18;
 }
 
+.inputWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.requiredStar {
+  position: absolute;
+  right: 1rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 1.25rem;
+  pointer-events: none;
+  z-index: 10;
+  line-height: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  top: 0;
+}
+
+.spotlightInput+.requiredStar {
+  right: 1.4rem;
+  font-size: 1.5rem;
+}
+
 .spotlightFieldActive .textInput {
   pointer-events: none;
 }
@@ -78,9 +104,26 @@
 .spotlightPanel {
   width: min(100%, 44rem);
   border-radius: 1.75rem;
-
+  display: flex;
+  flex-direction: column;
 
   animation: spotlightPanelIn 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.spotlightFloatingLabel {
+  position: absolute;
+  top: -0.65rem;
+  left: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-shadow: -6px 0 10px #000000d3, 0 0 10px #000000b9;
+  padding: 0 0.25rem;
+  z-index: 20;
+  text-transform: capitalize;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  pointer-events: none;
+  border-radius: 2px;
 }
 
 
@@ -88,7 +131,7 @@
 .spotlightInput {
   min-height: 4.5rem;
   border-radius: 1.4rem;
-  border-color: rgb(255 255 255 / 0.18);
+  border-color: rgb(255 255 255 / 0.12);
   background: rgb(255 255 255 / 0.05);
   padding: 1.15rem 1.4rem;
   backdrop-filter: blur(6px);
@@ -101,7 +144,7 @@
 }
 
 .spotlightInput:focus {
-  border-color: rgb(255 255 255 / 0.32);
+  border-color: rgb(255 255 255 / 0.22);
   box-shadow:
     0 0 0 1px rgb(255 255 255 / 0.06),
     0 1.25rem 2.5rem rgb(0 0 0 / 0.28);
@@ -191,7 +234,7 @@
   opacity: 0.7;
 }
 
-.sendOtpButton, 
+.sendOtpButton,
 .resendButton {
   font-size: 0.75rem;
   color: var(--text-primary);
@@ -202,13 +245,13 @@
   transition: opacity 0.2s ease;
 }
 
-.sendOtpButton:hover, 
+.sendOtpButton:hover,
 .resendButton:hover {
   opacity: 1;
   background: rgba(255, 255, 255, 0.05);
 }
 
-.sendOtpButton:disabled, 
+.sendOtpButton:disabled,
 .resendButton:disabled {
   opacity: 0.4;
   cursor: not-allowed;

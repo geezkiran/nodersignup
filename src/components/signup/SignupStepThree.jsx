@@ -71,28 +71,15 @@ export function SignupStepThree({
       </div>
 
       <div className={styles.inputsStack}>
-        <div className={styles.usernameContainer}>
-          <SpotlightInput
-            id="profileUsername"
-            value={formData.profileUsername}
-            onChange={(nextValue) => updateField('profileUsername', nextValue)}
-            placeholder="Username"
-            autoComplete="username"
-            name="username"
-          >
-            <div className={styles.availabilityWrapper}>
-              {isCheckingUsername && (
-                <span className={styles.checkingText}>Checking...</span>
-              )}
-              {!isCheckingUsername && usernameAvailability === 'taken' && (
-                <span className={styles.takenText}>Username already taken</span>
-              )}
-              {!isCheckingUsername && usernameAvailability === 'available' && (
-                <span className={styles.availableText}>Username available</span>
-              )}
-            </div>
-          </SpotlightInput>
-        </div>
+        <SpotlightInput
+          id="displayName"
+          value={formData.displayName}
+          onChange={(nextValue) => updateField('displayName', nextValue)}
+          placeholder="What should we call you?"
+          autoComplete="name"
+          name="displayName"
+          required={true}
+        />
       </div>
 
       <div className={styles.actionRow}>

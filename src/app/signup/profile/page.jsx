@@ -15,8 +15,6 @@ export default function StepThreePage() {
       openCropModal={signup.openCropModal}
       setStep={signup.setStep}
       canContinue={signup.canContinueStep3}
-      usernameAvailability={signup.usernameAvailability}
-      isCheckingUsername={signup.isCheckingUsername}
       completeSignup={signup.completeSignup}
       removePhoto={signup.removePhoto}
       isSubmitting={signup.isSubmitting}

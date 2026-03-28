@@ -6,6 +6,8 @@ export function SignupStepTwo({
   updateField,
   setStep,
   canContinue,
+  usernameAvailability,
+  isCheckingUsername,
 }) {
   return (
     <form 
@@ -15,15 +17,28 @@ export function SignupStepTwo({
         if (canContinue) setStep(3);
       }}
     >
-      <div>
+      <div className={styles.usernameContainer}>
         <SpotlightInput
-          id="displayName"
-          value={formData.displayName}
-          onChange={(nextValue) => updateField('displayName', nextValue)}
-          placeholder="What should we call you?"
-          autoComplete="name"
-          name="displayName"
-        />
+          id="profileUsername"
+          value={formData.profileUsername}
+          onChange={(nextValue) => updateField('profileUsername', nextValue)}
+          placeholder="Username"
+          autoComplete="username"
+          name="username"
+          required={true}
+        >
+          <div className={styles.availabilityWrapper}>
+            {isCheckingUsername && (
+              <span className={styles.checkingText}>Checking...</span>
+            )}
+            {!isCheckingUsername && usernameAvailability === 'taken' && (
+              <span className={styles.takenText}>Username already taken</span>
+            )}
+            {!isCheckingUsername && usernameAvailability === 'available' && (
+              <span className={styles.availableText}>Username available</span>
+            )}
+          </div>
+        </SpotlightInput>
       </div>
 
       <div>
@@ -35,6 +50,7 @@ export function SignupStepTwo({
           type="password"
           autoComplete="new-password"
           name="password"
+          required={true}
         />
       </div>
 
