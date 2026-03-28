@@ -1,9 +1,9 @@
 export const signupStepContent = {
   1: {
     title: 'We are excited to have you',
-    description: 'Lets not miss out on our traditions',
+    description: 'Lets get started with signup',
     message: 'Secure your login details.',
-    leftPoints: [ 'Google OAuth recommended'],
+    leftPoints: ['Google OAuth recommended'],
   },
   2: {
     title: 'Secure your account',

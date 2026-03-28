@@ -27,8 +27,13 @@ export function useSignupFlow() {
   const [formData, setFormData] = useState(INITIAL_FORM);
   const [isCropModalOpen, setIsCropModalOpen] = useState(false);
   const [cropBox, setCropBox] = useState(INITIAL_CROP_BOX);
-  const [generatedOtp, setGeneratedOtp] = useState('');
+  
+  const [isSendingOtp, setIsSendingOtp] = useState(false);
+  const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
+  const [otpSent, setOtpSent] = useState(false);
+  
   const [otpEmail, setOtpEmail] = useState('');
+  const [countdown, setCountdown] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [usernameAvailability, setUsernameAvailability] = useState(null); // null, 'available', 'taken'
@@ -115,31 +120,47 @@ export function useSignupFlow() {
 
   useEffect(() => {
     if (!supabase) return;
-    
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) {
-        setFormData((prev) => ({ ...prev, email: session.user.email }));
-        // Check if profile exists
-        supabase
-          .from('profiles')
-          .select('username')
-          .eq('id', session.user.id)
-          .single()
-          .then(({ data, error }) => {
-            if (data?.username && !error) {
-              setStep(4);
-            } else {
-              setStep(2);
-            }
-          })
-          .catch(() => {
-            setStep(2);
-          });
+
+    const handleAuthError = async (err) => {
+      console.error('Auth sync error:', err);
+      if (err.message?.includes('Refresh Token Not Found') || err.message?.includes('refresh_token_not_found')) {
+        console.warn('Stale session detected, signing out to clear state...');
+        await supabase.auth.signOut();
       }
-    });
+    };
+
+    // Initial session check
+    supabase.auth.getSession()
+      .then(({ data: { session }, error }) => {
+        if (error) {
+          handleAuthError(error);
+          return;
+        }
+
+        if (session) {
+          setFormData((prev) => ({ ...prev, email: session.user.email }));
+          supabase
+            .from('profiles')
+            .select('username')
+            .eq('id', session.user.id)
+            .single()
+            .then(({ data, error: profileError }) => {
+              if (data?.username && !profileError) {
+                setStep(4);
+              } else if (step < 2) {
+                setStep(2);
+              }
+            })
+            .catch(() => {
+              if (step < 2) setStep(2);
+            });
+        }
+      })
+      .catch(handleAuthError);
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
+      async (event, session) => {
+        console.log('Auth state changed:', event, !!session);
         if (session) {
           setFormData((prev) => ({ ...prev, email: session.user.email }));
           // Check if profile exists also here
@@ -148,31 +169,109 @@ export function useSignupFlow() {
             .select('username')
             .eq('id', session.user.id)
             .single()
-            .then(({ data, error }) => {
-              if (data?.username && !error) {
+            .then(({ data, error: profileError }) => {
+              // If a username exists, they are a returning user, go to step 4
+              if (data?.username && !profileError) {
                 setStep(4);
-              } else {
+              } 
+              // Otherwise, if they just signed in/signed up, stay on Step 2 (Password)
+              // We DON'T auto-advance to Step 3 because they need to set a password
+              else if (step < 2) {
                 setStep(2);
               }
             })
             .catch(() => {
-              setStep(2);
+              if (step < 2) setStep(2);
             });
+        } else if (event === 'SIGNED_OUT') {
+           // Reset to step 1 if signed out
+           setStep(1);
         }
       }
     );
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [supabase]);
 
   useEffect(() => {
     if (isValidEmail(formData.email) && formData.email !== otpEmail) {
-      const otp = Math.floor(1000 + Math.random() * 9000).toString();
-      setGeneratedOtp(otp);
       setOtpEmail(formData.email);
-      setFormData((previous) => ({ ...previous, otp: '' }));
+      setOtpSent(false);
+      setCountdown(0);
+      updateField('otp', '');
     }
   }, [formData.email, otpEmail]);
+
+  useEffect(() => {
+    let timer;
+    if (otpSent && countdown > 0) {
+      timer = setInterval(() => {
+        setCountdown((prev) => prev - 1);
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [otpSent, countdown]);
+
+  const sendOtp = async () => {
+    if (!isValidEmail(formData.email)) return;
+    setIsSendingOtp(true);
+    setError(null);
+    try {
+      const { error: otpError } = await supabase.auth.signInWithOtp({
+        email: formData.email,
+        options: {
+          shouldCreateUser: true,
+        },
+      });
+      if (otpError) throw otpError;
+      setOtpSent(true);
+      setCountdown(180); // 3 minutes
+      console.log('OTP sent to:', formData.email);
+    } catch (err) {
+      console.error('Error sending OTP:', err);
+      setError(err.message || 'Failed to send verification code');
+    } finally {
+      setIsSendingOtp(false);
+    }
+  };
+
+  const verifyOtp = async (token) => {
+    if (!token || token.length !== 6) return;
+    setIsVerifyingOtp(true);
+    setError(null);
+    try {
+      // First try 'email' type (standard for signInWithOtp)
+      const { data, error: verifyError } = await supabase.auth.verifyOtp({
+        email: formData.email,
+        token,
+        type: 'email',
+      });
+      
+      if (verifyError) {
+        // If 'email' fails, try 'signup' (sometimes used for new users)
+        const { data: signupData, error: signupError } = await supabase.auth.verifyOtp({
+          email: formData.email,
+          token,
+          type: 'signup',
+        });
+        if (signupError) throw verifyError; // Throw original 'email' error if both fail
+        if (signupData.session) setStep(2);
+      } else if (data.session) {
+        setStep(2);
+      }
+    } catch (err) {
+      console.error('Error verifying OTP:', err);
+      // Map Supabase token errors to a custom user-friendly message
+      const msg = err.message || '';
+      if (msg.toLowerCase().includes('token') || msg.toLowerCase().includes('expired') || msg.toLowerCase().includes('incorrect')) {
+        setError('otp is incorrect or invalid');
+      } else {
+        setError(msg || 'otp is incorrect or invalid');
+      }
+    } finally {
+      setIsVerifyingOtp(false);
+    }
+  };
 
   useEffect(() => {
     const { body, documentElement } = document;
@@ -360,25 +459,27 @@ export function useSignupFlow() {
     setIsCropModalOpen(true);
   };
 
-  const otpDigits = (formData.otp || '').padEnd(4, '').slice(0, 4).split('');
+  const otpDigits = (formData.otp || '').padEnd(6, '').slice(0, 6).split('');
 
   const handleOtpDigitChange = (index, rawValue) => {
     const digit = rawValue.replace(/\D/g, '').slice(-1);
     const nextDigits = [...otpDigits];
     nextDigits[index] = digit;
-    updateField('otp', nextDigits.join('').replace(/\s/g, ''));
+    const newOtp = nextDigits.join('').replace(/\s/g, '');
+    updateField('otp', newOtp);
 
-    if (digit && index < 3) {
+    if (digit && index < 5) {
       otpInputRefs.current[index + 1]?.focus();
+    }
+
+    if (newOtp.length === 6) {
+      verifyOtp(newOtp);
     }
   };
 
   const handleOtpKeyDown = (index, event) => {
     if (event.key === 'Backspace' && !otpDigits[index] && index > 0) {
       otpInputRefs.current[index - 1]?.focus();
-    }
-    if (event.key === 'Enter' && isValidEmail(formData.email) && formData.otp.trim().length === 4) {
-      setStep(2);
     }
   };
 
@@ -387,14 +488,17 @@ export function useSignupFlow() {
     const pasted = event.clipboardData
       .getData('text')
       .replace(/\D/g, '')
-      .slice(0, 4);
+      .slice(0, 6);
 
     if (!pasted) {
       return;
     }
 
     updateField('otp', pasted);
-    otpInputRefs.current[Math.min(pasted.length - 1, 3)]?.focus();
+    otpInputRefs.current[Math.min(pasted.length - 1, 5)]?.focus();
+    if (pasted.length === 6) {
+      verifyOtp(pasted);
+    }
   };
 
   return {
@@ -403,7 +507,6 @@ export function useSignupFlow() {
     formData,
     updateField,
     isValidEmail,
-    generatedOtp,
     otpDigits,
     otpInputRefs,
     handleOtpDigitChange,
@@ -422,6 +525,16 @@ export function useSignupFlow() {
       console.log('Starting completeSignup...');
       try {
         let authUserResponse = await supabase.auth.getUser();
+        
+        if (authUserResponse.error) {
+          console.error('getUser error:', authUserResponse.error);
+          // If the session is broken, sign out and let the user try fresh
+          if (authUserResponse.error.message?.includes('Refresh Token Not Found')) {
+            await supabase.auth.signOut();
+            throw new Error('Your session expired. Please try signing up again.');
+          }
+        }
+
         let authUser = authUserResponse.data.user;
 
         console.log('Current Auth User:', authUser);
@@ -430,10 +543,16 @@ export function useSignupFlow() {
         if (!authUser) {
           console.log('No active session, signing up with email/password...');
           const { data, error: authError } = await supabase.auth.signUp({
-            email: formData.email,
+            email: formData.email.trim(),
             password: formData.password,
+            options: {
+              data: {
+                username: formData.profileUsername,
+              }
+            }
           });
           if (authError) throw authError;
+          if (!data.user) throw new Error('Signup failed. Please check your email for confirmation.');
           authUser = data.user;
           console.log('Signup successful:', authUser.id);
         } else if (formData.password) {
@@ -449,40 +568,46 @@ export function useSignupFlow() {
         let avatarUrl = null;
 
         // 2. Upload photo if exists
-        if (formData.photo) {
+        if (formData.photo && formData.photo.startsWith('data:')) {
           console.log('Uploading photo...');
-          const blob = await (await fetch(formData.photo)).blob();
+          // Convert base64 to Blob
+          const res = await fetch(formData.photo);
+          const blob = await res.blob();
           const fileExt = 'png';
-          const fileName = `${authUser.id}.${fileExt}`;
+          const fileName = `${authUser.id}-${Math.floor(Date.now() / 1000)}.${fileExt}`;
           const filePath = `${fileName}`;
 
           const { error: uploadError } = await supabase.storage
             .from('avatars')
             .upload(filePath, blob, { upsert: true });
 
-          if (uploadError) throw uploadError;
-
-          const { data: { publicUrl } } = supabase.storage
-            .from('avatars')
-            .getPublicUrl(filePath);
-          
-          avatarUrl = publicUrl;
-          console.log('Photo uploaded successfully:', avatarUrl);
+          if (uploadError) {
+            console.error('Photo upload error:', uploadError);
+            // Don't throw here, just continue without avatar if upload fails?
+            // Actually, better to throw if profile photo is expected.
+          } else {
+            const { data: { publicUrl } } = supabase.storage
+              .from('avatars')
+              .getPublicUrl(filePath);
+            
+            avatarUrl = publicUrl;
+            console.log('Photo uploaded successfully:', avatarUrl);
+          }
         }
 
         // 3. Create profile
         console.log('Creating profile in database...');
+        const profileData = {
+          id: authUser.id,
+          username: formData.profileUsername.trim(),
+          full_name: '', // Optional
+          avatar_url: avatarUrl,
+          updated_at: new Date().toISOString(),
+        };
+
         const { error: profileError } = await supabase
           .from('profiles')
-          .upsert([
-            {
-              id: authUser.id,
-              username: formData.profileUsername,
-              full_name: '', // Optional
-              avatar_url: avatarUrl,
-              updated_at: new Date().toISOString(),
-            },
-          ]);
+          .upsert(profileData);
 
         if (profileError) {
           console.error('Profile creation error:', profileError);
@@ -499,7 +624,12 @@ export function useSignupFlow() {
       }
     },
     canContinueStep1:
-      isValidEmail(formData.email) && formData.otp.trim().length === 4,
+      isValidEmail(formData.email) && formData.otp.trim().length === 6,
+    isSendingOtp,
+    isVerifyingOtp,
+    otpSent,
+    sendOtp,
+    countdown,
     canContinueStep2:
       formData.password.length >= 6 &&
       /[a-z]/.test(formData.password) &&

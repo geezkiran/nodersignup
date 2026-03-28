@@ -36,10 +36,15 @@ export default function SignupPage() {
                   handleOtpDigitChange={signup.handleOtpDigitChange}
                   handleOtpKeyDown={signup.handleOtpKeyDown}
                   handleOtpPaste={signup.handleOtpPaste}
-                  generatedOtp={signup.generatedOtp}
+                  isSendingOtp={signup.isSendingOtp}
+                  isVerifyingOtp={signup.isVerifyingOtp}
+                  otpSent={signup.otpSent}
+                  sendOtp={signup.sendOtp}
                   canContinue={signup.canContinueStep1}
                   handleKeyDown={signup.handleKeyDown}
                   signInWithProvider={signup.signInWithProvider}
+                  error={signup.error}
+                  countdown={signup.countdown}
                 />
               )}
 
@@ -62,7 +67,7 @@ export default function SignupPage() {
                   openCropModal={signup.openCropModal}
                   setStep={signup.setStep}
                   canContinue={signup.canContinueStep3}
-                   usernameAvailability={signup.usernameAvailability}
+                  usernameAvailability={signup.usernameAvailability}
                   isCheckingUsername={signup.isCheckingUsername}
                   completeSignup={signup.completeSignup}
                   removePhoto={signup.removePhoto}

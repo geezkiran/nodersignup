@@ -158,10 +158,65 @@
   color: var(--text-secondary);
 }
 
+.otpContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.otpHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.otpActionRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.countdownText {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+.sendOtpButton, 
+.resendButton {
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  opacity: 0.8;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  transition: opacity 0.2s ease;
+}
+
+.sendOtpButton:hover, 
+.resendButton:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sendOtpButton:disabled, 
+.resendButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .otpGrid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.625rem;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.verifyingText {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
 }
 
 .helperText {
@@ -496,6 +551,9 @@
   color: #ff4d4d !important;
 }
 
-.removeButton:hover {
-  text-decoration: underline;
+.errorText {
+  font-size: 0.75rem;
+  color: #ff4d4d;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
 }
