@@ -23,14 +23,27 @@ export function SignupStepFour({ formData, photoPreviewStyle, setStep }) {
       </div>
 
       <div className={styles.actionRow}>
-        <button
-          type="button"
-          onClick={() => setStep(3)}
-          className={styles.secondaryButton}
+        <div className={styles.secondaryActions}>
+          <button
+            type="button"
+            onClick={() => setStep(3)}
+            className={styles.secondaryButton}
+          >
+            Edit profile
+          </button>
+          <a 
+            href="https://noderhq.com/survey" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className={styles.surveyButton}
+          >
+            Take survey
+          </a>
+        </div>
+        <a 
+          href="https://noderhq.com" 
+          className={`${styles.secondaryButton} ${styles.returnHomeSecondary}`}
         >
-          Edit profile
-        </button>
-        <a href="https://noderhq.com" className={`${styles.returnHome} btn btn-primary`}>
           Return home
         </a>
       </div>

@@ -1,5 +1,4 @@
 import styles from './signup-form.module.css';
-import { SpotlightInput } from './SpotlightInput';
 
 function GoogleIcon() {
   return (
@@ -29,146 +28,21 @@ function GoogleIcon() {
   );
 }
 
-
-export function SignupStepOne({
-  formData,
-  setStep,
-  updateField,
-  isValidEmail,
-  otpDigits,
-  otpInputRefs,
-  handleOtpDigitChange,
-  handleOtpKeyDown,
-  handleOtpPaste,
-  isSendingOtp,
-  isVerifyingOtp,
-  otpSent,
-  sendOtp,
-  canContinue,
-  handleKeyDown,
-  signInWithProvider,
-  error,
-  countdown,
-}) {
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  };
+export function SignupStepOne({ signInWithProvider }) {
   return (
-    <div 
-      className={styles.formStack}
-      onKeyDown={(e) => handleKeyDown(e, canContinue, 2)}
-    >
+    <div className={styles.formStack}>
       <button
         type="button"
         onClick={() => signInWithProvider('google')}
-        className={`${styles.socialButton} ${styles.socialButtonLight}`}
+        className={`${styles.socialButton} ${styles.socialButtonLight} ${styles.googleButtonLarge}`}
       >
         <GoogleIcon />
         Continue with Google
       </button>
 
-      <div className={styles.divider}>
-        <div className={styles.dividerLine} />
-        <span className={styles.dividerText}>OR</span>
-        <div className={styles.dividerLine} />
-      </div>
-
-      <div>
-        <SpotlightInput
-          id="email"
-          label="Email"
-          value={formData.email}
-          onChange={(nextValue) => updateField('email', nextValue)}
-          placeholder="Enter your email"
-          type="email"
-          autoComplete="email"
-          name="email"
-        />
-        {!isValidEmail(formData.email) && formData.email.length > 0 && (
-          <p className={styles.errorText}>Please enter a valid email address</p>
-        )}
-      </div>
-
-      {isValidEmail(formData.email) && (
-        <div className={styles.otpContainer}>
-          <div className={styles.otpHeader}>
-            <label htmlFor="otp" className={styles.fieldLabel}>
-              {otpSent ? 'Enter 6-digit code' : 'Verification'}
-            </label>
-            {!otpSent && (
-              <button
-                type="button"
-                onClick={sendOtp}
-                disabled={isSendingOtp}
-                className={styles.sendOtpButton}
-              >
-                {isSendingOtp ? 'Sending...' : 'Send Code'}
-              </button>
-            )}
-            {otpSent && (
-              <div className={styles.otpActionRow}>
-                {countdown > 0 && (
-                  <span className={styles.countdownText}>{formatTime(countdown)}</span>
-                )}
-                <button
-                  type="button"
-                  onClick={sendOtp}
-                  disabled={isSendingOtp || countdown > 0}
-                  className={styles.resendButton}
-                >
-                  {isSendingOtp ? 'Sending...' : 'Resend'}
-                </button>
-              </div>
-            )}
-          </div>
-
-          {otpSent && (
-            <div className={styles.otpInputWrapper}>
-              <div className={styles.otpGrid} onPaste={handleOtpPaste}>
-                {[0, 1, 2, 3, 4, 5].map((index) => (
-                  <input
-                    key={index}
-                    id={`otp-${index}`}
-                    ref={(element) => {
-                      otpInputRefs.current[index] = element;
-                    }}
-                    inputMode="numeric"
-                    maxLength={1}
-                    value={otpDigits[index] || ''}
-                    onChange={(event) =>
-                      handleOtpDigitChange(index, event.target.value)
-                    }
-                    onKeyDown={(event) => handleOtpKeyDown(index, event)}
-                    className={styles.otpInput}
-                    disabled={isVerifyingOtp}
-                  />
-                ))}
-              </div>
-              {isVerifyingOtp && (
-                <p className={styles.verifyingText}>Verifying code...</p>
-              )}
-              {error && (
-                <p className={styles.errorText}>{error}</p>
-              )}
-            </div>
-          )}
-          
-          {!otpSent && !isSendingOtp && (
-            <p className={styles.helperText}>We'll send a 6-digit security code to your email.</p>
-          )}
-        </div>
-      )}
-
-      <button
-        type="button"
-        onClick={() => setStep(2)}
-        disabled={!canContinue}
-        className={styles.primaryButton}
-      >
-        Continue
-      </button>
+      <p className={styles.helperTextCenter}>
+        By continuing, you agree to our terms and privacy policy.
+      </p>
     </div>
   );
 }

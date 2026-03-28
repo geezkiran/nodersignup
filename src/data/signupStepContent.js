@@ -1,9 +1,9 @@
 export const signupStepContent = {
   1: {
     title: 'We are excited to have you',
-    description: 'Lets get started with signup',
+    description: 'Lets get started with signing you up',
     message: 'Secure your login details.',
-    leftPoints: ['Google OAuth recommended'],
+    leftPoints: [''],
   },
   2: {
     title: 'Secure your account',
@@ -13,8 +13,8 @@ export const signupStepContent = {
   },
   3: {
     title: 'Craft your uniqueness',
-    description: 'Lets be real, nothing feels better than having a short username.',
-    message: 'Personalize your identity.',
+    description: 'Choose a unique username and upload a profile photo.',
+    message: 'Personalize your profile.',
     leftPoints: ['Usernames are case insensitive.'],
   },
   4: {

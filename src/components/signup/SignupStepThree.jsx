@@ -18,7 +18,13 @@ export function SignupStepThree({
   error,
 }) {
   return (
-    <div className={styles.formStack}>
+    <form
+      className={styles.formStack}
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (canContinue && !isSubmitting) completeSignup();
+      }}
+    >
       {error && <p className={styles.errorText}>{error}</p>}
       <div>
         <input
@@ -64,42 +70,41 @@ export function SignupStepThree({
         </div>
       </div>
 
-      <div className={styles.usernameContainer}>
-        <SpotlightInput
-          id="profileUsername"
-          label="Choose a username"
-          value={formData.profileUsername}
-          onChange={(nextValue) => updateField('profileUsername', nextValue)}
-          placeholder="username"
-          autoComplete="username"
-          name="username"
-          labelMode="spacer"
-        >
-          <div className={styles.availabilityWrapper}>
-            {isCheckingUsername && (
-              <span className={styles.checkingText}>Checking...</span>
-            )}
-            {!isCheckingUsername && usernameAvailability === 'taken' && (
-              <span className={styles.takenText}>Username already taken</span>
-            )}
-            {!isCheckingUsername && usernameAvailability === 'available' && (
-              <span className={styles.availableText}>Username available</span>
-            )}
-          </div>
-        </SpotlightInput>
+      <div className={styles.inputsStack}>
+        <div className={styles.usernameContainer}>
+          <SpotlightInput
+            id="profileUsername"
+            value={formData.profileUsername}
+            onChange={(nextValue) => updateField('profileUsername', nextValue)}
+            placeholder="Username"
+            autoComplete="username"
+            name="username"
+          >
+            <div className={styles.availabilityWrapper}>
+              {isCheckingUsername && (
+                <span className={styles.checkingText}>Checking...</span>
+              )}
+              {!isCheckingUsername && usernameAvailability === 'taken' && (
+                <span className={styles.takenText}>Username already taken</span>
+              )}
+              {!isCheckingUsername && usernameAvailability === 'available' && (
+                <span className={styles.availableText}>Username available</span>
+              )}
+            </div>
+          </SpotlightInput>
+        </div>
       </div>
 
       <div className={styles.actionRow}>
         <div /> {/* Spacer to push button to the right */}
         <button
-          type="button"
-          onClick={completeSignup}
+          type="submit"
           disabled={!canContinue || isSubmitting}
           className={styles.primaryButton}
         >
           {isSubmitting ? 'Finishing...' : 'Finish'}
         </button>
       </div>
-    </div>
+    </form>
   );
 }

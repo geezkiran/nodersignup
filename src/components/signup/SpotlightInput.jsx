@@ -71,11 +71,11 @@ export function SpotlightInput({
   const labelNode =
     labelMode === 'spacer' ? (
       <div className={styles.fieldSpacer} aria-hidden="true" />
-    ) : (
+    ) : label ? (
       <label htmlFor={inputId} className={styles.fieldLabel}>
         {label}
       </label>
-    );
+    ) : null;
 
   return (
     <>

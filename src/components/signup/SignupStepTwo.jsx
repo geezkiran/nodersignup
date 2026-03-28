@@ -6,32 +6,36 @@ export function SignupStepTwo({
   updateField,
   setStep,
   canContinue,
-  passwordRequirements,
 }) {
-  const { hasMinLength, hasLower, hasUpper, hasNumber, hasSymbol } = passwordRequirements;
-
   return (
-    <div className={styles.formStack}>
+    <form 
+      className={styles.formStack}
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (canContinue) setStep(3);
+      }}
+    >
+      <div>
+        <SpotlightInput
+          id="displayName"
+          value={formData.displayName}
+          onChange={(nextValue) => updateField('displayName', nextValue)}
+          placeholder="What should we call you?"
+          autoComplete="name"
+          name="displayName"
+        />
+      </div>
+
       <div>
         <SpotlightInput
           id="password"
-          label="Create your password"
           value={formData.password}
           onChange={(nextValue) => updateField('password', nextValue)}
           placeholder="Create password"
           type="password"
           autoComplete="new-password"
           name="password"
-          labelMode="spacer"
-        >
-          <div className={styles.requirementsList}>
-            <RequirementItem met={hasUpper} label="Uppercase letter" />
-            <RequirementItem met={hasLower} label="Lowercase letter" />
-            <RequirementItem met={hasSymbol} label="A symbol" />
-            <RequirementItem met={hasNumber} label="A digit" />
-            <RequirementItem met={hasMinLength} label="At least 6 characters" />
-          </div>
-        </SpotlightInput>
+        />
       </div>
 
       <div className={styles.actionRow}>
@@ -43,17 +47,17 @@ export function SignupStepTwo({
           Back
         </button>
         <button
-          type="button"
-          onClick={() => setStep(3)}
+          type="submit"
           disabled={!canContinue}
           className={styles.primaryButton}
         >
           Continue
         </button>
       </div>
-    </div>
+    </form>
   );
 }
+
 
 function RequirementItem({ met, label }) {
   return (

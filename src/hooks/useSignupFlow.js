@@ -8,6 +8,7 @@ const INITIAL_FORM = {
   otp: '',
   photo: '',
   profileUsername: '',
+  displayName: '',
   password: '',
 };
 
@@ -600,7 +601,7 @@ export function useSignupFlow() {
         const profileData = {
           id: authUser.id,
           username: formData.profileUsername.trim(),
-          full_name: '', // Optional
+          full_name: formData.displayName.trim(),
           avatar_url: avatarUrl,
           updated_at: new Date().toISOString(),
         };
@@ -646,6 +647,7 @@ export function useSignupFlow() {
     canContinueStep3:
       Boolean(formData.profileUsername.trim()) && 
       formData.profileUsername.trim().length >= 3 &&
+      Boolean(formData.displayName.trim()) &&
       usernameAvailability === 'available' &&
       !isCheckingUsername,
     usernameAvailability,

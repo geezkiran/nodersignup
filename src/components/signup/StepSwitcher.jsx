@@ -4,7 +4,7 @@ export function StepSwitcher({ step, setStep }) {
   return (
     <div className={styles.switcher}>
       <div className={styles.grid}>
-        {[1, 2, 3].map((item) => (
+        {[1, 2, 3, 4].map((item) => (
           <button
             key={item}
             type="button"
@@ -17,7 +17,7 @@ export function StepSwitcher({ step, setStep }) {
           </button>
         ))}
       </div>
-      <p className={styles.mobileLabel}>Step {step} of 3</p>
+      <p className={styles.mobileLabel}>Step {step} of 4</p>
     </div>
   );
 }
