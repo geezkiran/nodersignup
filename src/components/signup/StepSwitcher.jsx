@@ -1,3 +1,4 @@
+/*
 import styles from './step-switcher.module.css';
 
 export function StepSwitcher({ step, setStep }) {
@@ -21,3 +22,4 @@ export function StepSwitcher({ step, setStep }) {
     </div>
   );
 }
+*/

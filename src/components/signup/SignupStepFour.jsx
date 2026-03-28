@@ -31,7 +31,7 @@ export function SignupStepFour({ formData, photoPreviewStyle, setStep }) {
             Edit profile
           </button>
           <a
-            href="https://noderhq.com/survey"
+            href="https://nodersurvey.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.surveyButton}
