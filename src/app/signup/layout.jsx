@@ -3,7 +3,7 @@
 import { SignupProvider, useSignup, cropGridOverlayStyle } from '@/context/SignupContext';
 import { SignupHero } from '@/components/signup/SignupHero';
 import { SignupCropModal } from '@/components/signup/SignupCropModal';
-import { StepSwitcher } from '@/components/signup/StepSwitcher';
+// import { StepSwitcher } from '@/components/signup/StepSwitcher';
 import styles from '../page.module.css';
 
 function SignupLayoutInner({ children }) {
@@ -26,7 +26,7 @@ function SignupLayoutInner({ children }) {
         </div>
       </section>
 
-      <StepSwitcher step={signup.step} setStep={signup.setStep} />
+      {/* <StepSwitcher step={signup.step} setStep={signup.setStep} /> */}
 
       <SignupCropModal
         isOpen={signup.isCropModalOpen}
