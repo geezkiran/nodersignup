@@ -88,7 +88,7 @@ export default function SignupPage() {
         </div>
       </section>
 
-      <StepSwitcher step={signup.step} setStep={signup.setStep} />
+      {/* <StepSwitcher step={signup.step} setStep={signup.setStep} /> */}
 
       <SignupCropModal
         isOpen={signup.isCropModalOpen}
