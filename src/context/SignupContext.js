@@ -171,8 +171,9 @@ export function SignupProvider({ children }) {
           : false;
         supabase.from('profiles').select('username').eq('id', session.user.id).single()
           .then(({ data }) => {
-            if (hasGoogle && data?.username) setStep(4);
-            else if (step < 2) setStep(2);
+            if (hasGoogle && data?.username) {
+              window.location.replace('/signup/thankyou');
+            } else if (step < 2) setStep(2);
           })
           .catch(() => { if (step < 2) setStep(2); });
       } else if (event === 'SIGNED_OUT') {
