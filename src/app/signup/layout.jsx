@@ -2,7 +2,6 @@
 
 import { SignupProvider, useSignup } from '@/context/SignupContext';
 import { SignupHero } from '@/components/signup/SignupHero';
-// import { StepSwitcher } from '@/components/signup/StepSwitcher';
 import styles from '../page.module.css';
 
 
@@ -26,7 +25,6 @@ function SignupLayoutInner({ children }) {
         </div>
       </section>
 
-      {/* <StepSwitcher step={signup.step} setStep={signup.setStep} /> */}
     </div>
   );
 }

@@ -38,13 +38,21 @@ body {
   overflow-y: auto;
 }
 
+
 body {
   min-height: 100dvh;
   background: var(--bg-color);
+  background-image:
+    radial-gradient(circle at center, transparent 10%, rgb(9 9 9 / 0.07) 36%, rgb(9 9 9 / 0.52) 62%, rgb(9 9 9 / 0.72) 90%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.046) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.042) 1px, transparent 1px);
+  background-repeat: no-repeat, repeat, repeat;
+  background-position: center, center, center;
+  background-size: 100% 100%, 25px 20px, 25px 25px;
+  background-attachment: fixed;
   color: var(--text-primary);
   font-family: var(--font-geist-sans), sans-serif;
 }
-
 /* Shared button styles */
 .btn {
   display: inline-flex;

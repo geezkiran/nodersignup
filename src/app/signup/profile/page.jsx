@@ -10,7 +10,6 @@ export default function StepThreePage() {
     <SignupStepThree
       formData={signup.formData}
       updateField={signup.updateField}
-      setStep={signup.setStep}
       canContinue={signup.canContinueStep2}
       usernameAvailability={signup.usernameAvailability}
       isCheckingUsername={signup.isCheckingUsername}

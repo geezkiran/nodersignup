@@ -4,7 +4,6 @@ import { SpotlightInput } from './SpotlightInput';
 export function SignupStepThree({
   formData,
   updateField,
-  setStep,
   canContinue,
   usernameAvailability,
   isCheckingUsername,
@@ -14,7 +13,7 @@ export function SignupStepThree({
 }) {
   return (
     <form
-      className={styles.formStack}
+      className={`${styles.formStack} ${styles.profileForm}`}
       onSubmit={(e) => {
         e.preventDefault();
         if (canContinue && !isSubmitting) completeSignup();
@@ -56,14 +55,7 @@ export function SignupStepThree({
         />
       </div>
 
-      <div className={styles.actionRow}>
-        <button
-          type="button"
-          onClick={() => setStep(1)}
-          className={styles.secondaryButton}
-        >
-          Back
-        </button>
+      <div className={`${styles.actionRow} ${styles.actionRowRight} ${styles.profileActionRow}`}>
         <button
           type="submit"
           disabled={!canContinue || isSubmitting}
