@@ -77,9 +77,9 @@ export function useSignupFlow() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: window.location.hostname === 'localhost' 
-          ? window.location.origin 
-          : 'https://signup.noderhq.com',
+        redirectTo: window.location.hostname === 'localhost'
+          ? window.location.origin + '/signup?step=2'
+          : 'https://signup.noderhq.com/signup?step=2',
       },
     });
     if (error) setError(error.message);
@@ -164,20 +164,20 @@ export function useSignupFlow() {
         console.log('Auth state changed:', event, !!session);
         if (session) {
           setFormData((prev) => ({ ...prev, email: session.user.email }));
-          // Check if profile exists also here
+          // Check if user signed in with Google and already has a profile
+          const hasGoogle = Array.isArray(session.user.identities)
+            ? session.user.identities.some((id) => id.provider === 'google')
+            : false;
           supabase
             .from('profiles')
             .select('username')
             .eq('id', session.user.id)
             .single()
             .then(({ data, error: profileError }) => {
-              // If a username exists, they are a returning user, go to step 4
-              if (data?.username && !profileError) {
+              if (hasGoogle && data?.username && !profileError) {
+                // Already signed up with Google, show thank you
                 setStep(4);
-              } 
-              // Otherwise, if they just signed in/signed up, stay on Step 2 (Password)
-              // We DON'T auto-advance to Step 3 because they need to set a password
-              else if (step < 2) {
+              } else if (step < 2) {
                 setStep(2);
               }
             })

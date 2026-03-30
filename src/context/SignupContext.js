@@ -111,9 +111,9 @@ export function SignupProvider({ children }) {
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: window.location.hostname === 'localhost' 
-          ? window.location.origin + '/signup/email'
-          : 'https://signup.noderhq.com/signup/email',
+        redirectTo: window.location.hostname === 'localhost'
+          ? window.location.origin + '/signup?step=2'
+          : 'https://signup.noderhq.com/signup?step=2',
       },
     });
     if (error) setError(error.message);
@@ -166,9 +166,12 @@ export function SignupProvider({ children }) {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (session) {
         setFormData((prev) => ({ ...prev, email: session.user.email }));
+        const hasGoogle = Array.isArray(session.user.identities)
+          ? session.user.identities.some((id) => id.provider === 'google')
+          : false;
         supabase.from('profiles').select('username').eq('id', session.user.id).single()
           .then(({ data }) => {
-            if (data?.username) setStep(4);
+            if (hasGoogle && data?.username) setStep(4);
             else if (step < 2) setStep(2);
           })
           .catch(() => { if (step < 2) setStep(2); });
