@@ -6,6 +6,7 @@ import { SignupCropModal } from '@/components/signup/SignupCropModal';
 // import { StepSwitcher } from '@/components/signup/StepSwitcher';
 import styles from '../page.module.css';
 
+
 function SignupLayoutInner({ children }) {
   const signup = useSignup();
 
