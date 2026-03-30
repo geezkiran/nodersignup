@@ -511,8 +511,8 @@
 .successText {
   margin-top: 0.75rem;
   font-family: var(--font-instrument-sans), sans-serif;
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 400;
   color: var(--text-secondary);
 }
 

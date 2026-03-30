@@ -10,10 +10,10 @@ export function SignupStepFour({ formData, setStep, isExistingUser }) {
       <div className={styles.successStack}>
         <div className={styles.successCard}>
           <h2 className={styles.successUsername}>
-            <span className={styles.successGreeting}>you're already signed up</span>
+            <span className={styles.successGreeting}>You're already signed up</span>
           </h2>
 
-          <p className={styles.successText}>Thanks for being part of Noder.</p>
+          <p className={styles.successText}>Thanks for taking part</p>
         </div>
 
         <div className={styles.actionRow}>
