@@ -10,6 +10,7 @@ export default function StepFourPage() {
     <SignupStepFour
       formData={signup.formData}
       setStep={signup.setStep}
+      isExistingUser={signup.isExistingUser}
     />
   );
 }

@@ -59,6 +59,7 @@ export function SignupProvider({ children }) {
   const [error, setError] = useState(null);
   const [usernameAvailability, setUsernameAvailability] = useState(null);
   const [isCheckingUsername, setIsCheckingUsername] = useState(false);
+  const [isExistingUser, setIsExistingUser] = useState(false);
 
   useEffect(() => {
     const username = formData.profileUsername.trim();
@@ -121,8 +122,13 @@ export function SignupProvider({ children }) {
         setFormData((prev) => ({ ...prev, email: session.user.email }));
         supabase.from('profiles').select('username').eq('id', session.user.id).single()
           .then(({ data }) => {
-            if (data?.username) setStep(3);
-            else if (step < 2) setStep(2);
+            if (data?.username) {
+              setIsExistingUser(true);
+              setStep(3);
+            } else if (step < 2) {
+              setIsExistingUser(false);
+              setStep(2);
+            }
           })
           .catch(() => { if (step < 2) setStep(2); });
       }
@@ -137,11 +143,19 @@ export function SignupProvider({ children }) {
         supabase.from('profiles').select('username').eq('id', session.user.id).single()
           .then(({ data }) => {
             if (hasGoogle && data?.username) {
+              setIsExistingUser(true);
               setStep(3);
-            } else if (step < 2) setStep(2);
+            } else if (data?.username) {
+              setIsExistingUser(true);
+              setStep(3);
+            } else if (step < 2) {
+              setIsExistingUser(false);
+              setStep(2);
+            }
           })
           .catch(() => { if (step < 2) setStep(2); });
       } else if (event === 'SIGNED_OUT') {
+        setIsExistingUser(false);
         setStep(1);
       }
     });
@@ -307,6 +321,7 @@ export function SignupProvider({ children }) {
             setStep(nextStep);
         }
     },
+    isExistingUser,
   };
 
   return <SignupContext.Provider value={value}>{children}</SignupContext.Provider>;
