@@ -77,8 +77,8 @@ export function useSignupFlow() {
       provider,
       options: {
         redirectTo: window.location.hostname === 'localhost'
-          ? window.location.origin + '/signup?step=2'
-          : 'https://signup.noderhq.com/signup?step=2',
+          ? window.location.origin + '/auth/callback'
+          : 'https://signup.noderhq.com/auth/callback',
       },
     });
     if (error) setError(error.message);
