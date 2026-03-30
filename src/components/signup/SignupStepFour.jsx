@@ -1,6 +1,6 @@
 import styles from './signup-form.module.css';
 
-export function SignupStepFour({ formData, photoPreviewStyle, setStep }) {
+export function SignupStepFour({ formData, setStep }) {
   const username = (
     formData.profileUsername || formData.email.split('@')[0] || 'user'
   ).replace(/^@+/, '');
@@ -8,14 +8,6 @@ export function SignupStepFour({ formData, photoPreviewStyle, setStep }) {
   return (
     <div className={styles.successStack}>
       <div className={styles.successCard}>
-        <div className={styles.successAvatarWrap}>
-          <div
-            className={`${styles.successAvatar} ${formData.photo ? '' : styles.successAvatarFallback
-              }`}
-            style={photoPreviewStyle}
-          />
-        </div>
-
         <p className={styles.successUsername}>@{username}</p>
 
         <p className={styles.successText}>Your profile feels just right.</p>
@@ -25,7 +17,7 @@ export function SignupStepFour({ formData, photoPreviewStyle, setStep }) {
         <div className={styles.secondaryActions}>
           <button
             type="button"
-            onClick={() => setStep(3)}
+            onClick={() => setStep(2)}
             className={styles.secondaryButton}
           >
             Edit profile

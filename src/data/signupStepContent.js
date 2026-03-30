@@ -7,20 +7,14 @@ export const signupStepContent = {
   },
   2: {
     title: 'Your Identity',
-    description: 'Choose a unique username and secure your account.',
-    message: 'Lock it down.',
+    description: 'Choose a unique username and tell us what to call you.',
+    message: 'Personalize your profile.',
     leftPoints: [
       'Usernames are case insensitive.',
       'Must be at least 6 characters.',
     ],
   },
   3: {
-    title: 'Personalize profile',
-    description: 'Tell us what to call you and upload a profile photo.',
-    message: 'Personalize your profile.',
-    leftPoints: ['Adding a profile is optional'],
-  },
-  4: {
     title: 'Welcome aboard',
     description: 'Your account setup is complete.',
     message: 'You are ready to go.',

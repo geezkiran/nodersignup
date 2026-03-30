@@ -9,7 +9,6 @@ const INITIAL_FORM = {
   photo: '',
   profileUsername: '',
   displayName: '',
-  password: '',
 };
 
 const INITIAL_CROP_BOX = { x: 54, y: 54, size: 180 };
@@ -147,7 +146,7 @@ export function useSignupFlow() {
             .single()
             .then(({ data, error: profileError }) => {
               if (data?.username && !profileError) {
-                setStep(4);
+                setStep(3);
               } else if (step < 2) {
                 setStep(2);
               }
@@ -543,30 +542,9 @@ export function useSignupFlow() {
 
         console.log('Current Auth User:', authUser);
 
-        // 1. Sign up user if not already signed in via OAuth
+        // 1. Ensure user is authenticated (should already be from OTP/OAuth)
         if (!authUser) {
-          console.log('No active session, signing up with email/password...');
-          const { data, error: authError } = await supabase.auth.signUp({
-            email: formData.email.trim(),
-            password: formData.password,
-            options: {
-              data: {
-                username: formData.profileUsername,
-              }
-            }
-          });
-          if (authError) throw authError;
-          if (!data.user) throw new Error('Signup failed. Please check your email for confirmation.');
-          authUser = data.user;
-          console.log('Signup successful:', authUser.id);
-        } else if (formData.password) {
-          // If already signed in (OAuth), but provided a password, update it for future use
-          console.log('Updating password for existing session...');
-          const { error: updateError } = await supabase.auth.updateUser({
-            password: formData.password,
-          });
-          if (updateError) throw updateError;
-          console.log('Password updated successfully!');
+          throw new Error('No authenticated user found. Please sign in first.');
         }
 
         let avatarUrl = null;
@@ -619,7 +597,7 @@ export function useSignupFlow() {
         }
 
         console.log('Profile created successfully!');
-        setStep(4);
+        setStep(3);
       } catch (err) {
         console.error('completeSignup failed:', err);
         setError(err.message || 'An unexpected error occurred');
@@ -635,19 +613,6 @@ export function useSignupFlow() {
     sendOtp,
     countdown,
     canContinueStep2:
-      formData.password.length >= 6 &&
-      /[a-z]/.test(formData.password) &&
-      /[A-Z]/.test(formData.password) &&
-      /[0-9]/.test(formData.password) &&
-      /[^a-zA-Z0-9]/.test(formData.password),
-    passwordRequirements: {
-      hasMinLength: formData.password.length >= 6,
-      hasLower: /[a-z]/.test(formData.password),
-      hasUpper: /[A-Z]/.test(formData.password),
-      hasNumber: /[0-9]/.test(formData.password),
-      hasSymbol: /[^a-zA-Z0-9]/.test(formData.password),
-    },
-    canContinueStep3:
       Boolean(formData.profileUsername.trim()) && 
       formData.profileUsername.trim().length >= 3 &&
       Boolean(formData.displayName.trim()) &&

@@ -9,7 +9,6 @@ export default function StepFourPage() {
   return (
     <SignupStepFour
       formData={signup.formData}
-      photoPreviewStyle={signup.photoPreviewStyle}
       setStep={signup.setStep}
     />
   );
