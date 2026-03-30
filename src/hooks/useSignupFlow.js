@@ -176,7 +176,10 @@ export function useSignupFlow() {
             .then(({ data, error: profileError }) => {
               if (hasGoogle && data?.username && !profileError) {
                 // Already signed up with Google, show thank you
-                window.location.replace('/signup/thankyou');
+                // Only redirect if not already on thankyou page
+                if (!window.location.pathname.includes('/signup/thankyou')) {
+                  window.location.replace('/signup/thankyou');
+                }
               } else if (step < 2) {
                 setStep(2);
               }
