@@ -421,9 +421,9 @@
   border: 1px solid #fff;
   background: #fff;
   color: #000;
-  font-weight: 300;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
 }
 
 .primaryButton:hover:not(:disabled) {
@@ -480,9 +480,25 @@
 }
 
 .successUsername {
-  margin-top: 0.25rem;
-  font-size: 0.875rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  
+  letter-spacing: -0.02em;
   color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.successGreeting {
+  font-family: var(--font-instrument-serif), serif;
+  font-weight: 500;
+  font-size: 2.1rem; 
+}
+
+.successUsernameText {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-weight: 300;
+  font-size: 1.9rem;
+  letter-spacing: -0.09rem;
 }
 
 .successHeading {
@@ -630,6 +646,7 @@
 
 .inputsStack {
   gap: 0.5rem;
+  margin-top: -0.9rem;
 }
 
 .availabilityWrapper {

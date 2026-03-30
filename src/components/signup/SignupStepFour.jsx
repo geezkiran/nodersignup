@@ -8,35 +8,32 @@ export function SignupStepFour({ formData, setStep }) {
   return (
     <div className={styles.successStack}>
       <div className={styles.successCard}>
-        <p className={styles.successUsername}>@{username}</p>
+        <h2 className={styles.successUsername}>
+          <span className={styles.successGreeting}>hello, </span>
+          <span className={styles.successUsernameText}>@{username}</span>
+        </h2>
 
         <p className={styles.successText}>Your profile feels just right.</p>
       </div>
 
       <div className={styles.actionRow}>
-        <div className={styles.secondaryActions}>
-          <button
-            type="button"
-            onClick={() => setStep(2)}
-            className={styles.secondaryButton}
-          >
-            Edit profile
-          </button>
-          <a
-            href="https://nodersurvey.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.surveyButton}
-          >
-            Take survey
-          </a>
-        </div>
         <a
           href="https://noderhq.com"
           className={`${styles.secondaryButton} ${styles.returnHomeSecondary}`}
         >
           Return home
         </a>
+        <div className={styles.secondaryActions}>
+          
+          <a
+            href="https://nodersurvey.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.surveyButton}
+          >
+            Take a survey
+          </a>
+        </div>
       </div>
     </div>
   );

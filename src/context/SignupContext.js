@@ -301,8 +301,7 @@ export function SignupProvider({ children }) {
     countdown,
     canContinueStep2: formData.profileUsername.trim().length >= 3 && 
                      usernameAvailability === 'available' && 
-                     !isCheckingUsername &&
-                     formData.displayName.trim().length > 0,
+                     !isCheckingUsername,
     usernameAvailability,
     isCheckingUsername,
     handleKeyDown: (event, canContinue, nextStep) => {

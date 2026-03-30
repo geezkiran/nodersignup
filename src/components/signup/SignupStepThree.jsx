@@ -53,7 +53,6 @@ export function SignupStepThree({
           placeholder="What should we call you?"
           autoComplete="name"
           name="displayName"
-          required={true}
         />
       </div>
 

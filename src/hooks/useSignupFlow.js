@@ -615,7 +615,6 @@ export function useSignupFlow() {
     canContinueStep2:
       Boolean(formData.profileUsername.trim()) && 
       formData.profileUsername.trim().length >= 3 &&
-      Boolean(formData.displayName.trim()) &&
       usernameAvailability === 'available' &&
       !isCheckingUsername,
     usernameAvailability,
