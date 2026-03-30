@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+import { createServerClient } from '@supabase/ssr';
 import { NextResponse } from 'next/server';
 
 export async function GET(request) {
@@ -21,11 +21,30 @@ export async function GET(request) {
     return NextResponse.redirect(new URL('/signup', request.url));
   }
 
+  // Create response object first
+  const response = NextResponse.redirect(new URL('/signup/email', request.url));
+
   try {
-    // Create Supabase client with service role to exchange code
-    const supabase = createClient(
+    // Create Supabase server client with proper cookie handling
+    const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+      {
+        cookies: {
+          getAll() {
+            return request.cookies.getSetCookie().map(cookie => {
+              const [nameValue] = cookie.split(';');
+              const [name, value] = nameValue.split('=');
+              return { name: name.trim(), value: decodeURIComponent(value || '') };
+            });
+          },
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value, options }) => {
+              response.cookies.set(name, value, options);
+            });
+          },
+        },
+      }
     );
 
     // Exchange the code for a session
@@ -38,30 +57,7 @@ export async function GET(request) {
       );
     }
 
-    // Create response redirecting to signup step 2
-    const response = NextResponse.redirect(
-      new URL('/signup/email', request.url)
-    );
-
-    // Set auth cookies so the client-side recognizes the session
-    if (data?.session) {
-      const { access_token, refresh_token } = data.session;
-      
-      response.cookies.set('sb-access-token', access_token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        maxAge: 60 * 60 * 24 * 365, // 1 year
-      });
-
-      response.cookies.set('sb-refresh-token', refresh_token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        maxAge: 60 * 60 * 24 * 365, // 1 year
-      });
-    }
-
+    console.log('Session exchanged successfully');
     return response;
   } catch (err) {
     console.error('Callback error:', err);
