@@ -137,10 +137,7 @@ export function SignupProvider({ children }) {
         supabase.from('profiles').select('username').eq('id', session.user.id).single()
           .then(({ data }) => {
             if (hasGoogle && data?.username) {
-              // Only redirect if not already on thankyou page
-              if (!window.location.pathname.includes('/signup/thankyou')) {
-                window.location.replace('/signup/thankyou');
-              }
+              setStep(3);
             } else if (step < 2) setStep(2);
           })
           .catch(() => { if (step < 2) setStep(2); });
