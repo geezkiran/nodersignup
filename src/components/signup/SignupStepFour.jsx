@@ -10,7 +10,7 @@ export function SignupStepFour({ formData, setStep, isExistingUser }) {
       <div className={styles.successStack}>
         <div className={styles.successCard}>
           <h2 className={styles.successUsername}>
-            <span className={styles.successGreeting}>You're already signed up</span>
+            <span className={styles.existingSignedUpText}>You're already signed up</span>
           </h2>
 
           <p className={styles.successText}>Thanks for taking part</p>
